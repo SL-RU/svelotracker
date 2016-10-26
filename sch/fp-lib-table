@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name LSM303D)(type Legacy)(uri "$(KIPRJMOD)\\LSM303D.mod")(options "")(descr ""))
+  (lib (name sch)(type KiCad)(uri "$(KIPRJMOD)")(options "")(descr ""))
+)
