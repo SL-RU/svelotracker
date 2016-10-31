@@ -1,4 +1,6 @@
 (fp_lib_table
   (lib (name LSM303D)(type Legacy)(uri "$(KIPRJMOD)\\LSM303D.mod")(options "")(descr ""))
+  (lib (name "DO-214AC(SMA)")(type Legacy)(uri "$(KIPRJMOD)\\DO-214AC(SMA).mod")(options "")(descr ""))
+  (lib (name ssop8)(type Legacy)(uri "$(KIPRJMOD)\\ssop8.mod")(options "")(descr ""))
   (lib (name sch)(type KiCad)(uri "$(KIPRJMOD)")(options "")(descr ""))
 )

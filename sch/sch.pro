@@ -1,4 +1,4 @@
-update=30/10/2016 22:52:59
+update=31/10/2016 18:39:09
 version=1
 last_client=kicad
 [pcbnew]
@@ -79,3 +79,4 @@ LibName37=ncp1450
 LibName38=mc33202d
 LibName39=C:/Program Files/KiCad/share/kicad/library/74xgxx
 LibName40=jcf-analog
+LibName41=gps_antenna
