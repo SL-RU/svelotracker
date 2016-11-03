@@ -1008,7 +1008,6 @@ Text Label 7900 4250 0    60   ~ 0
 C_INT1
 Text Label 7900 4350 0    60   ~ 0
 G_RST
-NoConn ~ 9000 1300
 NoConn ~ 3250 4150
 Text Label 2900 3050 0    60   ~ 0
 P_UFLT
@@ -2000,4 +1999,9 @@ Wire Wire Line
 	4250 6900 4250 6300
 Wire Wire Line
 	3650 6200 3650 6900
+Wire Wire Line
+	9000 1300 8900 1300
+Wire Wire Line
+	8900 1300 8900 1400
+Connection ~ 8900 1400
 $EndSCHEMATC
