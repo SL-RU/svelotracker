@@ -1,0 +1,1144 @@
+ARM GAS  /tmp/ccYkouSv.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 23, 1
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 2
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"compass.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.compass_register_read,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	compass_register_read
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	compass_register_read:
+  25              	.LFB126:
+  26              		.file 1 "dev/compass.c"
+   1:dev/compass.c **** #include "compass.h"
+   2:dev/compass.c **** 
+   3:dev/compass.c **** uint8_t compass_register_read(uint8_t reg)
+   4:dev/compass.c **** {
+  27              		.loc 1 4 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 70B5     		push	{r4, r5, r6, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+   5:dev/compass.c ****     uint8_t result = 0;
+   6:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, &reg,    1, 100);
+  39              		.loc 1 6 0
+  40 0002 0E4C     		ldr	r4, .L3
+   4:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, &reg,    1, 100);
+  41              		.loc 1 4 0
+  42 0004 86B0     		sub	sp, sp, #24
+  43              	.LCFI1:
+  44              		.cfi_def_cfa_offset 40
+  45              		.loc 1 6 0
+  46 0006 6425     		movs	r5, #100
+   4:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, &reg,    1, 100);
+  47              		.loc 1 4 0
+  48 0008 8DF80F00 		strb	r0, [sp, #15]
+  49              		.loc 1 6 0
+  50 000c 0DF10F02 		add	r2, sp, #15
+ARM GAS  /tmp/ccYkouSv.s 			page 2
+
+
+  51 0010 2046     		mov	r0, r4
+  52              	.LVL1:
+  53 0012 0095     		str	r5, [sp]
+   5:dev/compass.c ****     uint8_t result = 0;
+  54              		.loc 1 5 0
+  55 0014 0026     		movs	r6, #0
+  56              		.loc 1 6 0
+  57 0016 0123     		movs	r3, #1
+  58 0018 3A21     		movs	r1, #58
+   5:dev/compass.c ****     uint8_t result = 0;
+  59              		.loc 1 5 0
+  60 001a 8DF81760 		strb	r6, [sp, #23]
+  61              		.loc 1 6 0
+  62 001e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+  63              	.LVL2:
+   7:dev/compass.c ****     HAL_I2C_Master_Receive(&COMPASS_I2C,  COMPASS_I2C_ADDR, &result, 1, 100);
+  64              		.loc 1 7 0
+  65 0022 0095     		str	r5, [sp]
+  66 0024 2046     		mov	r0, r4
+  67 0026 0123     		movs	r3, #1
+  68 0028 0DF11702 		add	r2, sp, #23
+  69 002c 3A21     		movs	r1, #58
+  70 002e FFF7FEFF 		bl	HAL_I2C_Master_Receive
+  71              	.LVL3:
+   8:dev/compass.c ****     return result;
+   9:dev/compass.c **** }
+  72              		.loc 1 9 0
+  73 0032 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+  74 0036 06B0     		add	sp, sp, #24
+  75              	.LCFI2:
+  76              		.cfi_def_cfa_offset 16
+  77              		@ sp needed
+  78 0038 70BD     		pop	{r4, r5, r6, pc}
+  79              	.L4:
+  80 003a 00BF     		.align	2
+  81              	.L3:
+  82 003c 00000000 		.word	hi2c1
+  83              		.cfi_endproc
+  84              	.LFE126:
+  86              		.section	.text.compass_register_write,"ax",%progbits
+  87              		.align	1
+  88              		.p2align 2,,3
+  89              		.global	compass_register_write
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  93              		.fpu fpv4-sp-d16
+  95              	compass_register_write:
+  96              	.LFB127:
+  10:dev/compass.c **** void compass_register_write(uint8_t reg, uint8_t data)
+  11:dev/compass.c **** {
+  97              		.loc 1 11 0
+  98              		.cfi_startproc
+  99              		@ args = 0, pretend = 0, frame = 8
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101              	.LVL4:
+ 102 0000 00B5     		push	{lr}
+ARM GAS  /tmp/ccYkouSv.s 			page 3
+
+
+ 103              	.LCFI3:
+ 104              		.cfi_def_cfa_offset 4
+ 105              		.cfi_offset 14, -4
+ 106 0002 85B0     		sub	sp, sp, #20
+ 107              	.LCFI4:
+ 108              		.cfi_def_cfa_offset 24
+  12:dev/compass.c ****     uint8_t d[] = {reg, data};
+  13:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 109              		.loc 1 13 0
+ 110 0004 6423     		movs	r3, #100
+  12:dev/compass.c ****     uint8_t d[] = {reg, data};
+ 111              		.loc 1 12 0
+ 112 0006 8DF80C00 		strb	r0, [sp, #12]
+ 113 000a 8DF80D10 		strb	r1, [sp, #13]
+ 114              		.loc 1 13 0
+ 115 000e 0093     		str	r3, [sp]
+ 116 0010 03AA     		add	r2, sp, #12
+ 117 0012 0223     		movs	r3, #2
+ 118 0014 3A21     		movs	r1, #58
+ 119              	.LVL5:
+ 120 0016 0348     		ldr	r0, .L7
+ 121              	.LVL6:
+ 122 0018 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 123              	.LVL7:
+  14:dev/compass.c **** }
+ 124              		.loc 1 14 0
+ 125 001c 05B0     		add	sp, sp, #20
+ 126              	.LCFI5:
+ 127              		.cfi_def_cfa_offset 4
+ 128              		@ sp needed
+ 129 001e 5DF804FB 		ldr	pc, [sp], #4
+ 130              	.L8:
+ 131 0022 00BF     		.align	2
+ 132              	.L7:
+ 133 0024 00000000 		.word	hi2c1
+ 134              		.cfi_endproc
+ 135              	.LFE127:
+ 137              		.section	.text.lsm303_read_pos,"ax",%progbits
+ 138              		.align	1
+ 139              		.p2align 2,,3
+ 140              		.global	lsm303_read_pos
+ 141              		.syntax unified
+ 142              		.thumb
+ 143              		.thumb_func
+ 144              		.fpu fpv4-sp-d16
+ 146              	lsm303_read_pos:
+ 147              	.LFB128:
+  15:dev/compass.c **** 
+  16:dev/compass.c **** 
+  17:dev/compass.c **** uint16_t lsm303_read_pos(uint8_t reg)
+  18:dev/compass.c **** {
+ 148              		.loc 1 18 0
+ 149              		.cfi_startproc
+ 150              		@ args = 0, pretend = 0, frame = 16
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152              	.LVL8:
+ 153 0000 70B5     		push	{r4, r5, r6, lr}
+ARM GAS  /tmp/ccYkouSv.s 			page 4
+
+
+ 154              	.LCFI6:
+ 155              		.cfi_def_cfa_offset 16
+ 156              		.cfi_offset 4, -16
+ 157              		.cfi_offset 5, -12
+ 158              		.cfi_offset 6, -8
+ 159              		.cfi_offset 14, -4
+  19:dev/compass.c ****     uint8_t r[2] = {0};
+  20:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 160              		.loc 1 20 0
+ 161 0002 1A4C     		ldr	r4, .L11
+  18:dev/compass.c ****     uint8_t r[2] = {0};
+ 162              		.loc 1 18 0
+ 163 0004 86B0     		sub	sp, sp, #24
+ 164              	.LCFI7:
+ 165              		.cfi_def_cfa_offset 40
+ 166              		.loc 1 20 0
+ 167 0006 6425     		movs	r5, #100
+  18:dev/compass.c ****     uint8_t r[2] = {0};
+ 168              		.loc 1 18 0
+ 169 0008 8DF80F00 		strb	r0, [sp, #15]
+ 170              		.loc 1 20 0
+ 171 000c 0DF10F02 		add	r2, sp, #15
+ 172 0010 2046     		mov	r0, r4
+ 173              	.LVL9:
+ 174 0012 0095     		str	r5, [sp]
+  19:dev/compass.c ****     uint8_t r[2] = {0};
+ 175              		.loc 1 19 0
+ 176 0014 0026     		movs	r6, #0
+ 177              		.loc 1 20 0
+ 178 0016 0123     		movs	r3, #1
+ 179 0018 3A21     		movs	r1, #58
+  19:dev/compass.c ****     uint8_t r[2] = {0};
+ 180              		.loc 1 19 0
+ 181 001a ADF81460 		strh	r6, [sp, #20]	@ movhi
+ 182              		.loc 1 20 0
+ 183 001e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 184              	.LVL10:
+  21:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 185              		.loc 1 21 0
+ 186 0022 05AA     		add	r2, sp, #20
+ 187 0024 0095     		str	r5, [sp]
+ 188 0026 2046     		mov	r0, r4
+ 189 0028 0123     		movs	r3, #1
+ 190 002a 3A21     		movs	r1, #58
+ 191 002c FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 192              	.LVL11:
+  22:dev/compass.c ****     reg += 1;
+ 193              		.loc 1 22 0
+ 194 0030 9DF80F60 		ldrb	r6, [sp, #15]	@ zero_extendqisi2
+  23:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 195              		.loc 1 23 0
+ 196 0034 0095     		str	r5, [sp]
+ 197 0036 0DF10F02 		add	r2, sp, #15
+  22:dev/compass.c ****     reg += 1;
+ 198              		.loc 1 22 0
+ 199 003a 0136     		adds	r6, r6, #1
+ 200              		.loc 1 23 0
+ARM GAS  /tmp/ccYkouSv.s 			page 5
+
+
+ 201 003c 2046     		mov	r0, r4
+ 202 003e 0123     		movs	r3, #1
+ 203 0040 3A21     		movs	r1, #58
+  22:dev/compass.c ****     reg += 1;
+ 204              		.loc 1 22 0
+ 205 0042 8DF80F60 		strb	r6, [sp, #15]
+ 206              		.loc 1 23 0
+ 207 0046 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 208              	.LVL12:
+  24:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 209              		.loc 1 24 0
+ 210 004a 0095     		str	r5, [sp]
+ 211 004c 2046     		mov	r0, r4
+ 212 004e 0123     		movs	r3, #1
+ 213 0050 0DF11502 		add	r2, sp, #21
+ 214 0054 3A21     		movs	r1, #58
+ 215 0056 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 216              	.LVL13:
+  25:dev/compass.c ****     return (uint16_t)(r[0] | (r[1] << 8));
+ 217              		.loc 1 25 0
+ 218 005a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+ 219 005e 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
+  26:dev/compass.c **** }
+ 220              		.loc 1 26 0
+ 221 0062 43EA0020 		orr	r0, r3, r0, lsl #8
+ 222 0066 06B0     		add	sp, sp, #24
+ 223              	.LCFI8:
+ 224              		.cfi_def_cfa_offset 16
+ 225              		@ sp needed
+ 226 0068 70BD     		pop	{r4, r5, r6, pc}
+ 227              	.L12:
+ 228 006a 00BF     		.align	2
+ 229              	.L11:
+ 230 006c 00000000 		.word	hi2c1
+ 231              		.cfi_endproc
+ 232              	.LFE128:
+ 234              		.global	__aeabi_ui2d
+ 235              		.global	__aeabi_dmul
+ 236              		.global	__aeabi_dadd
+ 237              		.global	__aeabi_d2f
+ 238              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+ 239              		.align	1
+ 240              		.p2align 2,,3
+ 241              		.global	HAL_GPIO_EXTI_Callback
+ 242              		.syntax unified
+ 243              		.thumb
+ 244              		.thumb_func
+ 245              		.fpu fpv4-sp-d16
+ 247              	HAL_GPIO_EXTI_Callback:
+ 248              	.LFB129:
+  27:dev/compass.c **** 
+  28:dev/compass.c **** float ang = 0;
+  29:dev/compass.c **** void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+  30:dev/compass.c **** {
+ 249              		.loc 1 30 0
+ 250              		.cfi_startproc
+ 251              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  /tmp/ccYkouSv.s 			page 6
+
+
+ 252              		@ frame_needed = 0, uses_anonymous_args = 0
+ 253              	.LVL14:
+ 254 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 255              	.LCFI9:
+ 256              		.cfi_def_cfa_offset 32
+ 257              		.cfi_offset 4, -32
+ 258              		.cfi_offset 5, -28
+ 259              		.cfi_offset 6, -24
+ 260              		.cfi_offset 7, -20
+ 261              		.cfi_offset 8, -16
+ 262              		.cfi_offset 9, -12
+ 263              		.cfi_offset 10, -8
+ 264              		.cfi_offset 14, -4
+ 265 0004 2DED028B 		vpush.64	{d8}
+ 266              	.LCFI10:
+ 267              		.cfi_def_cfa_offset 40
+ 268              		.cfi_offset 80, -40
+ 269              		.cfi_offset 81, -36
+ 270              	.LBB19:
+ 271              	.LBB20:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 272              		.loc 1 20 0
+ 273 0008 654C     		ldr	r4, .L15
+ 274              	.LBE20:
+ 275              	.LBE19:
+  31:dev/compass.c **** //    printf("GPIO 12 EXTI\n");
+  32:dev/compass.c **** 
+  33:dev/compass.c ****     double x = (double)lsm303_read_pos(LSM303_OUT_X_L_M);
+  34:dev/compass.c ****     double y = (double)lsm303_read_pos(LSM303_OUT_Y_L_M);
+  35:dev/compass.c ****     double z = (double)lsm303_read_pos(LSM303_OUT_Z_L_M);
+  36:dev/compass.c **** 
+  37:dev/compass.c ****     double
+  38:dev/compass.c **** 	pitch = atan2(x, sqrt(y*y + z*z)),
+  39:dev/compass.c **** 	roll  = atan2(-y, -z),
+  40:dev/compass.c **** 	yaw   = atan2(z, sqrt(x*x + y*y));
+  41:dev/compass.c **** 
+  42:dev/compass.c ****     float headX;
+  43:dev/compass.c ****     float headY;
+  44:dev/compass.c ****     float cos_roll;
+  45:dev/compass.c ****     float sin_roll;
+  46:dev/compass.c ****     float cos_pitch;
+  47:dev/compass.c ****     float sin_pitch;
+  48:dev/compass.c **** 
+  49:dev/compass.c **** 
+  50:dev/compass.c ****     ang = pitch;
+ 276              		.loc 1 50 0
+ 277 000a 664F     		ldr	r7, .L15+4
+  30:dev/compass.c **** //    printf("GPIO 12 EXTI\n");
+ 278              		.loc 1 30 0
+ 279 000c 84B0     		sub	sp, sp, #16
+ 280              	.LCFI11:
+ 281              		.cfi_def_cfa_offset 56
+ 282              	.LBB23:
+ 283              	.LBB21:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 284              		.loc 1 20 0
+ 285 000e 6425     		movs	r5, #100
+ARM GAS  /tmp/ccYkouSv.s 			page 7
+
+
+  19:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 286              		.loc 1 19 0
+ 287 0010 4FF0000A 		mov	r10, #0
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 288              		.loc 1 20 0
+ 289 0014 0DF10B02 		add	r2, sp, #11
+ 290 0018 0095     		str	r5, [sp]
+ 291 001a 2046     		mov	r0, r4
+ 292              	.LVL15:
+ 293 001c 0826     		movs	r6, #8
+ 294 001e 0123     		movs	r3, #1
+ 295 0020 3A21     		movs	r1, #58
+ 296 0022 8DF80B60 		strb	r6, [sp, #11]
+ 297              	.LVL16:
+  19:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 298              		.loc 1 19 0
+ 299 0026 ADF80CA0 		strh	r10, [sp, #12]	@ movhi
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 300              		.loc 1 20 0
+ 301 002a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 302              	.LVL17:
+  21:dev/compass.c ****     reg += 1;
+ 303              		.loc 1 21 0
+ 304 002e 0095     		str	r5, [sp]
+ 305 0030 03AA     		add	r2, sp, #12
+ 306 0032 2046     		mov	r0, r4
+ 307 0034 0123     		movs	r3, #1
+ 308 0036 3A21     		movs	r1, #58
+ 309 0038 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 310              	.LVL18:
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 311              		.loc 1 22 0
+ 312 003c 9DF80B60 		ldrb	r6, [sp, #11]	@ zero_extendqisi2
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 313              		.loc 1 23 0
+ 314 0040 0095     		str	r5, [sp]
+ 315 0042 0DF10B02 		add	r2, sp, #11
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 316              		.loc 1 22 0
+ 317 0046 0136     		adds	r6, r6, #1
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 318              		.loc 1 23 0
+ 319 0048 2046     		mov	r0, r4
+ 320 004a 0123     		movs	r3, #1
+ 321 004c 3A21     		movs	r1, #58
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 322              		.loc 1 22 0
+ 323 004e 8DF80B60 		strb	r6, [sp, #11]
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 324              		.loc 1 23 0
+ 325 0052 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 326              	.LVL19:
+  24:dev/compass.c ****     return (uint16_t)(r[0] | (r[1] << 8));
+ 327              		.loc 1 24 0
+ 328 0056 0095     		str	r5, [sp]
+ 329 0058 0DF10D02 		add	r2, sp, #13
+ 330 005c 2046     		mov	r0, r4
+ARM GAS  /tmp/ccYkouSv.s 			page 8
+
+
+ 331 005e 0123     		movs	r3, #1
+ 332 0060 3A21     		movs	r1, #58
+ 333 0062 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 334              	.LVL20:
+  25:dev/compass.c **** }
+ 335              		.loc 1 25 0
+ 336 0066 9DF80D10 		ldrb	r1, [sp, #13]	@ zero_extendqisi2
+ 337 006a 9DF80C60 		ldrb	r6, [sp, #12]	@ zero_extendqisi2
+ 338              	.LBE21:
+ 339              	.LBE23:
+ 340              	.LBB24:
+ 341              	.LBB25:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 342              		.loc 1 20 0
+ 343 006e 0095     		str	r5, [sp]
+ 344 0070 4FF00A0E 		mov	lr, #10
+ 345 0074 0DF10A02 		add	r2, sp, #10
+ 346              	.LBE25:
+ 347              	.LBE24:
+ 348              	.LBB27:
+ 349              	.LBB22:
+  25:dev/compass.c **** }
+ 350              		.loc 1 25 0
+ 351 0078 46EA0126 		orr	r6, r6, r1, lsl #8
+ 352              	.LVL21:
+ 353              	.LBE22:
+ 354              	.LBE27:
+ 355              	.LBB28:
+ 356              	.LBB26:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 357              		.loc 1 20 0
+ 358 007c 2046     		mov	r0, r4
+ 359 007e 0123     		movs	r3, #1
+ 360 0080 3A21     		movs	r1, #58
+ 361 0082 8DF80AE0 		strb	lr, [sp, #10]
+ 362              	.LVL22:
+  19:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 363              		.loc 1 19 0
+ 364 0086 ADF80CA0 		strh	r10, [sp, #12]	@ movhi
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 365              		.loc 1 20 0
+ 366 008a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 367              	.LVL23:
+  21:dev/compass.c ****     reg += 1;
+ 368              		.loc 1 21 0
+ 369 008e 0095     		str	r5, [sp]
+ 370 0090 03AA     		add	r2, sp, #12
+ 371 0092 2046     		mov	r0, r4
+ 372 0094 0123     		movs	r3, #1
+ 373 0096 3A21     		movs	r1, #58
+ 374 0098 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 375              	.LVL24:
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 376              		.loc 1 22 0
+ 377 009c 9DF80AE0 		ldrb	lr, [sp, #10]	@ zero_extendqisi2
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 378              		.loc 1 23 0
+ARM GAS  /tmp/ccYkouSv.s 			page 9
+
+
+ 379 00a0 0095     		str	r5, [sp]
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 380              		.loc 1 22 0
+ 381 00a2 0EF1010E 		add	lr, lr, #1
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 382              		.loc 1 23 0
+ 383 00a6 0DF10A02 		add	r2, sp, #10
+ 384 00aa 2046     		mov	r0, r4
+ 385 00ac 0123     		movs	r3, #1
+ 386 00ae 3A21     		movs	r1, #58
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 387              		.loc 1 22 0
+ 388 00b0 8DF80AE0 		strb	lr, [sp, #10]
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 389              		.loc 1 23 0
+ 390 00b4 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 391              	.LVL25:
+  24:dev/compass.c ****     return (uint16_t)(r[0] | (r[1] << 8));
+ 392              		.loc 1 24 0
+ 393 00b8 0DF10D02 		add	r2, sp, #13
+ 394 00bc 0095     		str	r5, [sp]
+ 395 00be 2046     		mov	r0, r4
+ 396 00c0 0123     		movs	r3, #1
+ 397 00c2 3A21     		movs	r1, #58
+ 398 00c4 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 399              	.LVL26:
+  25:dev/compass.c **** }
+ 400              		.loc 1 25 0
+ 401 00c8 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 402 00cc 9DF80D00 		ldrb	r0, [sp, #13]	@ zero_extendqisi2
+ 403              	.LBE26:
+ 404              	.LBE28:
+  34:dev/compass.c ****     double z = (double)lsm303_read_pos(LSM303_OUT_Z_L_M);
+ 405              		.loc 1 34 0
+ 406 00d0 43EA0020 		orr	r0, r3, r0, lsl #8
+ 407 00d4 FFF7FEFF 		bl	__aeabi_ui2d
+ 408              	.LVL27:
+ 409 00d8 8946     		mov	r9, r1
+ 410 00da 0C21     		movs	r1, #12
+ 411 00dc 8046     		mov	r8, r0
+ 412              	.LVL28:
+ 413              	.LBB29:
+ 414              	.LBB30:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 415              		.loc 1 20 0
+ 416 00de 0095     		str	r5, [sp]
+ 417 00e0 0DF10902 		add	r2, sp, #9
+ 418 00e4 8DF80910 		strb	r1, [sp, #9]
+ 419              	.LVL29:
+ 420 00e8 2046     		mov	r0, r4
+ 421 00ea 0123     		movs	r3, #1
+ 422 00ec 3A21     		movs	r1, #58
+ 423              	.LVL30:
+  19:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 424              		.loc 1 19 0
+ 425 00ee ADF80CA0 		strh	r10, [sp, #12]	@ movhi
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ARM GAS  /tmp/ccYkouSv.s 			page 10
+
+
+ 426              		.loc 1 20 0
+ 427 00f2 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 428              	.LVL31:
+  21:dev/compass.c ****     reg += 1;
+ 429              		.loc 1 21 0
+ 430 00f6 0095     		str	r5, [sp]
+ 431 00f8 03AA     		add	r2, sp, #12
+ 432 00fa 2046     		mov	r0, r4
+ 433 00fc 0123     		movs	r3, #1
+ 434 00fe 3A21     		movs	r1, #58
+ 435 0100 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 436              	.LVL32:
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 437              		.loc 1 22 0
+ 438 0104 9DF809E0 		ldrb	lr, [sp, #9]	@ zero_extendqisi2
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 439              		.loc 1 23 0
+ 440 0108 0095     		str	r5, [sp]
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 441              		.loc 1 22 0
+ 442 010a 0EF1010E 		add	lr, lr, #1
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 443              		.loc 1 23 0
+ 444 010e 0DF10902 		add	r2, sp, #9
+ 445 0112 2046     		mov	r0, r4
+ 446 0114 0123     		movs	r3, #1
+ 447 0116 3A21     		movs	r1, #58
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 448              		.loc 1 22 0
+ 449 0118 8DF809E0 		strb	lr, [sp, #9]
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 450              		.loc 1 23 0
+ 451 011c FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 452              	.LVL33:
+  24:dev/compass.c ****     return (uint16_t)(r[0] | (r[1] << 8));
+ 453              		.loc 1 24 0
+ 454 0120 0DF10D02 		add	r2, sp, #13
+ 455 0124 0095     		str	r5, [sp]
+ 456 0126 2046     		mov	r0, r4
+ 457 0128 0123     		movs	r3, #1
+ 458 012a 3A21     		movs	r1, #58
+ 459 012c FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 460              	.LVL34:
+  25:dev/compass.c **** }
+ 461              		.loc 1 25 0
+ 462 0130 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
+ 463 0134 9DF80D00 		ldrb	r0, [sp, #13]	@ zero_extendqisi2
+ 464              	.LBE30:
+ 465              	.LBE29:
+  35:dev/compass.c **** 
+ 466              		.loc 1 35 0
+ 467 0138 43EA0020 		orr	r0, r3, r0, lsl #8
+ 468 013c FFF7FEFF 		bl	__aeabi_ui2d
+ 469              	.LVL35:
+  38:dev/compass.c **** 	roll  = atan2(-y, -z),
+ 470              		.loc 1 38 0
+ 471 0140 0246     		mov	r2, r0
+ARM GAS  /tmp/ccYkouSv.s 			page 11
+
+
+ 472 0142 0B46     		mov	r3, r1
+ 473 0144 FFF7FEFF 		bl	__aeabi_dmul
+ 474              	.LVL36:
+ 475 0148 4246     		mov	r2, r8
+ 476 014a 0446     		mov	r4, r0
+ 477 014c 0D46     		mov	r5, r1
+ 478 014e 4B46     		mov	r3, r9
+ 479 0150 4046     		mov	r0, r8
+ 480 0152 4946     		mov	r1, r9
+ 481 0154 FFF7FEFF 		bl	__aeabi_dmul
+ 482              	.LVL37:
+ 483 0158 0246     		mov	r2, r0
+ 484 015a 0B46     		mov	r3, r1
+ 485 015c 2046     		mov	r0, r4
+ 486 015e 2946     		mov	r1, r5
+ 487 0160 FFF7FEFF 		bl	__aeabi_dadd
+ 488              	.LVL38:
+ 489 0164 41EC100B 		vmov	d0, r0, r1
+ 490 0168 FFF7FEFF 		bl	sqrt
+ 491              	.LVL39:
+  33:dev/compass.c ****     double y = (double)lsm303_read_pos(LSM303_OUT_Y_L_M);
+ 492              		.loc 1 33 0
+ 493 016c 3046     		mov	r0, r6
+  38:dev/compass.c **** 	roll  = atan2(-y, -z),
+ 494              		.loc 1 38 0
+ 495 016e B0EE408A 		vmov.f32	s16, s0
+ 496 0172 F0EE608A 		vmov.f32	s17, s1
+  33:dev/compass.c ****     double y = (double)lsm303_read_pos(LSM303_OUT_Y_L_M);
+ 497              		.loc 1 33 0
+ 498 0176 FFF7FEFF 		bl	__aeabi_ui2d
+ 499              	.LVL40:
+  38:dev/compass.c **** 	roll  = atan2(-y, -z),
+ 500              		.loc 1 38 0
+ 501 017a B0EE481A 		vmov.f32	s2, s16
+ 502 017e F0EE681A 		vmov.f32	s3, s17
+ 503 0182 41EC100B 		vmov	d0, r0, r1
+ 504 0186 FFF7FEFF 		bl	atan2
+ 505              	.LVL41:
+ 506              		.loc 1 50 0
+ 507 018a 51EC100B 		vmov	r0, r1, d0
+ 508 018e FFF7FEFF 		bl	__aeabi_d2f
+ 509              	.LVL42:
+ 510 0192 3860     		str	r0, [r7]	@ float
+  51:dev/compass.c **** 
+  52:dev/compass.c ****     // Declination correction (if supplied)
+  53:dev/compass.c ****     /* if( fabs(_declination) > 0.0 ) */
+  54:dev/compass.c ****     /* { */
+  55:dev/compass.c ****         /* heading = heading + _declination; */
+  56:dev/compass.c ****         /* if (heading > M_PI)    // Angle normalization (-180 deg, 180 deg) */
+  57:dev/compass.c ****         /*     heading -= (2.0 * M_PI); */
+  58:dev/compass.c ****         /* else if (heading < -M_PI) */
+  59:dev/compass.c ****         /*     heading += (2.0 * M_PI); */
+  60:dev/compass.c **** //    }
+  61:dev/compass.c **** 
+  62:dev/compass.c ****     // Optimization for external DCM use. Calculate normalized components
+  63:dev/compass.c **** //    heading_x = cos(heading);
+  64:dev/compass.c **** //    heading_y = sin(heading);
+ARM GAS  /tmp/ccYkouSv.s 			page 12
+
+
+  65:dev/compass.c ****     
+  66:dev/compass.c **** //    printf("%f\n", ang);
+  67:dev/compass.c **** }
+ 511              		.loc 1 67 0
+ 512 0194 04B0     		add	sp, sp, #16
+ 513              	.LCFI12:
+ 514              		.cfi_def_cfa_offset 40
+ 515              		@ sp needed
+ 516 0196 BDEC028B 		vldm	sp!, {d8}
+ 517              	.LCFI13:
+ 518              		.cfi_restore 80
+ 519              		.cfi_restore 81
+ 520              		.cfi_def_cfa_offset 32
+ 521 019a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 522              	.LVL43:
+ 523              	.L16:
+ 524 019e 00BF     		.align	2
+ 525              	.L15:
+ 526 01a0 00000000 		.word	hi2c1
+ 527 01a4 00000000 		.word	.LANCHOR0
+ 528              		.cfi_endproc
+ 529              	.LFE129:
+ 531              		.section	.text.compass_init,"ax",%progbits
+ 532              		.align	1
+ 533              		.p2align 2,,3
+ 534              		.global	compass_init
+ 535              		.syntax unified
+ 536              		.thumb
+ 537              		.thumb_func
+ 538              		.fpu fpv4-sp-d16
+ 540              	compass_init:
+ 541              	.LFB130:
+  68:dev/compass.c **** 
+  69:dev/compass.c **** void compass_init()
+  70:dev/compass.c **** {
+ 542              		.loc 1 70 0
+ 543              		.cfi_startproc
+ 544              		@ args = 0, pretend = 0, frame = 8
+ 545              		@ frame_needed = 0, uses_anonymous_args = 0
+ 546              	.LVL44:
+ 547 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 548              	.LCFI14:
+ 549              		.cfi_def_cfa_offset 20
+ 550              		.cfi_offset 4, -20
+ 551              		.cfi_offset 5, -16
+ 552              		.cfi_offset 6, -12
+ 553              		.cfi_offset 7, -8
+ 554              		.cfi_offset 14, -4
+ 555              	.LBB45:
+ 556              	.LBB46:
+  13:dev/compass.c **** }
+ 557              		.loc 1 13 0
+ 558 0002 434C     		ldr	r4, .L19
+ 559              	.LBE46:
+ 560              	.LBE45:
+ 561              		.loc 1 70 0
+ 562 0004 85B0     		sub	sp, sp, #20
+ARM GAS  /tmp/ccYkouSv.s 			page 13
+
+
+ 563              	.LCFI15:
+ 564              		.cfi_def_cfa_offset 40
+ 565              	.LBB49:
+ 566              	.LBB47:
+  13:dev/compass.c **** }
+ 567              		.loc 1 13 0
+ 568 0006 6425     		movs	r5, #100
+ 569 0008 03AA     		add	r2, sp, #12
+ 570 000a 2046     		mov	r0, r4
+ 571 000c 0095     		str	r5, [sp]
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 572              		.loc 1 12 0
+ 573 000e 2227     		movs	r7, #34
+ 574 0010 CA26     		movs	r6, #202
+  13:dev/compass.c **** }
+ 575              		.loc 1 13 0
+ 576 0012 0223     		movs	r3, #2
+ 577 0014 3A21     		movs	r1, #58
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 578              		.loc 1 12 0
+ 579 0016 8DF80C70 		strb	r7, [sp, #12]
+ 580 001a 8DF80D60 		strb	r6, [sp, #13]
+ 581              	.LBE47:
+ 582              	.LBE49:
+ 583              	.LBB50:
+ 584              	.LBB51:
+ 585 001e 2327     		movs	r7, #35
+ 586              	.LBE51:
+ 587              	.LBE50:
+ 588              	.LBB53:
+ 589              	.LBB48:
+  13:dev/compass.c **** }
+ 590              		.loc 1 13 0
+ 591 0020 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 592              	.LVL45:
+ 593              	.LBE48:
+ 594              	.LBE53:
+ 595              	.LBB54:
+ 596              	.LBB52:
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 597              		.loc 1 12 0
+ 598 0024 0026     		movs	r6, #0
+  13:dev/compass.c **** }
+ 599              		.loc 1 13 0
+ 600 0026 03AA     		add	r2, sp, #12
+ 601 0028 0095     		str	r5, [sp]
+ 602 002a 2046     		mov	r0, r4
+ 603 002c 0223     		movs	r3, #2
+ 604 002e 3A21     		movs	r1, #58
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 605              		.loc 1 12 0
+ 606 0030 8DF80C70 		strb	r7, [sp, #12]
+ 607 0034 8DF80D60 		strb	r6, [sp, #13]
+  13:dev/compass.c **** }
+ 608              		.loc 1 13 0
+ 609 0038 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 610              	.LVL46:
+ARM GAS  /tmp/ccYkouSv.s 			page 14
+
+
+ 611              	.LBE52:
+ 612              	.LBE54:
+ 613              	.LBB55:
+ 614              	.LBB56:
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 615              		.loc 1 12 0
+ 616 003c 2421     		movs	r1, #36
+  13:dev/compass.c **** }
+ 617              		.loc 1 13 0
+ 618 003e 03AA     		add	r2, sp, #12
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 619              		.loc 1 12 0
+ 620 0040 8DF80C10 		strb	r1, [sp, #12]
+  13:dev/compass.c **** }
+ 621              		.loc 1 13 0
+ 622 0044 0095     		str	r5, [sp]
+ 623 0046 2046     		mov	r0, r4
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 624              		.loc 1 12 0
+ 625 0048 7027     		movs	r7, #112
+  13:dev/compass.c **** }
+ 626              		.loc 1 13 0
+ 627 004a 0223     		movs	r3, #2
+ 628 004c 3A21     		movs	r1, #58
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 629              		.loc 1 12 0
+ 630 004e 8DF80D70 		strb	r7, [sp, #13]
+  13:dev/compass.c **** }
+ 631              		.loc 1 13 0
+ 632 0052 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 633              	.LVL47:
+ 634              	.LBE56:
+ 635              	.LBE55:
+ 636              	.LBB57:
+ 637              	.LBB58:
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 638              		.loc 1 12 0
+ 639 0056 2521     		movs	r1, #37
+  13:dev/compass.c **** }
+ 640              		.loc 1 13 0
+ 641 0058 03AA     		add	r2, sp, #12
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 642              		.loc 1 12 0
+ 643 005a 8DF80C10 		strb	r1, [sp, #12]
+  13:dev/compass.c **** }
+ 644              		.loc 1 13 0
+ 645 005e 0095     		str	r5, [sp]
+ 646 0060 2046     		mov	r0, r4
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 647              		.loc 1 12 0
+ 648 0062 2027     		movs	r7, #32
+  13:dev/compass.c **** }
+ 649              		.loc 1 13 0
+ 650 0064 0223     		movs	r3, #2
+ 651 0066 3A21     		movs	r1, #58
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 652              		.loc 1 12 0
+ARM GAS  /tmp/ccYkouSv.s 			page 15
+
+
+ 653 0068 8DF80D70 		strb	r7, [sp, #13]
+  13:dev/compass.c **** }
+ 654              		.loc 1 13 0
+ 655 006c FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 656              	.LVL48:
+ 657              	.LBE58:
+ 658              	.LBE57:
+ 659              	.LBB59:
+ 660              	.LBB60:
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 661              		.loc 1 12 0
+ 662 0070 2627     		movs	r7, #38
+  13:dev/compass.c **** }
+ 663              		.loc 1 13 0
+ 664 0072 03AA     		add	r2, sp, #12
+ 665 0074 0095     		str	r5, [sp]
+ 666 0076 2046     		mov	r0, r4
+ 667 0078 0223     		movs	r3, #2
+ 668 007a 3A21     		movs	r1, #58
+  12:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
+ 669              		.loc 1 12 0
+ 670 007c 8DF80D60 		strb	r6, [sp, #13]
+ 671 0080 8DF80C70 		strb	r7, [sp, #12]
+  13:dev/compass.c **** }
+ 672              		.loc 1 13 0
+ 673 0084 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 674              	.LVL49:
+ 675 0088 0F27     		movs	r7, #15
+ 676              	.LBE60:
+ 677              	.LBE59:
+ 678              	.LBB61:
+ 679              	.LBB62:
+   6:dev/compass.c ****     HAL_I2C_Master_Receive(&COMPASS_I2C,  COMPASS_I2C_ADDR, &result, 1, 100);
+ 680              		.loc 1 6 0
+ 681 008a 0DF10B02 		add	r2, sp, #11
+ 682 008e 0095     		str	r5, [sp]
+ 683 0090 2046     		mov	r0, r4
+ 684 0092 0123     		movs	r3, #1
+ 685 0094 3A21     		movs	r1, #58
+   5:dev/compass.c ****     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, &reg,    1, 100);
+ 686              		.loc 1 5 0
+ 687 0096 8DF80C60 		strb	r6, [sp, #12]
+ 688 009a 8DF80B70 		strb	r7, [sp, #11]
+ 689              	.LVL50:
+   6:dev/compass.c ****     HAL_I2C_Master_Receive(&COMPASS_I2C,  COMPASS_I2C_ADDR, &result, 1, 100);
+ 690              		.loc 1 6 0
+ 691 009e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 692              	.LVL51:
+   7:dev/compass.c ****     return result;
+ 693              		.loc 1 7 0
+ 694 00a2 03AA     		add	r2, sp, #12
+ 695 00a4 0123     		movs	r3, #1
+ 696 00a6 0095     		str	r5, [sp]
+ 697 00a8 2046     		mov	r0, r4
+ 698 00aa 3A21     		movs	r1, #58
+ 699 00ac FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 700              	.LVL52:
+ARM GAS  /tmp/ccYkouSv.s 			page 16
+
+
+ 701              	.LBE62:
+ 702              	.LBE61:
+  71:dev/compass.c **** //  Magnetometer data-ready signal on INT1 enable
+  72:dev/compass.c ****     compass_register_write(LSM303_CTRL3, 0b11001010);
+  73:dev/compass.c ****     compass_register_write(LSM303_CTRL4, 0b00000000);
+  74:dev/compass.c ****     
+  75:dev/compass.c **** /* CTRL5 register description */
+  76:dev/compass.c **** /*  TEMP_EN Temperature sensor enable. Default value: 0 */
+  77:dev/compass.c **** /* (0: temperature sensor disabled; 1: temperature sensor enabled) */
+  78:dev/compass.c **** /* M_RES [1:0] Magnetic resolution selection. Default value: 00 */
+  79:dev/compass.c **** /* (00: low resolution, 11: high resolution) */
+  80:dev/compass.c **** /* M_ODR [2:0] Magnetic data rate selection. Default value: 110 */
+  81:dev/compass.c **** /* Refer to Table 47 */
+  82:dev/compass.c **** /* LIR2 Latch interrupt request on INT2_SRC register, with INT2_SRC register cleared by */
+  83:dev/compass.c **** /* reading INT2_SRC itself. Default value: 0. */
+  84:dev/compass.c **** /* (0: interrupt request not latched; 1: interrupt request latched) */
+  85:dev/compass.c **** /* LIR1 Latch interrupt request on INT1_SRC register, with INT1_SRC register cleared by */
+  86:dev/compass.c **** /* reading INT1_SRC itself. Default value: 0. */
+  87:dev/compass.c **** /* (0: interrupt request not latched; 1: interrupt request latched) */
+  88:dev/compass.c ****     compass_register_write(LSM303_CTRL5, 0b01110000);
+  89:dev/compass.c ****     
+  90:dev/compass.c **** /* CTRL6 register description */
+  91:dev/compass.c **** /* MFS [1:0] */
+  92:dev/compass.c **** /* Magnetic full-scale selection. Default value: 01 */
+  93:dev/compass.c **** /* Refer to Table 50 */
+  94:dev/compass.c ****     compass_register_write(LSM303_CTRL6, 0x20);
+  95:dev/compass.c ****     
+  96:dev/compass.c **** /* CTRL7 register description */
+  97:dev/compass.c **** /* AHPM[1:0] High-pass filter mode selection for acceleration data. Default value: 00 */
+  98:dev/compass.c **** /* Refer to Table 53 */
+  99:dev/compass.c **** /* AFDS Filtered acceleration data selection. Default value: 0 */
+ 100:dev/compass.c **** /* (0: internal filter bypassed; 1: data from internal filter sent to output register and FIFO) */
+ 101:dev/compass.c **** /* T_ONLY Temperature sensor only mode. Default value: 0 */
+ 102:dev/compass.c **** /* If this bit is set to ‘1’, the temperature sensor is on while the magnetic sensor is off. */
+ 103:dev/compass.c **** /* MLP Magnetic data low-power mode. Default value: 0 */
+ 104:dev/compass.c **** /* If this bit is ‘1’, the M_ODR [2:0] is set to 3.125 Hz independently from the MODR set- */
+ 105:dev/compass.c **** /* tings. Once the bit is set to ‘0’, the magnetic data rate is configured by the MODR bits */
+ 106:dev/compass.c **** /* in the CTRL5 (24h) register. */
+ 107:dev/compass.c **** /* MD[1:0] Magnetic sensor mode selection. Default 10 */
+ 108:dev/compass.c **** /* Refer to Table 54 */
+ 109:dev/compass.c ****     compass_register_write(LSM303_CTRL7, 0b00);
+ 110:dev/compass.c **** 
+ 111:dev/compass.c **** 
+ 112:dev/compass.c ****     printf("acc %d\n", compass_register_read(LSM303_WHO_AM_I));
+ 703              		.loc 1 112 0
+ 704 00b0 9DF80C10 		ldrb	r1, [sp, #12]	@ zero_extendqisi2
+ 705 00b4 1748     		ldr	r0, .L19+4
+ 706 00b6 FFF7FEFF 		bl	printf
+ 707              	.LVL53:
+ 708 00ba 0827     		movs	r7, #8
+ 709              	.LBB63:
+ 710              	.LBB64:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 711              		.loc 1 20 0
+ 712 00bc 0DF10A02 		add	r2, sp, #10
+ 713 00c0 0095     		str	r5, [sp]
+ 714 00c2 2046     		mov	r0, r4
+ARM GAS  /tmp/ccYkouSv.s 			page 17
+
+
+ 715 00c4 0123     		movs	r3, #1
+ 716 00c6 3A21     		movs	r1, #58
+  19:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 717              		.loc 1 19 0
+ 718 00c8 ADF80C60 		strh	r6, [sp, #12]	@ movhi
+ 719 00cc 8DF80A70 		strb	r7, [sp, #10]
+ 720              	.LVL54:
+  20:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
+ 721              		.loc 1 20 0
+ 722 00d0 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 723              	.LVL55:
+  21:dev/compass.c ****     reg += 1;
+ 724              		.loc 1 21 0
+ 725 00d4 03AA     		add	r2, sp, #12
+ 726 00d6 0095     		str	r5, [sp]
+ 727 00d8 2046     		mov	r0, r4
+ 728 00da 0123     		movs	r3, #1
+ 729 00dc 3A21     		movs	r1, #58
+ 730 00de FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 731              	.LVL56:
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 732              		.loc 1 22 0
+ 733 00e2 9DF80A60 		ldrb	r6, [sp, #10]	@ zero_extendqisi2
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 734              		.loc 1 23 0
+ 735 00e6 0095     		str	r5, [sp]
+ 736 00e8 0DF10A02 		add	r2, sp, #10
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 737              		.loc 1 22 0
+ 738 00ec 0136     		adds	r6, r6, #1
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 739              		.loc 1 23 0
+ 740 00ee 2046     		mov	r0, r4
+ 741 00f0 0123     		movs	r3, #1
+ 742 00f2 3A21     		movs	r1, #58
+  22:dev/compass.c ****     HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 743              		.loc 1 22 0
+ 744 00f4 8DF80A60 		strb	r6, [sp, #10]
+  23:dev/compass.c ****     HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
+ 745              		.loc 1 23 0
+ 746 00f8 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 747              	.LVL57:
+  24:dev/compass.c ****     return (uint16_t)(r[0] | (r[1] << 8));
+ 748              		.loc 1 24 0
+ 749 00fc 0095     		str	r5, [sp]
+ 750 00fe 2046     		mov	r0, r4
+ 751 0100 0123     		movs	r3, #1
+ 752 0102 0DF10D02 		add	r2, sp, #13
+ 753 0106 3A21     		movs	r1, #58
+ 754 0108 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 755              	.LVL58:
+ 756              	.LBE64:
+ 757              	.LBE63:
+ 113:dev/compass.c **** //    HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
+ 114:dev/compass.c **** 
+ 115:dev/compass.c ****     lsm303_read_pos(LSM303_OUT_X_L_M);
+ 116:dev/compass.c **** 
+ARM GAS  /tmp/ccYkouSv.s 			page 18
+
+
+ 117:dev/compass.c ****     
+ 118:dev/compass.c ****     for (int i = 0; i < 100; i++) {
+ 119:dev/compass.c **** 	
+ 120:dev/compass.c ****     
+ 121:dev/compass.c **** //    lsm303_read();
+ 122:dev/compass.c **** 
+ 123:dev/compass.c **** //    HAL_Delay(200);
+ 124:dev/compass.c ****     }
+ 125:dev/compass.c **** }
+ 758              		.loc 1 125 0
+ 759 010c 05B0     		add	sp, sp, #20
+ 760              	.LCFI16:
+ 761              		.cfi_def_cfa_offset 20
+ 762              		@ sp needed
+ 763 010e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 764              	.L20:
+ 765              		.align	2
+ 766              	.L19:
+ 767 0110 00000000 		.word	hi2c1
+ 768 0114 00000000 		.word	.LC0
+ 769              		.cfi_endproc
+ 770              	.LFE130:
+ 772              		.section	.text.compass_get_angle,"ax",%progbits
+ 773              		.align	1
+ 774              		.p2align 2,,3
+ 775              		.global	compass_get_angle
+ 776              		.syntax unified
+ 777              		.thumb
+ 778              		.thumb_func
+ 779              		.fpu fpv4-sp-d16
+ 781              	compass_get_angle:
+ 782              	.LFB131:
+ 126:dev/compass.c **** 
+ 127:dev/compass.c **** float* compass_get_angle()
+ 128:dev/compass.c **** {
+ 783              		.loc 1 128 0
+ 784              		.cfi_startproc
+ 785              		@ args = 0, pretend = 0, frame = 0
+ 786              		@ frame_needed = 0, uses_anonymous_args = 0
+ 787              		@ link register save eliminated.
+ 129:dev/compass.c ****     return &ang;
+ 130:dev/compass.c **** }
+ 788              		.loc 1 130 0
+ 789 0000 0048     		ldr	r0, .L22
+ 790 0002 7047     		bx	lr
+ 791              	.L23:
+ 792              		.align	2
+ 793              	.L22:
+ 794 0004 00000000 		.word	.LANCHOR0
+ 795              		.cfi_endproc
+ 796              	.LFE131:
+ 798              		.global	ang
+ 799              		.section	.bss.ang,"aw",%nobits
+ 800              		.align	2
+ 801              		.set	.LANCHOR0,. + 0
+ 804              	ang:
+ 805 0000 00000000 		.space	4
+ARM GAS  /tmp/ccYkouSv.s 			page 19
+
+
+ 806              		.section	.rodata.compass_init.str1.4,"aMS",%progbits,1
+ 807              		.align	2
+ 808              	.LC0:
+ 809 0000 61636320 		.ascii	"acc %d\012\000"
+ 809      25640A00 
+ 810              		.text
+ 811              	.Letext0:
+ 812              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 813              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 814              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 815              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 816              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 817              		.file 7 "/usr/arm-none-eabi/include/sys/lock.h"
+ 818              		.file 8 "/usr/arm-none-eabi/include/sys/_types.h"
+ 819              		.file 9 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
+ 820              		.file 10 "/usr/arm-none-eabi/include/sys/reent.h"
+ 821              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 822              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 823              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 824              		.file 14 "Inc/i2c.h"
+ 825              		.file 15 "/usr/arm-none-eabi/include/stdio.h"
+ 826              		.file 16 "/usr/arm-none-eabi/include/math.h"
+ARM GAS  /tmp/ccYkouSv.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 compass.c
+     /tmp/ccYkouSv.s:16     .text.compass_register_read:0000000000000000 $t
+     /tmp/ccYkouSv.s:24     .text.compass_register_read:0000000000000000 compass_register_read
+     /tmp/ccYkouSv.s:82     .text.compass_register_read:000000000000003c $d
+     /tmp/ccYkouSv.s:87     .text.compass_register_write:0000000000000000 $t
+     /tmp/ccYkouSv.s:95     .text.compass_register_write:0000000000000000 compass_register_write
+     /tmp/ccYkouSv.s:133    .text.compass_register_write:0000000000000024 $d
+     /tmp/ccYkouSv.s:138    .text.lsm303_read_pos:0000000000000000 $t
+     /tmp/ccYkouSv.s:146    .text.lsm303_read_pos:0000000000000000 lsm303_read_pos
+     /tmp/ccYkouSv.s:230    .text.lsm303_read_pos:000000000000006c $d
+     /tmp/ccYkouSv.s:239    .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
+     /tmp/ccYkouSv.s:247    .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
+     /tmp/ccYkouSv.s:526    .text.HAL_GPIO_EXTI_Callback:00000000000001a0 $d
+     /tmp/ccYkouSv.s:532    .text.compass_init:0000000000000000 $t
+     /tmp/ccYkouSv.s:540    .text.compass_init:0000000000000000 compass_init
+     /tmp/ccYkouSv.s:767    .text.compass_init:0000000000000110 $d
+     /tmp/ccYkouSv.s:773    .text.compass_get_angle:0000000000000000 $t
+     /tmp/ccYkouSv.s:781    .text.compass_get_angle:0000000000000000 compass_get_angle
+     /tmp/ccYkouSv.s:794    .text.compass_get_angle:0000000000000004 $d
+     /tmp/ccYkouSv.s:804    .bss.ang:0000000000000000 ang
+     /tmp/ccYkouSv.s:800    .bss.ang:0000000000000000 $d
+     /tmp/ccYkouSv.s:807    .rodata.compass_init.str1.4:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Master_Transmit
+HAL_I2C_Master_Receive
+hi2c1
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_d2f
+sqrt
+atan2
+printf

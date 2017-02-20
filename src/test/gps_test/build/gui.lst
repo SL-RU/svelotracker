@@ -1,0 +1,555 @@
+ARM GAS  /tmp/cczQ88g2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 23, 1
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 2
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"gui.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.gui_predraw,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	gui_predraw
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	gui_predraw:
+  25              	.LFB128:
+  26              		.file 1 "gui/gui.c"
+   1:gui/gui.c     **** #include "gui.h"
+   2:gui/gui.c     **** 
+   3:gui/gui.c     **** MakiseGUI    *mGui;
+   4:gui/gui.c     **** MHost        *host;
+   5:gui/gui.c     **** MakiseGUI    Gu;
+   6:gui/gui.c     **** MakiseBuffer Bu;
+   7:gui/gui.c     **** MakiseDriver Dr;
+   8:gui/gui.c     **** MHost        hs;
+   9:gui/gui.c     **** MContainer   co;
+  10:gui/gui.c     **** uint32_t     sb[3920] = {0}; 
+  11:gui/gui.c     **** uint32_t     bb[9600] = {0};
+  12:gui/gui.c     **** 
+  13:gui/gui.c     **** 
+  14:gui/gui.c     **** void HAL_SPI_TxHalfCpltCallback(SPI_HandleTypeDef *hspi)
+  15:gui/gui.c     **** {
+  16:gui/gui.c     ****     if(hspi == &ILI9340_SPI)
+  17:gui/gui.c     **** 	ili9340_spi_txhalfcplt(mGui->driver);
+  18:gui/gui.c     **** }
+  19:gui/gui.c     **** void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+  20:gui/gui.c     **** {
+  21:gui/gui.c     ****     if(hspi == &ILI9340_SPI)
+  22:gui/gui.c     **** 	ili9340_spi_txcplt(mGui->driver);
+  23:gui/gui.c     **** }
+  24:gui/gui.c     **** 
+  25:gui/gui.c     **** void gui_predraw(MakiseGUI * g)
+  26:gui/gui.c     **** {
+  27              		.loc 1 26 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+ARM GAS  /tmp/cczQ88g2.s 			page 2
+
+
+  27:gui/gui.c     ****     makise_g_host_call(host, M_G_CALL_PREDRAW);
+  33              		.loc 1 27 0
+  34 0000 024B     		ldr	r3, .L2
+  35 0002 0221     		movs	r1, #2
+  36 0004 1868     		ldr	r0, [r3]
+  37              	.LVL1:
+  38 0006 FFF7FEBF 		b	makise_g_host_call
+  39              	.LVL2:
+  40              	.L3:
+  41 000a 00BF     		.align	2
+  42              	.L2:
+  43 000c 00000000 		.word	host
+  44              		.cfi_endproc
+  45              	.LFE128:
+  47              		.section	.text.gui_draw,"ax",%progbits
+  48              		.align	1
+  49              		.p2align 2,,3
+  50              		.global	gui_draw
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  54              		.fpu fpv4-sp-d16
+  56              	gui_draw:
+  57              	.LFB129:
+  28:gui/gui.c     **** }
+  29:gui/gui.c     **** void gui_draw(MakiseGUI* gui)
+  30:gui/gui.c     **** {
+  58              		.loc 1 30 0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              	.LVL3:
+  63 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  64              	.LCFI0:
+  65              		.cfi_def_cfa_offset 20
+  66              		.cfi_offset 4, -20
+  67              		.cfi_offset 5, -16
+  68              		.cfi_offset 6, -12
+  69              		.cfi_offset 7, -8
+  70              		.cfi_offset 14, -4
+  71 0002 0024     		movs	r4, #0
+  72 0004 0D4F     		ldr	r7, .L9
+  73 0006 85B0     		sub	sp, sp, #20
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_offset 40
+  76              	.LBB2:
+  31:gui/gui.c     ****     for (uint32_t i = 0; i < 16; i++) {
+  77              		.loc 1 31 0
+  78 0008 2546     		mov	r5, r4
+  32:gui/gui.c     **** 	
+  33:gui/gui.c     **** 	makise_d_rect_filled(mGui->buffer, i * 10, 0, 10, 10, i, i);
+  79              		.loc 1 33 0
+  80 000a 0A26     		movs	r6, #10
+  81              	.LVL4:
+  82              	.L5:
+  83              		.loc 1 33 0 is_stmt 0 discriminator 3
+  84 000c 3B68     		ldr	r3, [r7]
+ARM GAS  /tmp/cczQ88g2.s 			page 3
+
+
+  85 000e 21B2     		sxth	r1, r4
+  86 0010 1868     		ldr	r0, [r3]
+  87 0012 0295     		str	r5, [sp, #8]
+  88 0014 0195     		str	r5, [sp, #4]
+  89 0016 0096     		str	r6, [sp]
+  90 0018 0A23     		movs	r3, #10
+  91 001a 0022     		movs	r2, #0
+  31:gui/gui.c     ****     for (uint32_t i = 0; i < 16; i++) {
+  92              		.loc 1 31 0 is_stmt 1 discriminator 3
+  93 001c 0135     		adds	r5, r5, #1
+  94              	.LVL5:
+  95              		.loc 1 33 0 discriminator 3
+  96 001e FFF7FEFF 		bl	makise_d_rect_filled
+  97              	.LVL6:
+  98 0022 0A34     		adds	r4, r4, #10
+  31:gui/gui.c     ****     for (uint32_t i = 0; i < 16; i++) {
+  99              		.loc 1 31 0 discriminator 3
+ 100 0024 102D     		cmp	r5, #16
+ 101 0026 A4B2     		uxth	r4, r4
+ 102 0028 F0D1     		bne	.L5
+ 103              	.LBE2:
+  34:gui/gui.c     ****     }
+  35:gui/gui.c     ****     makise_g_host_call(host, M_G_CALL_DRAW);
+ 104              		.loc 1 35 0
+ 105 002a 054B     		ldr	r3, .L9+4
+ 106 002c 1868     		ldr	r0, [r3]
+ 107 002e 0121     		movs	r1, #1
+  36:gui/gui.c     **** }
+ 108              		.loc 1 36 0
+ 109 0030 05B0     		add	sp, sp, #20
+ 110              	.LCFI2:
+ 111              		.cfi_def_cfa_offset 20
+ 112              		@ sp needed
+ 113 0032 BDE8F040 		pop	{r4, r5, r6, r7, lr}
+ 114              	.LCFI3:
+ 115              		.cfi_restore 14
+ 116              		.cfi_restore 7
+ 117              		.cfi_restore 6
+ 118              		.cfi_restore 5
+ 119              		.cfi_restore 4
+ 120              		.cfi_def_cfa_offset 0
+ 121              	.LVL7:
+  35:gui/gui.c     **** }
+ 122              		.loc 1 35 0
+ 123 0036 FFF7FEBF 		b	makise_g_host_call
+ 124              	.LVL8:
+ 125              	.L10:
+ 126 003a 00BF     		.align	2
+ 127              	.L9:
+ 128 003c 00000000 		.word	mGui
+ 129 0040 00000000 		.word	host
+ 130              		.cfi_endproc
+ 131              	.LFE129:
+ 133              		.section	.text.HAL_SPI_TxHalfCpltCallback,"ax",%progbits
+ 134              		.align	1
+ 135              		.p2align 2,,3
+ 136              		.global	HAL_SPI_TxHalfCpltCallback
+ARM GAS  /tmp/cczQ88g2.s 			page 4
+
+
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 140              		.fpu fpv4-sp-d16
+ 142              	HAL_SPI_TxHalfCpltCallback:
+ 143              	.LFB126:
+  15:gui/gui.c     ****     if(hspi == &ILI9340_SPI)
+ 144              		.loc 1 15 0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              		@ link register save eliminated.
+ 149              	.LVL9:
+  16:gui/gui.c     **** 	ili9340_spi_txhalfcplt(mGui->driver);
+ 150              		.loc 1 16 0
+ 151 0000 044B     		ldr	r3, .L14
+ 152 0002 8342     		cmp	r3, r0
+ 153 0004 00D0     		beq	.L13
+ 154 0006 7047     		bx	lr
+ 155              	.L13:
+  17:gui/gui.c     **** }
+ 156              		.loc 1 17 0
+ 157 0008 034B     		ldr	r3, .L14+4
+ 158 000a 1B68     		ldr	r3, [r3]
+ 159 000c 5868     		ldr	r0, [r3, #4]
+ 160              	.LVL10:
+ 161 000e FFF7FEBF 		b	ili9340_spi_txhalfcplt
+ 162              	.LVL11:
+ 163              	.L15:
+ 164 0012 00BF     		.align	2
+ 165              	.L14:
+ 166 0014 00000000 		.word	hspi1
+ 167 0018 00000000 		.word	mGui
+ 168              		.cfi_endproc
+ 169              	.LFE126:
+ 171              		.section	.text.HAL_SPI_TxCpltCallback,"ax",%progbits
+ 172              		.align	1
+ 173              		.p2align 2,,3
+ 174              		.global	HAL_SPI_TxCpltCallback
+ 175              		.syntax unified
+ 176              		.thumb
+ 177              		.thumb_func
+ 178              		.fpu fpv4-sp-d16
+ 180              	HAL_SPI_TxCpltCallback:
+ 181              	.LFB127:
+  20:gui/gui.c     ****     if(hspi == &ILI9340_SPI)
+ 182              		.loc 1 20 0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		@ link register save eliminated.
+ 187              	.LVL12:
+  21:gui/gui.c     **** 	ili9340_spi_txcplt(mGui->driver);
+ 188              		.loc 1 21 0
+ 189 0000 044B     		ldr	r3, .L19
+ 190 0002 8342     		cmp	r3, r0
+ 191 0004 00D0     		beq	.L18
+ARM GAS  /tmp/cczQ88g2.s 			page 5
+
+
+ 192 0006 7047     		bx	lr
+ 193              	.L18:
+  22:gui/gui.c     **** }
+ 194              		.loc 1 22 0
+ 195 0008 034B     		ldr	r3, .L19+4
+ 196 000a 1B68     		ldr	r3, [r3]
+ 197 000c 5868     		ldr	r0, [r3, #4]
+ 198              	.LVL13:
+ 199 000e FFF7FEBF 		b	ili9340_spi_txcplt
+ 200              	.LVL14:
+ 201              	.L20:
+ 202 0012 00BF     		.align	2
+ 203              	.L19:
+ 204 0014 00000000 		.word	hspi1
+ 205 0018 00000000 		.word	mGui
+ 206              		.cfi_endproc
+ 207              	.LFE127:
+ 209              		.section	.text.gui_init,"ax",%progbits
+ 210              		.align	1
+ 211              		.p2align 2,,3
+ 212              		.global	gui_init
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 216              		.fpu fpv4-sp-d16
+ 218              	gui_init:
+ 219              	.LFB130:
+  37:gui/gui.c     **** 
+  38:gui/gui.c     **** 
+  39:gui/gui.c     **** MakiseGUI* gui_init()
+  40:gui/gui.c     **** {
+ 220              		.loc 1 40 0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              	.LVL15:
+ 225 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 226              	.LCFI4:
+ 227              		.cfi_def_cfa_offset 24
+ 228              		.cfi_offset 3, -24
+ 229              		.cfi_offset 4, -20
+ 230              		.cfi_offset 5, -16
+ 231              		.cfi_offset 6, -12
+ 232              		.cfi_offset 7, -8
+ 233              		.cfi_offset 14, -4
+  41:gui/gui.c     ****     //malloc structures
+  42:gui/gui.c     ****     MakiseGUI    * gu = &Gu;
+  43:gui/gui.c     ****     MakiseBuffer * bu = &Bu;
+  44:gui/gui.c     ****     MakiseDriver * dr = &Dr;
+  45:gui/gui.c     ****     host = &hs;
+  46:gui/gui.c     ****     host->host = &co;
+  47:gui/gui.c     ****     host->host->gui = gu;
+  48:gui/gui.c     **** 
+  49:gui/gui.c     ****     //init driver structure
+  50:gui/gui.c     ****     ili9340_driver(dr);
+ 234              		.loc 1 50 0
+ 235 0002 184D     		ldr	r5, .L23
+ARM GAS  /tmp/cczQ88g2.s 			page 6
+
+
+  45:gui/gui.c     ****     host->host = &co;
+ 236              		.loc 1 45 0
+ 237 0004 184A     		ldr	r2, .L23+4
+  46:gui/gui.c     ****     host->host->gui = gu;
+ 238              		.loc 1 46 0
+ 239 0006 194B     		ldr	r3, .L23+8
+  45:gui/gui.c     ****     host->host = &co;
+ 240              		.loc 1 45 0
+ 241 0008 1949     		ldr	r1, .L23+12
+  51:gui/gui.c     ****     //malloc small buffer
+  52:gui/gui.c     ****     dr->buffer = sb;
+  53:gui/gui.c     ****     printf("%d\n", (uint32_t)(dr->size));
+ 242              		.loc 1 53 0
+ 243 000a 1A4E     		ldr	r6, .L23+16
+  47:gui/gui.c     **** 
+ 244              		.loc 1 47 0
+ 245 000c 1A4C     		ldr	r4, .L23+20
+  54:gui/gui.c     ****     //init gui struct
+  55:gui/gui.c     **** 
+  56:gui/gui.c     ****     uint32_t sz = makise_init(gu, dr, bu);
+ 246              		.loc 1 56 0
+ 247 000e 1B4F     		ldr	r7, .L23+24
+  45:gui/gui.c     ****     host->host = &co;
+ 248              		.loc 1 45 0
+ 249 0010 0A60     		str	r2, [r1]
+  50:gui/gui.c     ****     //malloc small buffer
+ 250              		.loc 1 50 0
+ 251 0012 2846     		mov	r0, r5
+  46:gui/gui.c     ****     host->host->gui = gu;
+ 252              		.loc 1 46 0
+ 253 0014 1360     		str	r3, [r2]
+  47:gui/gui.c     **** 
+ 254              		.loc 1 47 0
+ 255 0016 1C60     		str	r4, [r3]
+  50:gui/gui.c     ****     //malloc small buffer
+ 256              		.loc 1 50 0
+ 257 0018 FFF7FEFF 		bl	ili9340_driver
+ 258              	.LVL16:
+  52:gui/gui.c     ****     printf("%d\n", (uint32_t)(dr->size));
+ 259              		.loc 1 52 0
+ 260 001c 184B     		ldr	r3, .L23+28
+  53:gui/gui.c     ****     //init gui struct
+ 261              		.loc 1 53 0
+ 262 001e 6969     		ldr	r1, [r5, #20]
+  52:gui/gui.c     ****     printf("%d\n", (uint32_t)(dr->size));
+ 263              		.loc 1 52 0
+ 264 0020 2B61     		str	r3, [r5, #16]
+  53:gui/gui.c     ****     //init gui struct
+ 265              		.loc 1 53 0
+ 266 0022 3046     		mov	r0, r6
+ 267 0024 FFF7FEFF 		bl	printf
+ 268              	.LVL17:
+ 269              		.loc 1 56 0
+ 270 0028 2946     		mov	r1, r5
+ 271 002a 3A46     		mov	r2, r7
+ 272 002c 2046     		mov	r0, r4
+ 273 002e FFF7FEFF 		bl	makise_init
+ARM GAS  /tmp/cczQ88g2.s 			page 7
+
+
+ 274              	.LVL18:
+ 275 0032 0546     		mov	r5, r0
+ 276              	.LVL19:
+  57:gui/gui.c     ****     //malloc big buffer
+  58:gui/gui.c     ****     bu->buffer = bb;//malloc(sz);
+  59:gui/gui.c     ****     memset(bu->buffer, 0, sz);
+ 277              		.loc 1 59 0
+ 278 0034 2A46     		mov	r2, r5
+  58:gui/gui.c     ****     memset(bu->buffer, 0, sz);
+ 279              		.loc 1 58 0
+ 280 0036 1348     		ldr	r0, .L23+32
+ 281              	.LVL20:
+ 282 0038 F860     		str	r0, [r7, #12]
+ 283              		.loc 1 59 0
+ 284 003a 0021     		movs	r1, #0
+ 285 003c FFF7FEFF 		bl	memset
+ 286              	.LVL21:
+  60:gui/gui.c     ****     printf("%d\n", (uint32_t)(sz));    
+ 287              		.loc 1 60 0
+ 288 0040 2946     		mov	r1, r5
+ 289 0042 3046     		mov	r0, r6
+  61:gui/gui.c     ****     
+  62:gui/gui.c     ****     mGui = gu;
+ 290              		.loc 1 62 0
+ 291 0044 104D     		ldr	r5, .L23+36
+ 292              	.LVL22:
+  60:gui/gui.c     ****     printf("%d\n", (uint32_t)(sz));    
+ 293              		.loc 1 60 0
+ 294 0046 FFF7FEFF 		bl	printf
+ 295              	.LVL23:
+  63:gui/gui.c     ****     ili9340_init(gu);
+ 296              		.loc 1 63 0
+ 297 004a 2046     		mov	r0, r4
+  62:gui/gui.c     ****     ili9340_init(gu);
+ 298              		.loc 1 62 0
+ 299 004c 2C60     		str	r4, [r5]
+ 300              		.loc 1 63 0
+ 301 004e FFF7FEFF 		bl	ili9340_init
+ 302              	.LVL24:
+  64:gui/gui.c     ****     makise_start(gu);
+ 303              		.loc 1 64 0
+ 304 0052 2046     		mov	r0, r4
+ 305 0054 FFF7FEFF 		bl	makise_start
+ 306              	.LVL25:
+  65:gui/gui.c     **** 
+  66:gui/gui.c     ****     mGui->predraw = &gui_predraw;
+ 307              		.loc 1 66 0
+ 308 0058 2868     		ldr	r0, [r5]
+ 309 005a 0C4A     		ldr	r2, .L23+40
+  67:gui/gui.c     ****     mGui->draw = &gui_draw;
+ 310              		.loc 1 67 0
+ 311 005c 0C4B     		ldr	r3, .L23+44
+  66:gui/gui.c     ****     mGui->draw = &gui_draw;
+ 312              		.loc 1 66 0
+ 313 005e C260     		str	r2, [r0, #12]
+ 314              		.loc 1 67 0
+ 315 0060 8360     		str	r3, [r0, #8]
+ARM GAS  /tmp/cczQ88g2.s 			page 8
+
+
+  68:gui/gui.c     ****     return mGui;
+  69:gui/gui.c     **** }
+ 316              		.loc 1 69 0
+ 317 0062 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 318              	.L24:
+ 319              		.align	2
+ 320              	.L23:
+ 321 0064 00000000 		.word	Dr
+ 322 0068 00000000 		.word	hs
+ 323 006c 00000000 		.word	co
+ 324 0070 00000000 		.word	host
+ 325 0074 00000000 		.word	.LC0
+ 326 0078 00000000 		.word	Gu
+ 327 007c 00000000 		.word	Bu
+ 328 0080 00000000 		.word	.LANCHOR0
+ 329 0084 00000000 		.word	.LANCHOR1
+ 330 0088 00000000 		.word	mGui
+ 331 008c 00000000 		.word	gui_predraw
+ 332 0090 00000000 		.word	gui_draw
+ 333              		.cfi_endproc
+ 334              	.LFE130:
+ 336              		.global	bb
+ 337              		.global	sb
+ 338              		.comm	co,28,4
+ 339              		.comm	hs,124,4
+ 340              		.comm	Dr,48,4
+ 341              		.comm	Bu,20,4
+ 342              		.comm	Gu,20,4
+ 343              		.comm	host,4,4
+ 344              		.comm	mGui,4,4
+ 345              		.comm	makise_color_palette,4,4
+ 346              		.section	.bss.bb,"aw",%nobits
+ 347              		.align	2
+ 348              		.set	.LANCHOR1,. + 0
+ 351              	bb:
+ 352 0000 00000000 		.space	38400
+ 352      00000000 
+ 352      00000000 
+ 352      00000000 
+ 352      00000000 
+ 353              		.section	.bss.sb,"aw",%nobits
+ 354              		.align	2
+ 355              		.set	.LANCHOR0,. + 0
+ 358              	sb:
+ 359 0000 00000000 		.space	15680
+ 359      00000000 
+ 359      00000000 
+ 359      00000000 
+ 359      00000000 
+ 360              		.section	.rodata.gui_init.str1.4,"aMS",%progbits,1
+ 361              		.align	2
+ 362              	.LC0:
+ 363 0000 25640A00 		.ascii	"%d\012\000"
+ 364              		.text
+ 365              	.Letext0:
+ 366              		.file 2 "MakiseGUI/MakiseGUI/makise.h"
+ 367              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ARM GAS  /tmp/cczQ88g2.s 			page 9
+
+
+ 368              		.file 4 "/usr/arm-none-eabi/include/sys/lock.h"
+ 369              		.file 5 "/usr/arm-none-eabi/include/sys/_types.h"
+ 370              		.file 6 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
+ 371              		.file 7 "/usr/arm-none-eabi/include/sys/reent.h"
+ 372              		.file 8 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 373              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ 374              		.file 10 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 375              		.file 11 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 376              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 377              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 378              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 379              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 380              		.file 16 "Inc/spi.h"
+ 381              		.file 17 "Inc/tim.h"
+ 382              		.file 18 "MakiseGUI/MakiseGUI/ILI9340C/ili9340.h"
+ 383              		.file 19 "MakiseGUI/MakiseGUI/makise_colors.h"
+ 384              		.file 20 "MakiseGUI/MakiseGUI/makise_text.h"
+ 385              		.file 21 "MakiseGUI/MakiseGUI/fonts/fonts.h"
+ 386              		.file 22 "MakiseGUI/MakiseGUI/gui/makise_gui.h"
+ 387              		.file 23 "MakiseGUI/MakiseGUI/gui/makise_gui_input.h"
+ 388              		.file 24 "MakiseGUI/MakiseGUI/gui/makise_gui_container.h"
+ 389              		.file 25 "MakiseGUI/MakiseGUI/gui/makise_gui_elements.h"
+ 390              		.file 26 "gui/gui.h"
+ 391              		.file 27 "/usr/arm-none-eabi/include/stdio.h"
+ 392              		.file 28 "MakiseGUI/MakiseGUI/makise_primitives.h"
+ARM GAS  /tmp/cczQ88g2.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 gui.c
+     /tmp/cczQ88g2.s:16     .text.gui_predraw:0000000000000000 $t
+     /tmp/cczQ88g2.s:24     .text.gui_predraw:0000000000000000 gui_predraw
+     /tmp/cczQ88g2.s:43     .text.gui_predraw:000000000000000c $d
+                            *COM*:0000000000000004 host
+     /tmp/cczQ88g2.s:48     .text.gui_draw:0000000000000000 $t
+     /tmp/cczQ88g2.s:56     .text.gui_draw:0000000000000000 gui_draw
+     /tmp/cczQ88g2.s:128    .text.gui_draw:000000000000003c $d
+                            *COM*:0000000000000004 mGui
+     /tmp/cczQ88g2.s:134    .text.HAL_SPI_TxHalfCpltCallback:0000000000000000 $t
+     /tmp/cczQ88g2.s:142    .text.HAL_SPI_TxHalfCpltCallback:0000000000000000 HAL_SPI_TxHalfCpltCallback
+     /tmp/cczQ88g2.s:166    .text.HAL_SPI_TxHalfCpltCallback:0000000000000014 $d
+     /tmp/cczQ88g2.s:172    .text.HAL_SPI_TxCpltCallback:0000000000000000 $t
+     /tmp/cczQ88g2.s:180    .text.HAL_SPI_TxCpltCallback:0000000000000000 HAL_SPI_TxCpltCallback
+     /tmp/cczQ88g2.s:204    .text.HAL_SPI_TxCpltCallback:0000000000000014 $d
+     /tmp/cczQ88g2.s:210    .text.gui_init:0000000000000000 $t
+     /tmp/cczQ88g2.s:218    .text.gui_init:0000000000000000 gui_init
+     /tmp/cczQ88g2.s:321    .text.gui_init:0000000000000064 $d
+                            *COM*:0000000000000030 Dr
+                            *COM*:000000000000007c hs
+                            *COM*:000000000000001c co
+                            *COM*:0000000000000014 Gu
+                            *COM*:0000000000000014 Bu
+     /tmp/cczQ88g2.s:351    .bss.bb:0000000000000000 bb
+     /tmp/cczQ88g2.s:358    .bss.sb:0000000000000000 sb
+                            *COM*:0000000000000004 makise_color_palette
+     /tmp/cczQ88g2.s:347    .bss.bb:0000000000000000 $d
+     /tmp/cczQ88g2.s:354    .bss.sb:0000000000000000 $d
+     /tmp/cczQ88g2.s:361    .rodata.gui_init.str1.4:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+makise_g_host_call
+makise_d_rect_filled
+ili9340_spi_txhalfcplt
+hspi1
+ili9340_spi_txcplt
+ili9340_driver
+printf
+makise_init
+memset
+ili9340_init
+makise_start

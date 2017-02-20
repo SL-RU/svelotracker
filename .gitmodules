@@ -1,0 +1,9 @@
+[submodule "MakiseGUI"]
+	path = src/test/gps_test/MakiseGUI
+	url = https://github.com/SL-RU/MakiseGUI
+[submodule "src/test/gps_test/src/test/gps_test/MakiseGUI"]
+	path = src/test/gps_test/src/test/gps_test/MakiseGUI
+	url = https://github.com/SL-RU/MakiseGUI
+[submodule "src/test/gps_test/MakiseGUI"]
+	path = src/test/gps_test/MakiseGUI
+	url = https://github.com/SL-RU/MakiseGUI

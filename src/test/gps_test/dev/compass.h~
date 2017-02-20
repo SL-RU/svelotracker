@@ -1,0 +1,9 @@
+#ifndef COMPASS_H
+#define COMPASS_H 1
+#include "gpio.h"
+#include "i2c.h"
+
+void compass_init();
+
+
+#endif
