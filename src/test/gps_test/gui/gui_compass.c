@@ -38,6 +38,12 @@ void gui_create_compass(MCompass *b, MContainer *c,
     b->angle = angle;
     
     makise_g_cont_add(c, e);
+
+    b->arrow[0] = (MakisePoint){r / 10, 0};
+    b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+    b->arrow[2] = (MakisePoint){- (r / 10), 0};
+    b->arrow[3] = (MakisePoint){0, -(r * 9 / 10)};
+    b->arrow[4] = (MakisePoint){r / 10, 0};
     
     printf("Compass %d created\n", e->id);
 }
@@ -55,8 +61,11 @@ uint8_t _m_compass_draw   (MElement* b)
 
     int32_t x = (int32_t)(c->r * cos(*c->angle));
     int32_t y = (int32_t)(c->r * sin(*c->angle));
-    makise_d_line(b->gui->buffer, c->x, c->y, c->x + x, c->y + y, MC_Blue);
     
+    makise_d_line(b->gui->buffer, c->x, c->y, c->x + x, c->y + y, MC_Blue);
+    makise_dex_polyline(b->gui->buffer, c->x, c->y, *c->angle, c->arrow, 5, MC_Blue);
+
+    *c->angle += 3.14 / 8.0;
     //printf("Compass %d dr\n", b->id);
     return M_OK;
 }

@@ -1,10 +1,11 @@
 #include "app_main.h"
 #include "compass.h"
+#include "i2c.h"
 
 char* sample_string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 char* but_t[3] =
 {
-    "time",
+    "I2C",
     "start",
     "clear"
 };
@@ -28,8 +29,8 @@ MakiseStyle text_style =
     &F_Arial15,
     3,
     //bg       font     border   double_border
-    {MC_Black, MC_White, MC_Gray, 0},  //unactive
-    {MC_Black, MC_White, MC_Green, 0},  //unactive
+    {MC_Transparent, MC_White, MC_Transparent, 0},  //unactive
+    {MC_Transparent, MC_White, MC_Transparent, 0},  //unactive
     {0, 0, 0, 0}, //focused
     {0, 0, 0, 0}, //active
 };
@@ -50,12 +51,26 @@ void b_st(MButton *b)
 {
     HAL_UART_Transmit(&huart1, "$PSTMCOLD\r\l", 13, 1000);
 }
+uint8_t buf[1024] = {0};
 void b_time(MButton *b)
 {
-    HAL_UART_Transmit(&huart1, "$PSTMGETRTCTIME\r\l", 13, 1000);
+    memset(out, 0, 70);
+    strcat(out, "I2C devices ping test\n");
+    uint8_t c = 0, a = 0;
+    for(uint8_t i = 0; i < 127; i++)
+    {
+	if((a = HAL_I2C_IsDeviceReady(&hi2c1, i<<1, 4, 100)) == HAL_OK)
+	{
+	    c++;
+	    sprintf(buf, "I2C device with address 0x%02x is %d\n", i, a);
+	    strcat(out, buf);
+	}
+    }
+    sprintf(buf, "TOTAL I2C devices: %d\n", c);
+    strcat(out, buf);
+    
 }
 
-uint8_t buf[1024] = {0};
 void app_main_init()
 {
     m_create_button(&but[0], host->host,
@@ -76,10 +91,10 @@ void app_main_init()
 
     gui_create_compass(&comp, host->host, 160, 120, 100, compass_get_angle());
     
-    /* m_create_text_field(&tf, host->host, */
-    /* 			5, 50, 310, 150, */
-    /* 			out, */
-    /* 			&text_style); */
+    m_create_text_field(&tf, host->host, 
+    			5, 50, 310, 150, 
+    			out, 
+    			&text_style); 
     /* HAL_UART_Receive_DMA(&huart1, out, 128); */
 }
 

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccUsYtPq.s 			page 1
+ARM GAS  /tmp/ccvwBD5U.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -12,874 +12,474 @@ ARM GAS  /tmp/ccUsYtPq.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"inputs.c"
-  12              		.text
-  13              	.Ltext0:
-  14              		.cfi_sections	.debug_frame
-  15              		.section	.text.inputs_input,"ax",%progbits
-  16              		.align	1
-  17              		.p2align 2,,3
-  18              		.global	inputs_input
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu fpv4-sp-d16
-  24              	inputs_input:
-  25              	.LFB128:
-  26              		.file 1 "gui/inputs.c"
-   1:gui/inputs.c  **** #include "inputs.h"
-   2:gui/inputs.c  **** 
-   3:gui/inputs.c  **** controls_595_ButtonState inputs_buttons[] = {
-   4:gui/inputs.c  ****     {1, 1, GPIOC, GPIO_PIN_0, 7, 0, 0, 0},
-   5:gui/inputs.c  ****     {1, 2, GPIOC, GPIO_PIN_0, 6, 0, 0, 0},
-   6:gui/inputs.c  ****     {1, 3, GPIOC, GPIO_PIN_0, 5, 0, 0, 0},
-   7:gui/inputs.c  ****     {1, 4, GPIOC, GPIO_PIN_0, 4, 0, 0, 0},
-   8:gui/inputs.c  **** 
-   9:gui/inputs.c  ****     {1, 11, GPIOC, GPIO_PIN_1, 7, 0, 0, 0},
-  10:gui/inputs.c  ****     {1, 12, GPIOC, GPIO_PIN_1, 6, 0, 0, 0},
-  11:gui/inputs.c  ****     {1, 13, GPIOC, GPIO_PIN_1, 5, 0, 0, 0},
-  12:gui/inputs.c  ****     {1, 14, GPIOC, GPIO_PIN_1, 4, 0, 0, 0},
-  13:gui/inputs.c  **** 
-  14:gui/inputs.c  **** };
-  15:gui/inputs.c  **** 
-  16:gui/inputs.c  **** controls_595_OutputState inputs_outs[] = {
-  17:gui/inputs.c  ****     {1, 5, 0, 1},
-  18:gui/inputs.c  ****     {1, 6, 1, 0},
-  19:gui/inputs.c  ****     {1, 7, 2, 0},
-  20:gui/inputs.c  ****     {1, 8, 3, 1},
-  21:gui/inputs.c  **** };
-  22:gui/inputs.c  **** 
-  23:gui/inputs.c  **** void inputs_init()
-  24:gui/inputs.c  **** {
-  25:gui/inputs.c  ****     controls_595_init(inputs_buttons, 8, inputs_outs, 4, &inputs_input);
-  26:gui/inputs.c  **** }
-  27:gui/inputs.c  **** 
-  28:gui/inputs.c  **** void inputs_update()
-  29:gui/inputs.c  **** {
-  30:gui/inputs.c  ****     controls_595_update();      
-  31:gui/inputs.c  **** }
-  32:gui/inputs.c  **** 
-ARM GAS  /tmp/ccUsYtPq.s 			page 2
+  12              		.section	.text.inputs_input,"ax",%progbits
+  13              		.align	1
+  14              		.p2align 2,,3
+  15              		.global	inputs_input
+  16              		.syntax unified
+  17              		.thumb
+  18              		.thumb_func
+  19              		.fpu fpv4-sp-d16
+  21              	inputs_input:
+  22              		@ args = 0, pretend = 0, frame = 136
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  25 0002 11F0050F 		tst	r1, #5
+  26 0006 A3B0     		sub	sp, sp, #140
+  27 0008 0D46     		mov	r5, r1
+  28 000a 0446     		mov	r4, r0
+  29 000c 1646     		mov	r6, r2
+  30 000e 11D1     		bne	.L37
+  31              	.L2:
+  32 0010 012D     		cmp	r5, #1
+  33 0012 33D0     		beq	.L38
+  34              	.L21:
+  35 0014 042D     		cmp	r5, #4
+  36 0016 3ED0     		beq	.L39
+  37 0018 15F00A0F 		tst	r5, #10
+  38 001c 08D0     		beq	.L1
+  39 001e 022C     		cmp	r4, #2
+  40 0020 00F08A80 		beq	.L40
+  41 0024 032C     		cmp	r4, #3
+  42 0026 65D0     		beq	.L41
+  43 0028 012C     		cmp	r4, #1
+  44 002a 74D0     		beq	.L42
+  45 002c 042C     		cmp	r4, #4
+  46 002e 4FD0     		beq	.L43
+  47              	.L1:
+  48 0030 23B0     		add	sp, sp, #140
+  49              		@ sp needed
+  50 0032 F0BD     		pop	{r4, r5, r6, r7, pc}
+  51              	.L37:
+  52 0034 0146     		mov	r1, r0
+  53 0036 8248     		ldr	r0, .L49
+  54 0038 FFF7FEFF 		bl	printf
+  55 003c 022C     		cmp	r4, #2
+  56 003e 00F0E380 		beq	.L44
+  57 0042 032C     		cmp	r4, #3
+  58 0044 00F0B480 		beq	.L45
+ARM GAS  /tmp/ccvwBD5U.s 			page 2
 
 
-  33:gui/inputs.c  **** void inputs_input(uint32_t id,
-  34:gui/inputs.c  **** 		  uint8_t event,
-  35:gui/inputs.c  **** 		  uint32_t time)
-  36:gui/inputs.c  **** {
-  27              		.loc 1 36 0
-  28              		.cfi_startproc
-  29              		@ args = 0, pretend = 0, frame = 136
-  30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31              	.LVL0:
-  32 0000 F0B5     		push	{r4, r5, r6, r7, lr}
-  33              	.LCFI0:
-  34              		.cfi_def_cfa_offset 20
-  35              		.cfi_offset 4, -20
-  36              		.cfi_offset 5, -16
-  37              		.cfi_offset 6, -12
-  38              		.cfi_offset 7, -8
-  39              		.cfi_offset 14, -4
-  37:gui/inputs.c  ****     if(event & CONTROLS_ALL_CLICK)
-  40              		.loc 1 37 0
-  41 0002 11F0050F 		tst	r1, #5
-  36:gui/inputs.c  ****     if(event & CONTROLS_ALL_CLICK)
-  42              		.loc 1 36 0
-  43 0006 A3B0     		sub	sp, sp, #140
-  44              	.LCFI1:
-  45              		.cfi_def_cfa_offset 160
-  36:gui/inputs.c  ****     if(event & CONTROLS_ALL_CLICK)
-  46              		.loc 1 36 0
-  47 0008 0D46     		mov	r5, r1
-  48 000a 0446     		mov	r4, r0
-  49 000c 1646     		mov	r6, r2
-  50              		.loc 1 37 0
-  51 000e 0CD0     		beq	.L2
-  38:gui/inputs.c  ****     {
-  39:gui/inputs.c  ****  	if(id == 3 &&
-  52              		.loc 1 39 0
-  53 0010 0328     		cmp	r0, #3
-  54 0012 73D0     		beq	.L34
-  40:gui/inputs.c  **** 	   makise_g_host_input(host,
-  41:gui/inputs.c  **** 			       (MInputData){M_KEY_UP, M_INPUT_CLICK, time, 0})
-  42:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
-  43:gui/inputs.c  **** 	    makise_g_cont_focus_prev(host->host);
-  44:gui/inputs.c  **** 	if(id == 1 &&
-  55              		.loc 1 44 0
-  56 0014 0128     		cmp	r0, #1
-  57 0016 00F0AB80 		beq	.L35
-  45:gui/inputs.c  **** 	   makise_g_host_input(host,
-  46:gui/inputs.c  **** 			       (MInputData){M_KEY_DOWN, M_INPUT_CLICK, time, 0})
-  47:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
-  48:gui/inputs.c  **** 	    makise_g_cont_focus_next(host->host);
-  49:gui/inputs.c  **** 	if(id == 4 &&
-  58              		.loc 1 49 0
-  59 001a 0428     		cmp	r0, #4
-  60 001c 00F0D680 		beq	.L36
-  50:gui/inputs.c  **** 	   makise_g_host_input(host,
-  51:gui/inputs.c  **** 			       (MInputData){M_KEY_RIGHT, M_INPUT_CLICK, time, 0})
-  52:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
-  53:gui/inputs.c  **** 	    makise_g_cont_focus_next(host->host);
-ARM GAS  /tmp/ccUsYtPq.s 			page 3
+  59 0048 012C     		cmp	r4, #1
+  60 004a 00F08580 		beq	.L46
+  61 004e 042C     		cmp	r4, #4
+  62 0050 00F0C280 		beq	.L18
+  63 0054 0C2C     		cmp	r4, #12
+  64 0056 DBD1     		bne	.L2
+  65 0058 7A4B     		ldr	r3, .L49+4
+  66 005a 0E96     		str	r6, [sp, #56]
+  67 005c 0022     		movs	r2, #0
+  68 005e 1868     		ldr	r0, [r3]
+  69 0060 8DF83C20 		strb	r2, [sp, #60]
+  70 0064 0123     		movs	r3, #1
+  71 0066 8DF83430 		strb	r3, [sp, #52]
+  72 006a 8DF83530 		strb	r3, [sp, #53]
+  73 006e 0DAB     		add	r3, sp, #52
+  74 0070 0ECB     		ldm	r3, {r1, r2, r3}
+  75 0072 FFF7FEFF 		bl	makise_g_host_input
+  76              	.L8:
+  77 0076 012D     		cmp	r5, #1
+  78 0078 CCD1     		bne	.L21
+  79 007a D9E7     		b	.L1
+  80              	.L38:
+  81 007c 0E2C     		cmp	r4, #14
+  82 007e 00F0DC80 		beq	.L47
+  83 0082 0D2C     		cmp	r4, #13
+  84 0084 D4D1     		bne	.L1
+  85 0086 6F4B     		ldr	r3, .L49+4
+  86 0088 1B68     		ldr	r3, [r3]
+  87              	.L34:
+  88 008a 1868     		ldr	r0, [r3]
+  89 008c 23B0     		add	sp, sp, #140
+  90              		@ sp needed
+  91 008e BDE8F040 		pop	{r4, r5, r6, r7, lr}
+  92 0092 FFF7FEBF 		b	makise_g_cont_focus_next
+  93              	.L39:
+  94 0096 0D2C     		cmp	r4, #13
+  95 0098 75D0     		beq	.L48
+  96 009a 0E2C     		cmp	r4, #14
+  97 009c C8D1     		bne	.L1
+  98 009e 0A21     		movs	r1, #10
+  99 00a0 0122     		movs	r2, #1
+ 100 00a2 0023     		movs	r3, #0
+ 101 00a4 674C     		ldr	r4, .L49+4
+ 102 00a6 8DF85430 		strb	r3, [sp, #84]
+ 103 00aa 1496     		str	r6, [sp, #80]
+ 104 00ac 8DF84C10 		strb	r1, [sp, #76]
+ 105 00b0 8DF84D20 		strb	r2, [sp, #77]
+ 106 00b4 13AB     		add	r3, sp, #76
+ 107 00b6 2068     		ldr	r0, [r4]
+ 108 00b8 0ECB     		ldm	r3, {r1, r2, r3}
+ 109 00ba FFF7FEFF 		bl	makise_g_host_input
+ 110 00be 0128     		cmp	r0, #1
+ 111 00c0 B6D1     		bne	.L1
+ 112 00c2 2368     		ldr	r3, [r4]
+ 113              	.L33:
+ 114 00c4 1868     		ldr	r0, [r3]
+ 115 00c6 23B0     		add	sp, sp, #140
+ARM GAS  /tmp/ccvwBD5U.s 			page 3
 
 
-  54:gui/inputs.c  **** 	if(id == 2 &&
-  61              		.loc 1 54 0
-  62 0020 0228     		cmp	r0, #2
-  63 0022 00F0BC80 		beq	.L17
-  55:gui/inputs.c  **** 	   makise_g_host_input(host,
-  56:gui/inputs.c  **** 			       (MInputData){M_KEY_LEFT, M_INPUT_CLICK, time, 0})
-  57:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
-  58:gui/inputs.c  **** 	    makise_g_cont_focus_prev(host->host);
-  59:gui/inputs.c  **** 	if(id == 13)
-  64              		.loc 1 59 0
-  65 0026 0D28     		cmp	r0, #13
-  66 0028 56D0     		beq	.L18
-  67              	.LVL1:
-  68              	.L2:
-  60:gui/inputs.c  **** 	    makise_g_host_input(host,
-  61:gui/inputs.c  **** 				(MInputData){M_KEY_OK, M_INPUT_CLICK, time, 0});
-  62:gui/inputs.c  ****     }
-  63:gui/inputs.c  ****     if(event == CONTROLS_CLICK)
-  69              		.loc 1 63 0
-  70 002a 012D     		cmp	r5, #1
-  71 002c 0FD0     		beq	.L37
-  72              	.L20:
-  64:gui/inputs.c  ****     {
-  65:gui/inputs.c  **** 	if(id == 12)
-  66:gui/inputs.c  **** 	    makise_g_cont_focus_prev(host->host);
-  67:gui/inputs.c  **** 	if(id == 11)
-  68:gui/inputs.c  **** 	    makise_g_cont_focus_next(host->host);
-  69:gui/inputs.c  ****     } else if(event == CONTROLS_LONG_CLICK)
-  73              		.loc 1 69 0
-  74 002e 042D     		cmp	r5, #4
-  75 0030 1AD0     		beq	.L38
-  70:gui/inputs.c  ****     {
-  71:gui/inputs.c  **** 	if(id == 11)
-  72:gui/inputs.c  **** 	    makise_g_host_input(host,
-  73:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_NEXT, M_INPUT_CLICK, time, 0});
-  74:gui/inputs.c  **** 	if(id == 12)
-  75:gui/inputs.c  **** 	    makise_g_host_input(host,
-  76:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_BACK, M_INPUT_CLICK, time, 0});
-  77:gui/inputs.c  ****     }
-  78:gui/inputs.c  **** 	
-  79:gui/inputs.c  ****     if(event & CONTROLS_ALL_PRESSING)
-  76              		.loc 1 79 0
-  77 0032 15F00A0F 		tst	r5, #10
-  78 0036 08D0     		beq	.L1
-  80:gui/inputs.c  ****     {
-  81:gui/inputs.c  **** 	if(id == 3)
-  79              		.loc 1 81 0
-  80 0038 032C     		cmp	r4, #3
-  81 003a 00F08880 		beq	.L39
-  82:gui/inputs.c  **** 	    makise_g_host_input(host,
-  83:gui/inputs.c  **** 				(MInputData){M_KEY_UP, M_INPUT_PRESSING, time, 0});
-  84:gui/inputs.c  **** 	if(id == 1)
-  82              		.loc 1 84 0
-  83 003e 012C     		cmp	r4, #1
-  84 0040 39D0     		beq	.L40
-  85:gui/inputs.c  **** 	    makise_g_host_input(host,
-  86:gui/inputs.c  **** 				(MInputData){M_KEY_DOWN, M_INPUT_PRESSING, time, 0});
-ARM GAS  /tmp/ccUsYtPq.s 			page 4
+ 116              		@ sp needed
+ 117 00c8 BDE8F040 		pop	{r4, r5, r6, r7, lr}
+ 118 00cc FFF7FEBF 		b	makise_g_cont_focus_prev
+ 119              	.L43:
+ 120 00d0 5C4B     		ldr	r3, .L49+4
+ 121 00d2 2096     		str	r6, [sp, #128]
+ 122 00d4 1868     		ldr	r0, [r3]
+ 123 00d6 0022     		movs	r2, #0
+ 124 00d8 0223     		movs	r3, #2
+ 125 00da 8DF87C30 		strb	r3, [sp, #124]
+ 126 00de 8DF87D30 		strb	r3, [sp, #125]
+ 127 00e2 8DF88420 		strb	r2, [sp, #132]
+ 128 00e6 22AB     		add	r3, sp, #136
+ 129 00e8 13E90E00 		ldmdb	r3, {r1, r2, r3}
+ 130 00ec FFF7FEFF 		bl	makise_g_host_input
+ 131 00f0 23B0     		add	sp, sp, #140
+ 132              		@ sp needed
+ 133 00f2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 134              	.L41:
+ 135 00f4 534B     		ldr	r3, .L49+4
+ 136 00f6 1A96     		str	r6, [sp, #104]
+ 137 00f8 0521     		movs	r1, #5
+ 138 00fa 0222     		movs	r2, #2
+ 139 00fc 1868     		ldr	r0, [r3]
+ 140 00fe 8DF86410 		strb	r1, [sp, #100]
+ 141 0102 0023     		movs	r3, #0
+ 142 0104 8DF86C30 		strb	r3, [sp, #108]
+ 143 0108 8DF86520 		strb	r2, [sp, #101]
+ 144 010c 19AB     		add	r3, sp, #100
+ 145 010e 0ECB     		ldm	r3, {r1, r2, r3}
+ 146 0110 FFF7FEFF 		bl	makise_g_host_input
+ 147 0114 8CE7     		b	.L1
+ 148              	.L42:
+ 149 0116 4B4B     		ldr	r3, .L49+4
+ 150 0118 1D96     		str	r6, [sp, #116]
+ 151 011a 0321     		movs	r1, #3
+ 152 011c 0222     		movs	r2, #2
+ 153 011e 1868     		ldr	r0, [r3]
+ 154 0120 8DF87010 		strb	r1, [sp, #112]
+ 155 0124 0023     		movs	r3, #0
+ 156 0126 8DF87830 		strb	r3, [sp, #120]
+ 157 012a 8DF87120 		strb	r2, [sp, #113]
+ 158 012e 1CAB     		add	r3, sp, #112
+ 159 0130 0ECB     		ldm	r3, {r1, r2, r3}
+ 160 0132 FFF7FEFF 		bl	makise_g_host_input
+ 161 0136 7BE7     		b	.L1
+ 162              	.L40:
+ 163 0138 424B     		ldr	r3, .L49+4
+ 164 013a 8DF85940 		strb	r4, [sp, #89]
+ 165 013e 0422     		movs	r2, #4
+ 166 0140 1868     		ldr	r0, [r3]
+ 167 0142 1796     		str	r6, [sp, #92]
+ 168 0144 0023     		movs	r3, #0
+ 169 0146 8DF86030 		strb	r3, [sp, #96]
+ 170 014a 8DF85820 		strb	r2, [sp, #88]
+ 171 014e 16AB     		add	r3, sp, #88
+ 172 0150 0ECB     		ldm	r3, {r1, r2, r3}
+ARM GAS  /tmp/ccvwBD5U.s 			page 4
 
 
-  87:gui/inputs.c  **** 	if(id == 4)
-  85              		.loc 1 87 0
-  86 0042 042C     		cmp	r4, #4
-  87 0044 72D0     		beq	.L41
-  88:gui/inputs.c  **** 	    makise_g_host_input(host,
-  89:gui/inputs.c  **** 				(MInputData){M_KEY_RIGHT, M_INPUT_PRESSING, time, 0});
-  90:gui/inputs.c  **** 	if(id == 2) 
-  88              		.loc 1 90 0
-  89 0046 022C     		cmp	r4, #2
-  90 0048 24D0     		beq	.L42
-  91              	.L1:
-  91:gui/inputs.c  **** 	    makise_g_host_input(host,
-  92:gui/inputs.c  **** 				(MInputData){M_KEY_LEFT, M_INPUT_PRESSING, time, 0});
-  93:gui/inputs.c  ****     }
-  94:gui/inputs.c  **** 
-  95:gui/inputs.c  **** }
-  92              		.loc 1 95 0
-  93 004a 23B0     		add	sp, sp, #140
-  94              	.LCFI2:
-  95              		.cfi_remember_state
-  96              		.cfi_def_cfa_offset 20
-  97              		@ sp needed
-  98 004c F0BD     		pop	{r4, r5, r6, r7, pc}
-  99              	.LVL2:
- 100              	.L37:
- 101              	.LCFI3:
- 102              		.cfi_restore_state
-  65:gui/inputs.c  **** 	    makise_g_cont_focus_prev(host->host);
- 103              		.loc 1 65 0
- 104 004e 0C2C     		cmp	r4, #12
- 105 0050 00F0E180 		beq	.L43
-  67:gui/inputs.c  **** 	    makise_g_cont_focus_next(host->host);
- 106              		.loc 1 67 0
- 107 0054 0B2C     		cmp	r4, #11
- 108 0056 F8D1     		bne	.L1
-  68:gui/inputs.c  ****     } else if(event == CONTROLS_LONG_CLICK)
- 109              		.loc 1 68 0
- 110 0058 734B     		ldr	r3, .L45
- 111 005a 1B68     		ldr	r3, [r3]
- 112 005c 1868     		ldr	r0, [r3]
- 113              		.loc 1 95 0
- 114 005e 23B0     		add	sp, sp, #140
- 115              	.LCFI4:
- 116              		.cfi_remember_state
- 117              		.cfi_def_cfa_offset 20
- 118              		@ sp needed
- 119 0060 BDE8F040 		pop	{r4, r5, r6, r7, lr}
- 120              	.LCFI5:
- 121              		.cfi_restore 14
- 122              		.cfi_restore 7
- 123              		.cfi_restore 6
- 124              		.cfi_restore 5
- 125              		.cfi_restore 4
- 126              		.cfi_def_cfa_offset 0
- 127              	.LVL3:
-  68:gui/inputs.c  ****     } else if(event == CONTROLS_LONG_CLICK)
- 128              		.loc 1 68 0
-ARM GAS  /tmp/ccUsYtPq.s 			page 5
+ 173 0152 FFF7FEFF 		bl	makise_g_host_input
+ 174 0156 6BE7     		b	.L1
+ 175              	.L46:
+ 176 0158 0322     		movs	r2, #3
+ 177 015a 0023     		movs	r3, #0
+ 178 015c 394F     		ldr	r7, .L49+4
+ 179 015e 8DF82430 		strb	r3, [sp, #36]
+ 180 0162 8DF81D40 		strb	r4, [sp, #29]
+ 181 0166 0896     		str	r6, [sp, #32]
+ 182 0168 8DF81C20 		strb	r2, [sp, #28]
+ 183 016c 07AB     		add	r3, sp, #28
+ 184 016e 3868     		ldr	r0, [r7]
+ 185 0170 0ECB     		ldm	r3, {r1, r2, r3}
+ 186 0172 FFF7FEFF 		bl	makise_g_host_input
+ 187 0176 0128     		cmp	r0, #1
+ 188 0178 7FF44AAF 		bne	.L2
+ 189              	.L32:
+ 190 017c 3B68     		ldr	r3, [r7]
+ 191 017e 1868     		ldr	r0, [r3]
+ 192 0180 FFF7FEFF 		bl	makise_g_cont_focus_next
+ 193 0184 44E7     		b	.L2
+ 194              	.L48:
+ 195 0186 0921     		movs	r1, #9
+ 196 0188 0122     		movs	r2, #1
+ 197 018a 0023     		movs	r3, #0
+ 198 018c 2D4C     		ldr	r4, .L49+4
+ 199 018e 8DF84830 		strb	r3, [sp, #72]
+ 200 0192 1196     		str	r6, [sp, #68]
+ 201 0194 8DF84010 		strb	r1, [sp, #64]
+ 202 0198 8DF84120 		strb	r2, [sp, #65]
+ 203 019c 10AB     		add	r3, sp, #64
+ 204 019e 2068     		ldr	r0, [r4]
+ 205 01a0 0ECB     		ldm	r3, {r1, r2, r3}
+ 206 01a2 FFF7FEFF 		bl	makise_g_host_input
+ 207 01a6 0128     		cmp	r0, #1
+ 208 01a8 7FF442AF 		bne	.L1
+ 209 01ac 2368     		ldr	r3, [r4]
+ 210 01ae 6CE7     		b	.L34
+ 211              	.L45:
+ 212 01b0 0521     		movs	r1, #5
+ 213 01b2 0122     		movs	r2, #1
+ 214 01b4 0023     		movs	r3, #0
+ 215 01b6 234F     		ldr	r7, .L49+4
+ 216 01b8 8DF81830 		strb	r3, [sp, #24]
+ 217 01bc 0596     		str	r6, [sp, #20]
+ 218 01be 8DF81010 		strb	r1, [sp, #16]
+ 219 01c2 8DF81120 		strb	r2, [sp, #17]
+ 220 01c6 04AB     		add	r3, sp, #16
+ 221 01c8 3868     		ldr	r0, [r7]
+ 222 01ca 0ECB     		ldm	r3, {r1, r2, r3}
+ 223 01cc FFF7FEFF 		bl	makise_g_host_input
+ 224 01d0 0128     		cmp	r0, #1
+ 225 01d2 7FF41DAF 		bne	.L2
+ 226 01d6 D1E7     		b	.L32
+ 227              	.L18:
+ 228 01d8 0221     		movs	r1, #2
+ 229 01da 0122     		movs	r2, #1
+ARM GAS  /tmp/ccvwBD5U.s 			page 5
 
 
- 129 0064 FFF7FEBF 		b	makise_g_cont_focus_next
- 130              	.LVL4:
- 131              	.L38:
- 132              	.LCFI6:
- 133              		.cfi_restore_state
-  71:gui/inputs.c  **** 	    makise_g_host_input(host,
- 134              		.loc 1 71 0
- 135 0068 0B2C     		cmp	r4, #11
- 136 006a 00F0C380 		beq	.L44
-  74:gui/inputs.c  **** 	    makise_g_host_input(host,
- 137              		.loc 1 74 0
- 138 006e 0C2C     		cmp	r4, #12
- 139 0070 EBD1     		bne	.L1
-  75:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_BACK, M_INPUT_CLICK, time, 0});
- 140              		.loc 1 75 0
- 141 0072 6D4B     		ldr	r3, .L45
-  76:gui/inputs.c  ****     }
- 142              		.loc 1 76 0
- 143 0074 1496     		str	r6, [sp, #80]
- 144 0076 0A21     		movs	r1, #10
- 145 0078 0122     		movs	r2, #1
-  75:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_BACK, M_INPUT_CLICK, time, 0});
- 146              		.loc 1 75 0
- 147 007a 1868     		ldr	r0, [r3]
-  76:gui/inputs.c  ****     }
- 148              		.loc 1 76 0
- 149 007c 8DF84C10 		strb	r1, [sp, #76]
- 150 0080 0023     		movs	r3, #0
- 151 0082 8DF85430 		strb	r3, [sp, #84]
- 152 0086 8DF84D20 		strb	r2, [sp, #77]
-  75:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_BACK, M_INPUT_CLICK, time, 0});
- 153              		.loc 1 75 0
- 154 008a 13AB     		add	r3, sp, #76
- 155 008c 0ECB     		ldm	r3, {r1, r2, r3}
- 156 008e FFF7FEFF 		bl	makise_g_host_input
- 157              	.LVL5:
- 158 0092 DAE7     		b	.L1
- 159              	.L42:
-  91:gui/inputs.c  **** 				(MInputData){M_KEY_LEFT, M_INPUT_PRESSING, time, 0});
- 160              		.loc 1 91 0
- 161 0094 644B     		ldr	r3, .L45
-  92:gui/inputs.c  ****     }
- 162              		.loc 1 92 0
- 163 0096 8DF87C40 		strb	r4, [sp, #124]
-  91:gui/inputs.c  **** 				(MInputData){M_KEY_LEFT, M_INPUT_PRESSING, time, 0});
- 164              		.loc 1 91 0
- 165 009a 1868     		ldr	r0, [r3]
-  92:gui/inputs.c  ****     }
- 166              		.loc 1 92 0
- 167 009c 8DF87D40 		strb	r4, [sp, #125]
- 168 00a0 0023     		movs	r3, #0
- 169 00a2 8DF88430 		strb	r3, [sp, #132]
- 170 00a6 2096     		str	r6, [sp, #128]
-  91:gui/inputs.c  **** 				(MInputData){M_KEY_LEFT, M_INPUT_PRESSING, time, 0});
- 171              		.loc 1 91 0
- 172 00a8 22AB     		add	r3, sp, #136
- 173 00aa 13E90E00 		ldmdb	r3, {r1, r2, r3}
-ARM GAS  /tmp/ccUsYtPq.s 			page 6
+ 230 01dc 0023     		movs	r3, #0
+ 231 01de 194F     		ldr	r7, .L49+4
+ 232 01e0 8DF83030 		strb	r3, [sp, #48]
+ 233 01e4 0B96     		str	r6, [sp, #44]
+ 234 01e6 8DF82810 		strb	r1, [sp, #40]
+ 235 01ea 8DF82920 		strb	r2, [sp, #41]
+ 236 01ee 0AAB     		add	r3, sp, #40
+ 237 01f0 3868     		ldr	r0, [r7]
+ 238 01f2 0ECB     		ldm	r3, {r1, r2, r3}
+ 239 01f4 FFF7FEFF 		bl	makise_g_host_input
+ 240 01f8 0128     		cmp	r0, #1
+ 241 01fa 7FF409AF 		bne	.L2
+ 242 01fe 3B68     		ldr	r3, [r7]
+ 243 0200 1868     		ldr	r0, [r3]
+ 244 0202 FFF7FEFF 		bl	makise_g_cont_focus_prev
+ 245 0206 36E7     		b	.L8
+ 246              	.L44:
+ 247 0208 0421     		movs	r1, #4
+ 248 020a 0122     		movs	r2, #1
+ 249 020c 0023     		movs	r3, #0
+ 250 020e 0D4F     		ldr	r7, .L49+4
+ 251 0210 8DF80C30 		strb	r3, [sp, #12]
+ 252 0214 0296     		str	r6, [sp, #8]
+ 253 0216 8DF80410 		strb	r1, [sp, #4]
+ 254 021a 8DF80520 		strb	r2, [sp, #5]
+ 255 021e 0DEB0103 		add	r3, sp, r1
+ 256 0222 3868     		ldr	r0, [r7]
+ 257 0224 0ECB     		ldm	r3, {r1, r2, r3}
+ 258 0226 FFF7FEFF 		bl	makise_g_host_input
+ 259 022a 0128     		cmp	r0, #1
+ 260 022c 7FF4F0AE 		bne	.L2
+ 261 0230 3B68     		ldr	r3, [r7]
+ 262 0232 1868     		ldr	r0, [r3]
+ 263 0234 FFF7FEFF 		bl	makise_g_cont_focus_prev
+ 264 0238 EAE6     		b	.L2
+ 265              	.L47:
+ 266 023a 024B     		ldr	r3, .L49+4
+ 267 023c 1B68     		ldr	r3, [r3]
+ 268 023e 41E7     		b	.L33
+ 269              	.L50:
+ 270              		.align	2
+ 271              	.L49:
+ 272 0240 00000000 		.word	.LC0
+ 273 0244 00000000 		.word	host
+ 275              		.section	.text.inputs_init,"ax",%progbits
+ 276              		.align	1
+ 277              		.p2align 2,,3
+ 278              		.global	inputs_init
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 282              		.fpu fpv4-sp-d16
+ 284              	inputs_init:
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287 0000 00B5     		push	{lr}
+ 288 0002 83B0     		sub	sp, sp, #12
+ARM GAS  /tmp/ccvwBD5U.s 			page 6
 
 
- 174 00ae FFF7FEFF 		bl	makise_g_host_input
- 175              	.LVL6:
- 176              		.loc 1 95 0
- 177 00b2 23B0     		add	sp, sp, #140
- 178              	.LCFI7:
- 179              		.cfi_remember_state
- 180              		.cfi_def_cfa_offset 20
- 181              		@ sp needed
- 182 00b4 F0BD     		pop	{r4, r5, r6, r7, pc}
- 183              	.LVL7:
- 184              	.L40:
- 185              	.LCFI8:
- 186              		.cfi_restore_state
-  85:gui/inputs.c  **** 				(MInputData){M_KEY_DOWN, M_INPUT_PRESSING, time, 0});
- 187              		.loc 1 85 0
- 188 00b6 5C4B     		ldr	r3, .L45
-  86:gui/inputs.c  **** 	if(id == 4)
- 189              		.loc 1 86 0
- 190 00b8 1A96     		str	r6, [sp, #104]
- 191 00ba 0521     		movs	r1, #5
- 192 00bc 0222     		movs	r2, #2
-  85:gui/inputs.c  **** 				(MInputData){M_KEY_DOWN, M_INPUT_PRESSING, time, 0});
- 193              		.loc 1 85 0
- 194 00be 1868     		ldr	r0, [r3]
-  86:gui/inputs.c  **** 	if(id == 4)
- 195              		.loc 1 86 0
- 196 00c0 8DF86410 		strb	r1, [sp, #100]
- 197 00c4 0023     		movs	r3, #0
- 198 00c6 8DF86C30 		strb	r3, [sp, #108]
- 199 00ca 8DF86520 		strb	r2, [sp, #101]
-  85:gui/inputs.c  **** 				(MInputData){M_KEY_DOWN, M_INPUT_PRESSING, time, 0});
- 200              		.loc 1 85 0
- 201 00ce 19AB     		add	r3, sp, #100
- 202 00d0 0ECB     		ldm	r3, {r1, r2, r3}
- 203 00d2 FFF7FEFF 		bl	makise_g_host_input
- 204              	.LVL8:
- 205 00d6 B8E7     		b	.L1
- 206              	.LVL9:
- 207              	.L18:
-  60:gui/inputs.c  **** 				(MInputData){M_KEY_OK, M_INPUT_CLICK, time, 0});
- 208              		.loc 1 60 0
- 209 00d8 534B     		ldr	r3, .L45
-  61:gui/inputs.c  ****     }
- 210              		.loc 1 61 0
- 211 00da 0E96     		str	r6, [sp, #56]
- 212 00dc 0022     		movs	r2, #0
- 213              	.LVL10:
-  60:gui/inputs.c  **** 				(MInputData){M_KEY_OK, M_INPUT_CLICK, time, 0});
- 214              		.loc 1 60 0
- 215 00de 1868     		ldr	r0, [r3]
- 216              	.LVL11:
-  61:gui/inputs.c  ****     }
- 217              		.loc 1 61 0
- 218 00e0 8DF83C20 		strb	r2, [sp, #60]
- 219 00e4 0123     		movs	r3, #1
- 220 00e6 8DF83430 		strb	r3, [sp, #52]
- 221 00ea 8DF83530 		strb	r3, [sp, #53]
-ARM GAS  /tmp/ccUsYtPq.s 			page 7
+ 289 0004 054B     		ldr	r3, .L53
+ 290 0006 0093     		str	r3, [sp]
+ 291 0008 054A     		ldr	r2, .L53+4
+ 292 000a 0648     		ldr	r0, .L53+8
+ 293 000c 0423     		movs	r3, #4
+ 294 000e 0821     		movs	r1, #8
+ 295 0010 FFF7FEFF 		bl	controls_595_init
+ 296 0014 03B0     		add	sp, sp, #12
+ 297              		@ sp needed
+ 298 0016 5DF804FB 		ldr	pc, [sp], #4
+ 299              	.L54:
+ 300 001a 00BF     		.align	2
+ 301              	.L53:
+ 302 001c 00000000 		.word	inputs_input
+ 303 0020 00000000 		.word	.LANCHOR0
+ 304 0024 00000000 		.word	.LANCHOR1
+ 306              		.section	.text.inputs_update,"ax",%progbits
+ 307              		.align	1
+ 308              		.p2align 2,,3
+ 309              		.global	inputs_update
+ 310              		.syntax unified
+ 311              		.thumb
+ 312              		.thumb_func
+ 313              		.fpu fpv4-sp-d16
+ 315              	inputs_update:
+ 316              		@ args = 0, pretend = 0, frame = 0
+ 317              		@ frame_needed = 0, uses_anonymous_args = 0
+ 318              		@ link register save eliminated.
+ 319 0000 FFF7FEBF 		b	controls_595_update
+ 321              		.global	inputs_outs
+ 322              		.global	inputs_buttons
+ 323              		.comm	makise_color_palette,4,4
+ 324              		.section	.data.inputs_buttons,"aw",%progbits
+ 325              		.align	2
+ 326              		.set	.LANCHOR1,. + 0
+ 329              	inputs_buttons:
+ 330 0000 01       		.byte	1
+ 331 0001 000000   		.space	3
+ 332 0004 01000000 		.word	1
+ 333 0008 00080240 		.word	1073874944
+ 334 000c 0100     		.short	1
+ 335 000e 0700     		.short	7
+ 336 0010 00       		.byte	0
+ 337 0011 00       		.byte	0
+ 338 0012 0000     		.space	2
+ 339 0014 00000000 		.word	0
+ 340 0018 01       		.byte	1
+ 341 0019 000000   		.space	3
+ 342 001c 02000000 		.word	2
+ 343 0020 00080240 		.word	1073874944
+ 344 0024 0100     		.short	1
+ 345 0026 0600     		.short	6
+ 346 0028 00       		.byte	0
+ 347 0029 00       		.byte	0
+ 348 002a 0000     		.space	2
+ 349 002c 00000000 		.word	0
+ 350 0030 01       		.byte	1
+ARM GAS  /tmp/ccvwBD5U.s 			page 7
 
 
-  60:gui/inputs.c  **** 				(MInputData){M_KEY_OK, M_INPUT_CLICK, time, 0});
- 222              		.loc 1 60 0
- 223 00ee 0DAB     		add	r3, sp, #52
- 224 00f0 0ECB     		ldm	r3, {r1, r2, r3}
- 225              	.LVL12:
- 226 00f2 FFF7FEFF 		bl	makise_g_host_input
- 227              	.LVL13:
- 228              	.L8:
-  63:gui/inputs.c  ****     {
- 229              		.loc 1 63 0
- 230 00f6 012D     		cmp	r5, #1
- 231 00f8 99D1     		bne	.L20
- 232 00fa A6E7     		b	.L1
- 233              	.LVL14:
- 234              	.L34:
-  41:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 235              		.loc 1 41 0 discriminator 1
- 236 00fc 0292     		str	r2, [sp, #8]
- 237 00fe 0421     		movs	r1, #4
- 238              	.LVL15:
- 239 0100 0122     		movs	r2, #1
- 240              	.LVL16:
- 241 0102 0023     		movs	r3, #0
-  40:gui/inputs.c  **** 			       (MInputData){M_KEY_UP, M_INPUT_CLICK, time, 0})
- 242              		.loc 1 40 0 discriminator 1
- 243 0104 484F     		ldr	r7, .L45
-  41:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 244              		.loc 1 41 0 discriminator 1
- 245 0106 8DF80C30 		strb	r3, [sp, #12]
- 246 010a 8DF80410 		strb	r1, [sp, #4]
- 247 010e 8DF80520 		strb	r2, [sp, #5]
-  40:gui/inputs.c  **** 			       (MInputData){M_KEY_UP, M_INPUT_CLICK, time, 0})
- 248              		.loc 1 40 0 discriminator 1
- 249 0112 0DEB0103 		add	r3, sp, r1
- 250 0116 3868     		ldr	r0, [r7]
- 251              	.LVL17:
- 252 0118 0ECB     		ldm	r3, {r1, r2, r3}
- 253 011a FFF7FEFF 		bl	makise_g_host_input
- 254              	.LVL18:
-  39:gui/inputs.c  **** 	   makise_g_host_input(host,
- 255              		.loc 1 39 0 discriminator 1
- 256 011e 0128     		cmp	r0, #1
- 257 0120 83D1     		bne	.L2
-  43:gui/inputs.c  **** 	if(id == 1 &&
- 258              		.loc 1 43 0
- 259 0122 3B68     		ldr	r3, [r7]
- 260 0124 1868     		ldr	r0, [r3]
- 261 0126 FFF7FEFF 		bl	makise_g_cont_focus_prev
- 262              	.LVL19:
- 263 012a 7EE7     		b	.L2
- 264              	.L41:
-  88:gui/inputs.c  **** 				(MInputData){M_KEY_RIGHT, M_INPUT_PRESSING, time, 0});
- 265              		.loc 1 88 0
- 266 012c 3E4B     		ldr	r3, .L45
-  89:gui/inputs.c  **** 	if(id == 2) 
- 267              		.loc 1 89 0
- 268 012e 1D96     		str	r6, [sp, #116]
-ARM GAS  /tmp/ccUsYtPq.s 			page 8
+ 351 0031 000000   		.space	3
+ 352 0034 03000000 		.word	3
+ 353 0038 00080240 		.word	1073874944
+ 354 003c 0100     		.short	1
+ 355 003e 0500     		.short	5
+ 356 0040 00       		.byte	0
+ 357 0041 00       		.byte	0
+ 358 0042 0000     		.space	2
+ 359 0044 00000000 		.word	0
+ 360 0048 01       		.byte	1
+ 361 0049 000000   		.space	3
+ 362 004c 04000000 		.word	4
+ 363 0050 00080240 		.word	1073874944
+ 364 0054 0100     		.short	1
+ 365 0056 0400     		.short	4
+ 366 0058 00       		.byte	0
+ 367 0059 00       		.byte	0
+ 368 005a 0000     		.space	2
+ 369 005c 00000000 		.word	0
+ 370 0060 01       		.byte	1
+ 371 0061 000000   		.space	3
+ 372 0064 0B000000 		.word	11
+ 373 0068 00080240 		.word	1073874944
+ 374 006c 0200     		.short	2
+ 375 006e 0700     		.short	7
+ 376 0070 00       		.byte	0
+ 377 0071 00       		.byte	0
+ 378 0072 0000     		.space	2
+ 379 0074 00000000 		.word	0
+ 380 0078 01       		.byte	1
+ 381 0079 000000   		.space	3
+ 382 007c 0C000000 		.word	12
+ 383 0080 00080240 		.word	1073874944
+ 384 0084 0200     		.short	2
+ 385 0086 0600     		.short	6
+ 386 0088 00       		.byte	0
+ 387 0089 00       		.byte	0
+ 388 008a 0000     		.space	2
+ 389 008c 00000000 		.word	0
+ 390 0090 01       		.byte	1
+ 391 0091 000000   		.space	3
+ 392 0094 0D000000 		.word	13
+ 393 0098 00080240 		.word	1073874944
+ 394 009c 0200     		.short	2
+ 395 009e 0500     		.short	5
+ 396 00a0 00       		.byte	0
+ 397 00a1 00       		.byte	0
+ 398 00a2 0000     		.space	2
+ 399 00a4 00000000 		.word	0
+ 400 00a8 01       		.byte	1
+ 401 00a9 000000   		.space	3
+ 402 00ac 0E000000 		.word	14
+ 403 00b0 00080240 		.word	1073874944
+ 404 00b4 0200     		.short	2
+ 405 00b6 0400     		.short	4
+ 406 00b8 00       		.byte	0
+ 407 00b9 00       		.byte	0
+ARM GAS  /tmp/ccvwBD5U.s 			page 8
 
 
- 269 0130 0321     		movs	r1, #3
- 270 0132 0222     		movs	r2, #2
-  88:gui/inputs.c  **** 				(MInputData){M_KEY_RIGHT, M_INPUT_PRESSING, time, 0});
- 271              		.loc 1 88 0
- 272 0134 1868     		ldr	r0, [r3]
-  89:gui/inputs.c  **** 	if(id == 2) 
- 273              		.loc 1 89 0
- 274 0136 8DF87010 		strb	r1, [sp, #112]
- 275 013a 0023     		movs	r3, #0
- 276 013c 8DF87830 		strb	r3, [sp, #120]
- 277 0140 8DF87120 		strb	r2, [sp, #113]
-  88:gui/inputs.c  **** 				(MInputData){M_KEY_RIGHT, M_INPUT_PRESSING, time, 0});
- 278              		.loc 1 88 0
- 279 0144 1CAB     		add	r3, sp, #112
- 280 0146 0ECB     		ldm	r3, {r1, r2, r3}
- 281 0148 FFF7FEFF 		bl	makise_g_host_input
- 282              	.LVL20:
- 283 014c 7DE7     		b	.L1
- 284              	.L39:
-  82:gui/inputs.c  **** 				(MInputData){M_KEY_UP, M_INPUT_PRESSING, time, 0});
- 285              		.loc 1 82 0
- 286 014e 364B     		ldr	r3, .L45
-  83:gui/inputs.c  **** 	if(id == 1)
- 287              		.loc 1 83 0
- 288 0150 1796     		str	r6, [sp, #92]
- 289 0152 0421     		movs	r1, #4
- 290 0154 0222     		movs	r2, #2
-  82:gui/inputs.c  **** 				(MInputData){M_KEY_UP, M_INPUT_PRESSING, time, 0});
- 291              		.loc 1 82 0
- 292 0156 1868     		ldr	r0, [r3]
-  83:gui/inputs.c  **** 	if(id == 1)
- 293              		.loc 1 83 0
- 294 0158 8DF85810 		strb	r1, [sp, #88]
- 295 015c 0023     		movs	r3, #0
- 296 015e 8DF86030 		strb	r3, [sp, #96]
- 297 0162 8DF85920 		strb	r2, [sp, #89]
-  82:gui/inputs.c  **** 				(MInputData){M_KEY_UP, M_INPUT_PRESSING, time, 0});
- 298              		.loc 1 82 0
- 299 0166 16AB     		add	r3, sp, #88
- 300 0168 0ECB     		ldm	r3, {r1, r2, r3}
- 301 016a FFF7FEFF 		bl	makise_g_host_input
- 302              	.LVL21:
- 303 016e 6CE7     		b	.L1
- 304              	.LVL22:
- 305              	.L35:
-  46:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 306              		.loc 1 46 0 discriminator 1
- 307 0170 0592     		str	r2, [sp, #20]
- 308 0172 0023     		movs	r3, #0
- 309 0174 0522     		movs	r2, #5
- 310              	.LVL23:
-  45:gui/inputs.c  **** 			       (MInputData){M_KEY_DOWN, M_INPUT_CLICK, time, 0})
- 311              		.loc 1 45 0 discriminator 1
- 312 0176 2C4F     		ldr	r7, .L45
-  46:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 313              		.loc 1 46 0 discriminator 1
- 314 0178 8DF81100 		strb	r0, [sp, #17]
-ARM GAS  /tmp/ccUsYtPq.s 			page 9
-
-
- 315 017c 8DF81830 		strb	r3, [sp, #24]
- 316 0180 8DF81020 		strb	r2, [sp, #16]
-  45:gui/inputs.c  **** 			       (MInputData){M_KEY_DOWN, M_INPUT_CLICK, time, 0})
- 317              		.loc 1 45 0 discriminator 1
- 318 0184 04AB     		add	r3, sp, #16
- 319 0186 3868     		ldr	r0, [r7]
- 320              	.LVL24:
- 321 0188 0ECB     		ldm	r3, {r1, r2, r3}
- 322              	.LVL25:
- 323 018a FFF7FEFF 		bl	makise_g_host_input
- 324              	.LVL26:
-  44:gui/inputs.c  **** 	   makise_g_host_input(host,
- 325              		.loc 1 44 0 discriminator 1
- 326 018e 0128     		cmp	r0, #1
- 327 0190 7FF44BAF 		bne	.L2
- 328              	.L31:
-  53:gui/inputs.c  **** 	if(id == 2 &&
- 329              		.loc 1 53 0
- 330 0194 3B68     		ldr	r3, [r7]
- 331 0196 1868     		ldr	r0, [r3]
- 332 0198 FFF7FEFF 		bl	makise_g_cont_focus_next
- 333              	.LVL27:
- 334 019c 45E7     		b	.L2
- 335              	.LVL28:
- 336              	.L17:
-  56:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 337              		.loc 1 56 0 discriminator 1
- 338 019e 0122     		movs	r2, #1
- 339              	.LVL29:
- 340 01a0 0023     		movs	r3, #0
-  55:gui/inputs.c  **** 			       (MInputData){M_KEY_LEFT, M_INPUT_CLICK, time, 0})
- 341              		.loc 1 55 0 discriminator 1
- 342 01a2 214F     		ldr	r7, .L45
-  56:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 343              		.loc 1 56 0 discriminator 1
- 344 01a4 8DF83030 		strb	r3, [sp, #48]
- 345 01a8 8DF82840 		strb	r4, [sp, #40]
- 346 01ac 0B96     		str	r6, [sp, #44]
- 347 01ae 8DF82920 		strb	r2, [sp, #41]
-  55:gui/inputs.c  **** 			       (MInputData){M_KEY_LEFT, M_INPUT_CLICK, time, 0})
- 348              		.loc 1 55 0 discriminator 1
- 349 01b2 0AAB     		add	r3, sp, #40
- 350 01b4 3868     		ldr	r0, [r7]
- 351              	.LVL30:
- 352 01b6 0ECB     		ldm	r3, {r1, r2, r3}
- 353              	.LVL31:
- 354 01b8 FFF7FEFF 		bl	makise_g_host_input
- 355              	.LVL32:
-  54:gui/inputs.c  **** 	   makise_g_host_input(host,
- 356              		.loc 1 54 0 discriminator 1
- 357 01bc 0128     		cmp	r0, #1
- 358 01be 7FF434AF 		bne	.L2
-  58:gui/inputs.c  **** 	if(id == 13)
- 359              		.loc 1 58 0
- 360 01c2 3B68     		ldr	r3, [r7]
- 361 01c4 1868     		ldr	r0, [r3]
- 362 01c6 FFF7FEFF 		bl	makise_g_cont_focus_prev
-ARM GAS  /tmp/ccUsYtPq.s 			page 10
-
-
- 363              	.LVL33:
- 364 01ca 94E7     		b	.L8
- 365              	.LVL34:
- 366              	.L36:
-  51:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 367              		.loc 1 51 0 discriminator 1
- 368 01cc 0892     		str	r2, [sp, #32]
- 369 01ce 0321     		movs	r1, #3
- 370              	.LVL35:
- 371 01d0 0122     		movs	r2, #1
- 372              	.LVL36:
- 373 01d2 0023     		movs	r3, #0
-  50:gui/inputs.c  **** 			       (MInputData){M_KEY_RIGHT, M_INPUT_CLICK, time, 0})
- 374              		.loc 1 50 0 discriminator 1
- 375 01d4 144F     		ldr	r7, .L45
-  51:gui/inputs.c  **** 	   == M_INPUT_NOT_HANDLED)
- 376              		.loc 1 51 0 discriminator 1
- 377 01d6 8DF82430 		strb	r3, [sp, #36]
- 378 01da 8DF81C10 		strb	r1, [sp, #28]
- 379 01de 8DF81D20 		strb	r2, [sp, #29]
-  50:gui/inputs.c  **** 			       (MInputData){M_KEY_RIGHT, M_INPUT_CLICK, time, 0})
- 380              		.loc 1 50 0 discriminator 1
- 381 01e2 07AB     		add	r3, sp, #28
- 382 01e4 3868     		ldr	r0, [r7]
- 383              	.LVL37:
- 384 01e6 0ECB     		ldm	r3, {r1, r2, r3}
- 385 01e8 FFF7FEFF 		bl	makise_g_host_input
- 386              	.LVL38:
-  49:gui/inputs.c  **** 	   makise_g_host_input(host,
- 387              		.loc 1 49 0 discriminator 1
- 388 01ec 0128     		cmp	r0, #1
- 389 01ee 7FF41CAF 		bne	.L2
- 390 01f2 CFE7     		b	.L31
- 391              	.L44:
-  72:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_NEXT, M_INPUT_CLICK, time, 0});
- 392              		.loc 1 72 0
- 393 01f4 0C4B     		ldr	r3, .L45
-  73:gui/inputs.c  **** 	if(id == 12)
- 394              		.loc 1 73 0
- 395 01f6 1196     		str	r6, [sp, #68]
- 396 01f8 0921     		movs	r1, #9
- 397 01fa 0122     		movs	r2, #1
-  72:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_NEXT, M_INPUT_CLICK, time, 0});
- 398              		.loc 1 72 0
- 399 01fc 1868     		ldr	r0, [r3]
-  73:gui/inputs.c  **** 	if(id == 12)
- 400              		.loc 1 73 0
- 401 01fe 8DF84010 		strb	r1, [sp, #64]
- 402 0202 0023     		movs	r3, #0
- 403 0204 8DF84830 		strb	r3, [sp, #72]
- 404 0208 8DF84120 		strb	r2, [sp, #65]
-  72:gui/inputs.c  **** 				(MInputData){M_KEY_TAB_NEXT, M_INPUT_CLICK, time, 0});
- 405              		.loc 1 72 0
- 406 020c 10AB     		add	r3, sp, #64
- 407 020e 0ECB     		ldm	r3, {r1, r2, r3}
- 408 0210 FFF7FEFF 		bl	makise_g_host_input
- 409              	.LVL39:
-ARM GAS  /tmp/ccUsYtPq.s 			page 11
-
-
- 410 0214 19E7     		b	.L1
- 411              	.L43:
-  66:gui/inputs.c  **** 	if(id == 11)
- 412              		.loc 1 66 0
- 413 0216 044B     		ldr	r3, .L45
- 414 0218 1B68     		ldr	r3, [r3]
- 415 021a 1868     		ldr	r0, [r3]
- 416              		.loc 1 95 0
- 417 021c 23B0     		add	sp, sp, #140
- 418              	.LCFI9:
- 419              		.cfi_def_cfa_offset 20
- 420              		@ sp needed
- 421 021e BDE8F040 		pop	{r4, r5, r6, r7, lr}
- 422              	.LCFI10:
- 423              		.cfi_restore 14
- 424              		.cfi_restore 7
- 425              		.cfi_restore 6
- 426              		.cfi_restore 5
- 427              		.cfi_restore 4
- 428              		.cfi_def_cfa_offset 0
- 429              	.LVL40:
-  66:gui/inputs.c  **** 	if(id == 11)
- 430              		.loc 1 66 0
- 431 0222 FFF7FEBF 		b	makise_g_cont_focus_prev
- 432              	.LVL41:
- 433              	.L46:
- 434 0226 00BF     		.align	2
- 435              	.L45:
- 436 0228 00000000 		.word	host
- 437              		.cfi_endproc
- 438              	.LFE128:
- 440              		.section	.text.inputs_init,"ax",%progbits
- 441              		.align	1
- 442              		.p2align 2,,3
- 443              		.global	inputs_init
- 444              		.syntax unified
- 445              		.thumb
- 446              		.thumb_func
- 447              		.fpu fpv4-sp-d16
- 449              	inputs_init:
- 450              	.LFB126:
-  24:gui/inputs.c  ****     controls_595_init(inputs_buttons, 8, inputs_outs, 4, &inputs_input);
- 451              		.loc 1 24 0
- 452              		.cfi_startproc
- 453              		@ args = 0, pretend = 0, frame = 0
- 454              		@ frame_needed = 0, uses_anonymous_args = 0
- 455 0000 00B5     		push	{lr}
- 456              	.LCFI11:
- 457              		.cfi_def_cfa_offset 4
- 458              		.cfi_offset 14, -4
- 459 0002 83B0     		sub	sp, sp, #12
- 460              	.LCFI12:
- 461              		.cfi_def_cfa_offset 16
-  25:gui/inputs.c  **** }
- 462              		.loc 1 25 0
- 463 0004 054B     		ldr	r3, .L49
- 464 0006 0093     		str	r3, [sp]
-ARM GAS  /tmp/ccUsYtPq.s 			page 12
-
-
- 465 0008 054A     		ldr	r2, .L49+4
- 466 000a 0648     		ldr	r0, .L49+8
- 467 000c 0423     		movs	r3, #4
- 468 000e 0821     		movs	r1, #8
- 469 0010 FFF7FEFF 		bl	controls_595_init
- 470              	.LVL42:
-  26:gui/inputs.c  **** 
- 471              		.loc 1 26 0
- 472 0014 03B0     		add	sp, sp, #12
- 473              	.LCFI13:
- 474              		.cfi_def_cfa_offset 4
- 475              		@ sp needed
- 476 0016 5DF804FB 		ldr	pc, [sp], #4
- 477              	.L50:
- 478 001a 00BF     		.align	2
- 479              	.L49:
- 480 001c 00000000 		.word	inputs_input
- 481 0020 00000000 		.word	.LANCHOR0
- 482 0024 00000000 		.word	.LANCHOR1
- 483              		.cfi_endproc
- 484              	.LFE126:
- 486              		.section	.text.inputs_update,"ax",%progbits
- 487              		.align	1
- 488              		.p2align 2,,3
- 489              		.global	inputs_update
- 490              		.syntax unified
- 491              		.thumb
- 492              		.thumb_func
- 493              		.fpu fpv4-sp-d16
- 495              	inputs_update:
- 496              	.LFB127:
-  29:gui/inputs.c  ****     controls_595_update();      
- 497              		.loc 1 29 0
- 498              		.cfi_startproc
- 499              		@ args = 0, pretend = 0, frame = 0
- 500              		@ frame_needed = 0, uses_anonymous_args = 0
- 501              		@ link register save eliminated.
-  30:gui/inputs.c  **** }
- 502              		.loc 1 30 0
- 503 0000 FFF7FEBF 		b	controls_595_update
- 504              	.LVL43:
- 505              		.cfi_endproc
- 506              	.LFE127:
- 508              		.global	inputs_outs
- 509              		.global	inputs_buttons
- 510              		.comm	makise_color_palette,4,4
- 511              		.section	.data.inputs_buttons,"aw",%progbits
- 512              		.align	2
- 513              		.set	.LANCHOR1,. + 0
- 516              	inputs_buttons:
- 517 0000 01       		.byte	1
- 518 0001 000000   		.space	3
- 519 0004 01000000 		.word	1
- 520 0008 00080240 		.word	1073874944
- 521 000c 0100     		.short	1
- 522 000e 0700     		.short	7
- 523 0010 00       		.byte	0
-ARM GAS  /tmp/ccUsYtPq.s 			page 13
-
-
- 524 0011 00       		.byte	0
- 525 0012 0000     		.space	2
- 526 0014 00000000 		.word	0
- 527 0018 01       		.byte	1
- 528 0019 000000   		.space	3
- 529 001c 02000000 		.word	2
- 530 0020 00080240 		.word	1073874944
- 531 0024 0100     		.short	1
- 532 0026 0600     		.short	6
- 533 0028 00       		.byte	0
- 534 0029 00       		.byte	0
- 535 002a 0000     		.space	2
- 536 002c 00000000 		.word	0
- 537 0030 01       		.byte	1
- 538 0031 000000   		.space	3
- 539 0034 03000000 		.word	3
- 540 0038 00080240 		.word	1073874944
- 541 003c 0100     		.short	1
- 542 003e 0500     		.short	5
- 543 0040 00       		.byte	0
- 544 0041 00       		.byte	0
- 545 0042 0000     		.space	2
- 546 0044 00000000 		.word	0
- 547 0048 01       		.byte	1
- 548 0049 000000   		.space	3
- 549 004c 04000000 		.word	4
- 550 0050 00080240 		.word	1073874944
- 551 0054 0100     		.short	1
- 552 0056 0400     		.short	4
- 553 0058 00       		.byte	0
- 554 0059 00       		.byte	0
- 555 005a 0000     		.space	2
- 556 005c 00000000 		.word	0
- 557 0060 01       		.byte	1
- 558 0061 000000   		.space	3
- 559 0064 0B000000 		.word	11
- 560 0068 00080240 		.word	1073874944
- 561 006c 0200     		.short	2
- 562 006e 0700     		.short	7
- 563 0070 00       		.byte	0
- 564 0071 00       		.byte	0
- 565 0072 0000     		.space	2
- 566 0074 00000000 		.word	0
- 567 0078 01       		.byte	1
- 568 0079 000000   		.space	3
- 569 007c 0C000000 		.word	12
- 570 0080 00080240 		.word	1073874944
- 571 0084 0200     		.short	2
- 572 0086 0600     		.short	6
- 573 0088 00       		.byte	0
- 574 0089 00       		.byte	0
- 575 008a 0000     		.space	2
- 576 008c 00000000 		.word	0
- 577 0090 01       		.byte	1
- 578 0091 000000   		.space	3
- 579 0094 0D000000 		.word	13
- 580 0098 00080240 		.word	1073874944
-ARM GAS  /tmp/ccUsYtPq.s 			page 14
-
-
- 581 009c 0200     		.short	2
- 582 009e 0500     		.short	5
- 583 00a0 00       		.byte	0
- 584 00a1 00       		.byte	0
- 585 00a2 0000     		.space	2
- 586 00a4 00000000 		.word	0
- 587 00a8 01       		.byte	1
- 588 00a9 000000   		.space	3
- 589 00ac 0E000000 		.word	14
- 590 00b0 00080240 		.word	1073874944
- 591 00b4 0200     		.short	2
- 592 00b6 0400     		.short	4
- 593 00b8 00       		.byte	0
- 594 00b9 00       		.byte	0
- 595 00ba 0000     		.space	2
- 596 00bc 00000000 		.word	0
- 597              		.section	.data.inputs_outs,"aw",%progbits
- 598              		.align	2
- 599              		.set	.LANCHOR0,. + 0
- 602              	inputs_outs:
- 603 0000 01       		.byte	1
- 604 0001 000000   		.space	3
- 605 0004 05000000 		.word	5
- 606 0008 0000     		.short	0
- 607 000a 01       		.byte	1
- 608 000b 00       		.space	1
- 609 000c 01       		.byte	1
- 610 000d 000000   		.space	3
- 611 0010 06000000 		.word	6
- 612 0014 0100     		.short	1
- 613 0016 00       		.byte	0
- 614 0017 00       		.space	1
- 615 0018 01       		.byte	1
- 616 0019 000000   		.space	3
- 617 001c 07000000 		.word	7
- 618 0020 0200     		.short	2
- 619 0022 00       		.byte	0
- 620 0023 00       		.space	1
- 621 0024 01       		.byte	1
- 622 0025 000000   		.space	3
- 623 0028 08000000 		.word	8
- 624 002c 0300     		.short	3
- 625 002e 01       		.byte	1
- 626 002f 00       		.space	1
- 627              		.text
- 628              	.Letext0:
- 629              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 630              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 631              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 632              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 633              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
- 634              		.file 7 "/usr/arm-none-eabi/include/sys/lock.h"
- 635              		.file 8 "/usr/arm-none-eabi/include/sys/_types.h"
- 636              		.file 9 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
- 637              		.file 10 "/usr/arm-none-eabi/include/sys/reent.h"
- 638              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 639              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
-ARM GAS  /tmp/ccUsYtPq.s 			page 15
-
-
- 640              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 641              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 642              		.file 15 "Controls/controls_595.h"
- 643              		.file 16 "MakiseGUI/MakiseGUI/makise.h"
- 644              		.file 17 "Inc/spi.h"
- 645              		.file 18 "Inc/tim.h"
- 646              		.file 19 "MakiseGUI/MakiseGUI/ILI9340C/ili9340.h"
- 647              		.file 20 "MakiseGUI/MakiseGUI/makise_colors.h"
- 648              		.file 21 "MakiseGUI/MakiseGUI/makise_text.h"
- 649              		.file 22 "MakiseGUI/MakiseGUI/fonts/fonts.h"
- 650              		.file 23 "MakiseGUI/MakiseGUI/gui/makise_gui.h"
- 651              		.file 24 "MakiseGUI/MakiseGUI/gui/makise_gui_input.h"
- 652              		.file 25 "MakiseGUI/MakiseGUI/gui/makise_gui_container.h"
- 653              		.file 26 "MakiseGUI/MakiseGUI/gui/makise_gui_elements.h"
- 654              		.file 27 "gui/gui.h"
- 655              		.file 28 "gui/inputs.h"
-ARM GAS  /tmp/ccUsYtPq.s 			page 16
+ 408 00ba 0000     		.space	2
+ 409 00bc 00000000 		.word	0
+ 410              		.section	.data.inputs_outs,"aw",%progbits
+ 411              		.align	2
+ 412              		.set	.LANCHOR0,. + 0
+ 415              	inputs_outs:
+ 416 0000 01       		.byte	1
+ 417 0001 000000   		.space	3
+ 418 0004 05000000 		.word	5
+ 419 0008 0000     		.short	0
+ 420 000a 01       		.byte	1
+ 421 000b 00       		.space	1
+ 422 000c 01       		.byte	1
+ 423 000d 000000   		.space	3
+ 424 0010 06000000 		.word	6
+ 425 0014 0100     		.short	1
+ 426 0016 00       		.byte	0
+ 427 0017 00       		.space	1
+ 428 0018 01       		.byte	1
+ 429 0019 000000   		.space	3
+ 430 001c 07000000 		.word	7
+ 431 0020 0200     		.short	2
+ 432 0022 00       		.byte	0
+ 433 0023 00       		.space	1
+ 434 0024 01       		.byte	1
+ 435 0025 000000   		.space	3
+ 436 0028 08000000 		.word	8
+ 437 002c 0300     		.short	3
+ 438 002e 01       		.byte	1
+ 439 002f 00       		.space	1
+ 440              		.section	.rodata.inputs_input.str1.4,"aMS",%progbits,1
+ 441              		.align	2
+ 442              	.LC0:
+ 443 0000 25640A00 		.ascii	"%d\012\000"
+ 444              		.ident	"GCC: (Arch Repository) 6.3.0"
+ARM GAS  /tmp/ccvwBD5U.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 inputs.c
-     /tmp/ccUsYtPq.s:16     .text.inputs_input:0000000000000000 $t
-     /tmp/ccUsYtPq.s:24     .text.inputs_input:0000000000000000 inputs_input
-     /tmp/ccUsYtPq.s:436    .text.inputs_input:0000000000000228 $d
-     /tmp/ccUsYtPq.s:441    .text.inputs_init:0000000000000000 $t
-     /tmp/ccUsYtPq.s:449    .text.inputs_init:0000000000000000 inputs_init
-     /tmp/ccUsYtPq.s:480    .text.inputs_init:000000000000001c $d
-     /tmp/ccUsYtPq.s:487    .text.inputs_update:0000000000000000 $t
-     /tmp/ccUsYtPq.s:495    .text.inputs_update:0000000000000000 inputs_update
-     /tmp/ccUsYtPq.s:602    .data.inputs_outs:0000000000000000 inputs_outs
-     /tmp/ccUsYtPq.s:516    .data.inputs_buttons:0000000000000000 inputs_buttons
+     /tmp/ccvwBD5U.s:13     .text.inputs_input:0000000000000000 $t
+     /tmp/ccvwBD5U.s:21     .text.inputs_input:0000000000000000 inputs_input
+     /tmp/ccvwBD5U.s:272    .text.inputs_input:0000000000000240 $d
+     /tmp/ccvwBD5U.s:276    .text.inputs_init:0000000000000000 $t
+     /tmp/ccvwBD5U.s:284    .text.inputs_init:0000000000000000 inputs_init
+     /tmp/ccvwBD5U.s:302    .text.inputs_init:000000000000001c $d
+     /tmp/ccvwBD5U.s:307    .text.inputs_update:0000000000000000 $t
+     /tmp/ccvwBD5U.s:315    .text.inputs_update:0000000000000000 inputs_update
+     /tmp/ccvwBD5U.s:415    .data.inputs_outs:0000000000000000 inputs_outs
+     /tmp/ccvwBD5U.s:329    .data.inputs_buttons:0000000000000000 inputs_buttons
                             *COM*:0000000000000004 makise_color_palette
-     /tmp/ccUsYtPq.s:512    .data.inputs_buttons:0000000000000000 $d
-     /tmp/ccUsYtPq.s:598    .data.inputs_outs:0000000000000000 $d
-                     .debug_frame:0000000000000010 $d
+     /tmp/ccvwBD5U.s:325    .data.inputs_buttons:0000000000000000 $d
+     /tmp/ccvwBD5U.s:411    .data.inputs_outs:0000000000000000 $d
+     /tmp/ccvwBD5U.s:441    .rodata.inputs_input.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
-makise_g_cont_focus_next
+printf
 makise_g_host_input
+makise_g_cont_focus_next
 makise_g_cont_focus_prev
 host
 controls_595_init

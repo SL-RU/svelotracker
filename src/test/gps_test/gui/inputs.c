@@ -36,58 +36,64 @@ void inputs_input(uint32_t id,
 {
     if(event & CONTROLS_ALL_CLICK)
     {
- 	if(id == 3 &&
+	printf("%d\n", id);
+ 	if(id == 2 &&
 	   makise_g_host_input(host,
 			       (MInputData){M_KEY_UP, M_INPUT_CLICK, time, 0})
 	   == M_INPUT_NOT_HANDLED)
 	    makise_g_cont_focus_prev(host->host);
-	if(id == 1 &&
+	if(id == 3 &&
 	   makise_g_host_input(host,
 			       (MInputData){M_KEY_DOWN, M_INPUT_CLICK, time, 0})
 	   == M_INPUT_NOT_HANDLED)
 	    makise_g_cont_focus_next(host->host);
-	if(id == 4 &&
+	if(id == 1 &&
 	   makise_g_host_input(host,
 			       (MInputData){M_KEY_RIGHT, M_INPUT_CLICK, time, 0})
 	   == M_INPUT_NOT_HANDLED)
 	    makise_g_cont_focus_next(host->host);
-	if(id == 2 &&
+	if(id == 4 &&
 	   makise_g_host_input(host,
 			       (MInputData){M_KEY_LEFT, M_INPUT_CLICK, time, 0})
 	   == M_INPUT_NOT_HANDLED)
 	    makise_g_cont_focus_prev(host->host);
-	if(id == 13)
+	if(id == 12)
 	    makise_g_host_input(host,
 				(MInputData){M_KEY_OK, M_INPUT_CLICK, time, 0});
     }
     if(event == CONTROLS_CLICK)
     {
-	if(id == 12)
+	if(id == 14)
 	    makise_g_cont_focus_prev(host->host);
-	if(id == 11)
+	if(id == 13)
 	    makise_g_cont_focus_next(host->host);
     } else if(event == CONTROLS_LONG_CLICK)
     {
-	if(id == 11)
-	    makise_g_host_input(host,
-				(MInputData){M_KEY_TAB_NEXT, M_INPUT_CLICK, time, 0});
-	if(id == 12)
-	    makise_g_host_input(host,
-				(MInputData){M_KEY_TAB_BACK, M_INPUT_CLICK, time, 0});
+	if(id == 13)
+	    if(makise_g_host_input(host,
+				(MInputData){M_KEY_TAB_NEXT, M_INPUT_CLICK, time, 0})
+	       == M_INPUT_NOT_HANDLED)
+		makise_g_cont_focus_next(host->host);
+
+	if(id == 14)
+	    if(makise_g_host_input(host,
+				   (MInputData){M_KEY_TAB_BACK, M_INPUT_CLICK, time, 0})
+	       == M_INPUT_NOT_HANDLED)
+		makise_g_cont_focus_prev(host->host);
     }
 	
     if(event & CONTROLS_ALL_PRESSING)
     {
-	if(id == 3)
+	if(id == 2)
 	    makise_g_host_input(host,
 				(MInputData){M_KEY_UP, M_INPUT_PRESSING, time, 0});
-	if(id == 1)
+	if(id == 3)
 	    makise_g_host_input(host,
 				(MInputData){M_KEY_DOWN, M_INPUT_PRESSING, time, 0});
-	if(id == 4)
+	if(id == 1)
 	    makise_g_host_input(host,
 				(MInputData){M_KEY_RIGHT, M_INPUT_PRESSING, time, 0});
-	if(id == 2) 
+	if(id == 4) 
 	    makise_g_host_input(host,
 				(MInputData){M_KEY_LEFT, M_INPUT_PRESSING, time, 0});
     }

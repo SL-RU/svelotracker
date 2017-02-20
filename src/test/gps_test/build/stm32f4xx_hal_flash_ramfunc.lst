@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccLHVcq9.s 			page 1
+ARM GAS  /tmp/cc8GFC6U.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -12,19 +12,8 @@ ARM GAS  /tmp/ccLHVcq9.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"stm32f4xx_hal_flash_ramfunc.c"
-  12              		.text
-  13              	.Ltext0:
-  14              		.cfi_sections	.debug_frame
-  15              	.Letext0:
-  16              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
-  17              		.file 2 "/usr/arm-none-eabi/include/sys/_stdint.h"
-  18              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
-  19              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
-  20              		.file 5 "/usr/arm-none-eabi/include/sys/lock.h"
-  21              		.file 6 "/usr/arm-none-eabi/include/sys/_types.h"
-  22              		.file 7 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
-  23              		.file 8 "/usr/arm-none-eabi/include/sys/reent.h"
-ARM GAS  /tmp/ccLHVcq9.s 			page 2
+  12              		.ident	"GCC: (Arch Repository) 6.3.0"
+ARM GAS  /tmp/cc8GFC6U.s 			page 2
 
 
 DEFINED SYMBOLS

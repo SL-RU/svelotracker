@@ -14,7 +14,7 @@ typedef struct {
     int32_t y;
     uint32_t r;
 
-    MakisePoint arrow[5];
+    MakisePoint arrow[5v];
     
 } MCompass;
 
