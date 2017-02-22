@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZPjnnk.s 			page 1
+ARM GAS  /tmp/ccKq4N2X.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -16,254 +16,237 @@ ARM GAS  /tmp/ccZPjnnk.s 			page 1
   13              		.global	__aeabi_f2d
   14              		.global	__aeabi_dmul
   15              		.global	__aeabi_d2iz
-  16              		.global	__aeabi_dadd
-  17              		.global	__aeabi_d2f
-  18              		.section	.text._m_compass_draw,"ax",%progbits
-  19              		.align	1
-  20              		.p2align 2,,3
-  21              		.global	_m_compass_draw
-  22              		.syntax unified
-  23              		.thumb
-  24              		.thumb_func
-  25              		.fpu fpv4-sp-d16
-  27              	_m_compass_draw:
-  28              		@ args = 0, pretend = 0, frame = 16
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
-  31 0004 2DED028B 		vpush.64	{d8}
-  32 0008 446B     		ldr	r4, [r0, #52]
-  33 000a 4D4E     		ldr	r6, .L3+8
-  34 000c B4F86030 		ldrh	r3, [r4, #96]
-  35 0010 B4F85C20 		ldrh	r2, [r4, #92]
-  36 0014 B4F85810 		ldrh	r1, [r4, #88]
-  37 0018 87B0     		sub	sp, sp, #28
-  38 001a 0546     		mov	r5, r0
-  39 001c 0068     		ldr	r0, [r0]
-  40 001e 4FF0010A 		mov	r10, #1
-  41 0022 0068     		ldr	r0, [r0]
-  42 0024 CDF800A0 		str	r10, [sp]
-  43 0028 FFF7FEFF 		bl	makise_d_circle
-  44 002c 216E     		ldr	r1, [r4, #96]
-  45 002e E36D     		ldr	r3, [r4, #92]
-  46 0030 2868     		ldr	r0, [r5]
-  47 0032 B4F85820 		ldrh	r2, [r4, #88]
-  48 0036 0068     		ldr	r0, [r0]
-  49 0038 0096     		str	r6, [sp]
-  50 003a 0227     		movs	r7, #2
-  51 003c 0B44     		add	r3, r3, r1
-  52 003e 0197     		str	r7, [sp, #4]
-  53 0040 9BB2     		uxth	r3, r3
-  54 0042 5321     		movs	r1, #83
-  55 0044 FFF7FEFF 		bl	makise_d_char
-  56 0048 216E     		ldr	r1, [r4, #96]
-  57 004a E36D     		ldr	r3, [r4, #92]
-  58 004c 2868     		ldr	r0, [r5]
-ARM GAS  /tmp/ccZPjnnk.s 			page 2
+  16              		.section	.text._m_compass_draw,"ax",%progbits
+  17              		.align	1
+  18              		.p2align 2,,3
+  19              		.global	_m_compass_draw
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	_m_compass_draw:
+  26              		@ args = 0, pretend = 0, frame = 16
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  29 0004 2DED028B 		vpush.64	{d8}
+  30 0008 446B     		ldr	r4, [r0, #52]
+  31 000a 444E     		ldr	r6, .L3
+  32 000c B4F86030 		ldrh	r3, [r4, #96]
+  33 0010 B4F85C20 		ldrh	r2, [r4, #92]
+  34 0014 B4F85810 		ldrh	r1, [r4, #88]
+  35 0018 87B0     		sub	sp, sp, #28
+  36 001a 0546     		mov	r5, r0
+  37 001c 0068     		ldr	r0, [r0]
+  38 001e 4FF0010A 		mov	r10, #1
+  39 0022 0068     		ldr	r0, [r0]
+  40 0024 CDF800A0 		str	r10, [sp]
+  41 0028 FFF7FEFF 		bl	makise_d_circle
+  42 002c 216E     		ldr	r1, [r4, #96]
+  43 002e E36D     		ldr	r3, [r4, #92]
+  44 0030 2868     		ldr	r0, [r5]
+  45 0032 B4F85820 		ldrh	r2, [r4, #88]
+  46 0036 0068     		ldr	r0, [r0]
+  47 0038 0096     		str	r6, [sp]
+  48 003a 0227     		movs	r7, #2
+  49 003c 0B44     		add	r3, r3, r1
+  50 003e 0197     		str	r7, [sp, #4]
+  51 0040 9BB2     		uxth	r3, r3
+  52 0042 5321     		movs	r1, #83
+  53 0044 FFF7FEFF 		bl	makise_d_char
+  54 0048 216E     		ldr	r1, [r4, #96]
+  55 004a E36D     		ldr	r3, [r4, #92]
+  56 004c 2868     		ldr	r0, [r5]
+  57 004e B4F85820 		ldrh	r2, [r4, #88]
+  58 0052 0068     		ldr	r0, [r0]
+ARM GAS  /tmp/ccKq4N2X.s 			page 2
 
 
-  59 004e B4F85820 		ldrh	r2, [r4, #88]
-  60 0052 0068     		ldr	r0, [r0]
-  61 0054 0197     		str	r7, [sp, #4]
-  62 0056 5B1A     		subs	r3, r3, r1
-  63 0058 9BB2     		uxth	r3, r3
-  64 005a 0096     		str	r6, [sp]
-  65 005c 4E21     		movs	r1, #78
-  66 005e FFF7FEFF 		bl	makise_d_char
-  67 0062 206E     		ldr	r0, [r4, #96]
-  68 0064 FFF7FEFF 		bl	__aeabi_ui2d
-  69 0068 636D     		ldr	r3, [r4, #84]
-  70 006a 8046     		mov	r8, r0
-  71 006c 1868     		ldr	r0, [r3]	@ float
-  72 006e 8946     		mov	r9, r1
-  73 0070 FFF7FEFF 		bl	__aeabi_f2d
-  74 0074 41EC100B 		vmov	d0, r0, r1
-  75 0078 41EC180B 		vmov	d8, r0, r1
-  76 007c FFF7FEFF 		bl	cos
-  77 0080 53EC102B 		vmov	r2, r3, d0
-  78 0084 B0EE480A 		vmov.f32	s0, s16
-  79 0088 F0EE680A 		vmov.f32	s1, s17
-  80 008c CDE90223 		strd	r2, [sp, #8]
-  81 0090 FFF7FEFF 		bl	sin
-  82 0094 DDE90223 		ldrd	r2, [sp, #8]
-  83 0098 4046     		mov	r0, r8
-  84 009a 4946     		mov	r1, r9
-  85 009c 8DED040B 		vstr.64	d0, [sp, #16]
-  86 00a0 FFF7FEFF 		bl	__aeabi_dmul
-  87 00a4 FFF7FEFF 		bl	__aeabi_d2iz
-  88 00a8 9DED040B 		vldr.64	d0, [sp, #16]
-  89 00ac 2B68     		ldr	r3, [r5]
-  90 00ae A76D     		ldr	r7, [r4, #88]
-  91 00b0 1B68     		ldr	r3, [r3]
-  92 00b2 0293     		str	r3, [sp, #8]
-  93 00b4 00EB070E 		add	lr, r0, r7
-  94 00b8 53EC102B 		vmov	r2, r3, d0
-  95 00bc 4FF0040B 		mov	fp, #4
-  96 00c0 4046     		mov	r0, r8
-  97 00c2 4946     		mov	r1, r9
-  98 00c4 0FFA8EF8 		sxth	r8, lr
-  99 00c8 E66D     		ldr	r6, [r4, #92]
- 100 00ca CDF804B0 		str	fp, [sp, #4]
- 101 00ce FFF7FEFF 		bl	__aeabi_dmul
- 102 00d2 FFF7FEFF 		bl	__aeabi_d2iz
- 103 00d6 3044     		add	r0, r0, r6
- 104 00d8 00B2     		sxth	r0, r0
- 105 00da 32B2     		sxth	r2, r6
- 106 00dc 39B2     		sxth	r1, r7
- 107 00de 4346     		mov	r3, r8
- 108 00e0 0090     		str	r0, [sp]
- 109 00e2 0298     		ldr	r0, [sp, #8]
- 110 00e4 FFF7FEFF 		bl	makise_d_line
- 111 00e8 636D     		ldr	r3, [r4, #84]
- 112 00ea 1868     		ldr	r0, [r3]	@ float
- 113 00ec FFF7FEFF 		bl	__aeabi_f2d
- 114 00f0 2B68     		ldr	r3, [r5]
- 115 00f2 A76D     		ldr	r7, [r4, #88]
-ARM GAS  /tmp/ccZPjnnk.s 			page 3
+  59 0054 0197     		str	r7, [sp, #4]
+  60 0056 5B1A     		subs	r3, r3, r1
+  61 0058 9BB2     		uxth	r3, r3
+  62 005a 0096     		str	r6, [sp]
+  63 005c 4E21     		movs	r1, #78
+  64 005e FFF7FEFF 		bl	makise_d_char
+  65 0062 206E     		ldr	r0, [r4, #96]
+  66 0064 FFF7FEFF 		bl	__aeabi_ui2d
+  67 0068 636D     		ldr	r3, [r4, #84]
+  68 006a 8046     		mov	r8, r0
+  69 006c 1868     		ldr	r0, [r3]	@ float
+  70 006e 8946     		mov	r9, r1
+  71 0070 FFF7FEFF 		bl	__aeabi_f2d
+  72 0074 41EC100B 		vmov	d0, r0, r1
+  73 0078 41EC180B 		vmov	d8, r0, r1
+  74 007c FFF7FEFF 		bl	cos
+  75 0080 53EC102B 		vmov	r2, r3, d0
+  76 0084 B0EE480A 		vmov.f32	s0, s16
+  77 0088 F0EE680A 		vmov.f32	s1, s17
+  78 008c CDE90223 		strd	r2, [sp, #8]
+  79 0090 FFF7FEFF 		bl	sin
+  80 0094 DDE90223 		ldrd	r2, [sp, #8]
+  81 0098 4046     		mov	r0, r8
+  82 009a 4946     		mov	r1, r9
+  83 009c 8DED040B 		vstr.64	d0, [sp, #16]
+  84 00a0 FFF7FEFF 		bl	__aeabi_dmul
+  85 00a4 FFF7FEFF 		bl	__aeabi_d2iz
+  86 00a8 9DED040B 		vldr.64	d0, [sp, #16]
+  87 00ac 2B68     		ldr	r3, [r5]
+  88 00ae A76D     		ldr	r7, [r4, #88]
+  89 00b0 1B68     		ldr	r3, [r3]
+  90 00b2 0293     		str	r3, [sp, #8]
+  91 00b4 00EB070E 		add	lr, r0, r7
+  92 00b8 53EC102B 		vmov	r2, r3, d0
+  93 00bc 4FF0040B 		mov	fp, #4
+  94 00c0 4046     		mov	r0, r8
+  95 00c2 4946     		mov	r1, r9
+  96 00c4 E66D     		ldr	r6, [r4, #92]
+  97 00c6 CDF804B0 		str	fp, [sp, #4]
+  98 00ca 0FFA8EF8 		sxth	r8, lr
+  99 00ce FFF7FEFF 		bl	__aeabi_dmul
+ 100 00d2 FFF7FEFF 		bl	__aeabi_d2iz
+ 101 00d6 3044     		add	r0, r0, r6
+ 102 00d8 00B2     		sxth	r0, r0
+ 103 00da 32B2     		sxth	r2, r6
+ 104 00dc 39B2     		sxth	r1, r7
+ 105 00de 4346     		mov	r3, r8
+ 106 00e0 0090     		str	r0, [sp]
+ 107 00e2 0298     		ldr	r0, [sp, #8]
+ 108 00e4 FFF7FEFF 		bl	makise_d_line
+ 109 00e8 636D     		ldr	r3, [r4, #84]
+ 110 00ea 1868     		ldr	r0, [r3]	@ float
+ 111 00ec FFF7FEFF 		bl	__aeabi_f2d
+ 112 00f0 2B68     		ldr	r3, [r5]
+ 113 00f2 A66D     		ldr	r6, [r4, #88]
+ 114 00f4 1D68     		ldr	r5, [r3]
+ 115 00f6 E26D     		ldr	r2, [r4, #92]
+ARM GAS  /tmp/ccKq4N2X.s 			page 3
 
 
- 116 00f4 1E68     		ldr	r6, [r3]
- 117 00f6 E26D     		ldr	r2, [r4, #92]
- 118 00f8 CDF804B0 		str	fp, [sp, #4]
- 119 00fc 0525     		movs	r5, #5
- 120 00fe 41EC100B 		vmov	d0, r0, r1
- 121 0102 04F16403 		add	r3, r4, #100
- 122 0106 3946     		mov	r1, r7
- 123 0108 3046     		mov	r0, r6
- 124 010a 0095     		str	r5, [sp]
- 125 010c FFF7FEFF 		bl	makise_dex_polyline
- 126 0110 646D     		ldr	r4, [r4, #84]
- 127 0112 2068     		ldr	r0, [r4]	@ float
- 128 0114 FFF7FEFF 		bl	__aeabi_f2d
- 129 0118 07A3     		adr	r3, .L3
- 130 011a D3E90023 		ldrd	r2, [r3]
- 131 011e FFF7FEFF 		bl	__aeabi_dadd
- 132 0122 FFF7FEFF 		bl	__aeabi_d2f
- 133 0126 2060     		str	r0, [r4]	@ float
- 134 0128 5046     		mov	r0, r10
- 135 012a 07B0     		add	sp, sp, #28
- 136              		@ sp needed
- 137 012c BDEC028B 		vldm	sp!, {d8}
- 138 0130 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 139              	.L4:
- 140 0134 AFF30080 		.align	3
- 141              	.L3:
- 142 0138 1F85EB51 		.word	1374389535
- 143 013c B81ED93F 		.word	1071193784
- 144 0140 00000000 		.word	F_Arial15
- 146              		.section	.text.gui_create_compass,"ax",%progbits
- 147              		.align	1
- 148              		.p2align 2,,3
- 149              		.global	gui_create_compass
- 150              		.syntax unified
- 151              		.thumb
- 152              		.thumb_func
- 153              		.fpu fpv4-sp-d16
- 155              	gui_create_compass:
- 156              		@ args = 8, pretend = 0, frame = 0
- 157              		@ frame_needed = 0, uses_anonymous_args = 0
- 158 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 159 0004 089D     		ldr	r5, [sp, #32]
- 160 0006 284E     		ldr	r6, .L7
- 161 0008 DDF824A0 		ldr	r10, [sp, #36]
- 162 000c 0446     		mov	r4, r0
- 163 000e 9146     		mov	r9, r2
- 164 0010 501B     		subs	r0, r2, r5
- 165 0012 9846     		mov	r8, r3
- 166 0014 0122     		movs	r2, #1
- 167 0016 5B1B     		subs	r3, r3, r5
- 168 0018 0F46     		mov	r7, r1
- 169 001a 0968     		ldr	r1, [r1]
- 170 001c E663     		str	r6, [r4, #60]
- 171 001e 2362     		str	r3, [r4, #32]
- 172 0020 0026     		movs	r6, #0
- 173 0022 05FA02F3 		lsl	r3, r5, r2
- 174 0026 2276     		strb	r2, [r4, #24]
-ARM GAS  /tmp/ccZPjnnk.s 			page 4
+ 116 00f8 CDF804B0 		str	fp, [sp, #4]
+ 117 00fc 04F16403 		add	r3, r4, #100
+ 118 0100 0524     		movs	r4, #5
+ 119 0102 41EC100B 		vmov	d0, r0, r1
+ 120 0106 0094     		str	r4, [sp]
+ 121 0108 2846     		mov	r0, r5
+ 122 010a 3146     		mov	r1, r6
+ 123 010c FFF7FEFF 		bl	makise_dex_polyline
+ 124 0110 5046     		mov	r0, r10
+ 125 0112 07B0     		add	sp, sp, #28
+ 126              		@ sp needed
+ 127 0114 BDEC028B 		vldm	sp!, {d8}
+ 128 0118 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 129              	.L4:
+ 130              		.align	2
+ 131              	.L3:
+ 132 011c 00000000 		.word	F_Arial15
+ 134              		.section	.text.gui_create_compass,"ax",%progbits
+ 135              		.align	1
+ 136              		.p2align 2,,3
+ 137              		.global	gui_create_compass
+ 138              		.syntax unified
+ 139              		.thumb
+ 140              		.thumb_func
+ 141              		.fpu fpv4-sp-d16
+ 143              	gui_create_compass:
+ 144              		@ args = 8, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 147 0004 089D     		ldr	r5, [sp, #32]
+ 148 0006 284E     		ldr	r6, .L7
+ 149 0008 DDF824A0 		ldr	r10, [sp, #36]
+ 150 000c 0446     		mov	r4, r0
+ 151 000e 9146     		mov	r9, r2
+ 152 0010 501B     		subs	r0, r2, r5
+ 153 0012 9846     		mov	r8, r3
+ 154 0014 0122     		movs	r2, #1
+ 155 0016 5B1B     		subs	r3, r3, r5
+ 156 0018 0F46     		mov	r7, r1
+ 157 001a 0968     		ldr	r1, [r1]
+ 158 001c E663     		str	r6, [r4, #60]
+ 159 001e 2362     		str	r3, [r4, #32]
+ 160 0020 0026     		movs	r6, #0
+ 161 0022 05FA02F3 		lsl	r3, r5, r2
+ 162 0026 2276     		strb	r2, [r4, #24]
+ 163 0028 6362     		str	r3, [r4, #36]
+ 164 002a A362     		str	r3, [r4, #40]
+ 165 002c 6160     		str	r1, [r4, #4]
+ 166 002e A463     		str	r4, [r4, #56]
+ 167 0030 E061     		str	r0, [r4, #28]
+ 168 0032 2664     		str	r6, [r4, #64]
+ 169 0034 6664     		str	r6, [r4, #68]
+ 170 0036 A664     		str	r6, [r4, #72]
+ 171 0038 E664     		str	r6, [r4, #76]
+ 172 003a 2665     		str	r6, [r4, #80]
+ 173 003c FFF7FEFF 		bl	makise_g_newid
+ 174 0040 211D     		adds	r1, r4, #4
+ARM GAS  /tmp/ccKq4N2X.s 			page 4
 
 
- 175 0028 6362     		str	r3, [r4, #36]
- 176 002a A362     		str	r3, [r4, #40]
- 177 002c 6160     		str	r1, [r4, #4]
- 178 002e A463     		str	r4, [r4, #56]
- 179 0030 E061     		str	r0, [r4, #28]
- 180 0032 2664     		str	r6, [r4, #64]
- 181 0034 6664     		str	r6, [r4, #68]
- 182 0036 A664     		str	r6, [r4, #72]
- 183 0038 E664     		str	r6, [r4, #76]
- 184 003a 2665     		str	r6, [r4, #80]
- 185 003c FFF7FEFF 		bl	makise_g_newid
- 186 0040 211D     		adds	r1, r4, #4
- 187 0042 A060     		str	r0, [r4, #8]
- 188 0044 2566     		str	r5, [r4, #96]
- 189 0046 3846     		mov	r0, r7
- 190 0048 84F83460 		strb	r6, [r4, #52]
- 191 004c C4F85890 		str	r9, [r4, #88]
- 192 0050 C4F85C80 		str	r8, [r4, #92]
- 193 0054 C4F854A0 		str	r10, [r4, #84]
- 194 0058 FFF7FEFF 		bl	makise_g_cont_add
- 195 005c 134A     		ldr	r2, .L7+4
- 196 005e A4F86660 		strh	r6, [r4, #102]	@ movhi
- 197 0062 05EBC503 		add	r3, r5, r5, lsl #3
- 198 0066 A2FB0515 		umull	r1, r5, r2, r5
- 199 006a A2FB0323 		umull	r2, r3, r2, r3
- 200 006e ED08     		lsrs	r5, r5, #3
- 201 0070 DB08     		lsrs	r3, r3, #3
- 202 0072 5942     		negs	r1, r3
- 203 0074 6A42     		negs	r2, r5
- 204 0076 2DB2     		sxth	r5, r5
- 205 0078 A4F87210 		strh	r1, [r4, #114]	@ movhi
- 206 007c A4F86860 		strh	r6, [r4, #104]	@ movhi
- 207 0080 A4F86E60 		strh	r6, [r4, #110]	@ movhi
- 208 0084 A4F87060 		strh	r6, [r4, #112]	@ movhi
- 209 0088 A4F87660 		strh	r6, [r4, #118]	@ movhi
- 210 008c A4F86A30 		strh	r3, [r4, #106]	@ movhi
- 211 0090 A4F86C20 		strh	r2, [r4, #108]	@ movhi
- 212 0094 A4F86450 		strh	r5, [r4, #100]	@ movhi
- 213 0098 A4F87450 		strh	r5, [r4, #116]	@ movhi
- 214 009c A168     		ldr	r1, [r4, #8]
- 215 009e 0448     		ldr	r0, .L7+8
- 216 00a0 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
- 217 00a4 FFF7FEBF 		b	printf
- 218              	.L8:
- 219              		.align	2
- 220              	.L7:
- 221 00a8 00000000 		.word	_m_compass_draw
- 222 00ac CDCCCCCC 		.word	-858993459
- 223 00b0 00000000 		.word	.LC0
- 225              		.comm	makise_color_palette,4,4
- 226              		.section	.rodata.gui_create_compass.str1.4,"aMS",%progbits,1
- 227              		.align	2
- 228              	.LC0:
- 229 0000 436F6D70 		.ascii	"Compass %d created\012\000"
- 229      61737320 
- 229      25642063 
- 229      72656174 
-ARM GAS  /tmp/ccZPjnnk.s 			page 5
-
-
- 229      65640A00 
- 230              		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/ccZPjnnk.s 			page 6
+ 175 0042 A060     		str	r0, [r4, #8]
+ 176 0044 2566     		str	r5, [r4, #96]
+ 177 0046 3846     		mov	r0, r7
+ 178 0048 84F83460 		strb	r6, [r4, #52]
+ 179 004c C4F85890 		str	r9, [r4, #88]
+ 180 0050 C4F85C80 		str	r8, [r4, #92]
+ 181 0054 C4F854A0 		str	r10, [r4, #84]
+ 182 0058 FFF7FEFF 		bl	makise_g_cont_add
+ 183 005c 134A     		ldr	r2, .L7+4
+ 184 005e A4F86660 		strh	r6, [r4, #102]	@ movhi
+ 185 0062 05EBC503 		add	r3, r5, r5, lsl #3
+ 186 0066 A2FB0515 		umull	r1, r5, r2, r5
+ 187 006a A2FB0323 		umull	r2, r3, r2, r3
+ 188 006e ED08     		lsrs	r5, r5, #3
+ 189 0070 DB08     		lsrs	r3, r3, #3
+ 190 0072 5942     		negs	r1, r3
+ 191 0074 6A42     		negs	r2, r5
+ 192 0076 2DB2     		sxth	r5, r5
+ 193 0078 A4F87210 		strh	r1, [r4, #114]	@ movhi
+ 194 007c A4F86860 		strh	r6, [r4, #104]	@ movhi
+ 195 0080 A4F86E60 		strh	r6, [r4, #110]	@ movhi
+ 196 0084 A4F87060 		strh	r6, [r4, #112]	@ movhi
+ 197 0088 A4F87660 		strh	r6, [r4, #118]	@ movhi
+ 198 008c A4F86A30 		strh	r3, [r4, #106]	@ movhi
+ 199 0090 A4F86C20 		strh	r2, [r4, #108]	@ movhi
+ 200 0094 A4F86450 		strh	r5, [r4, #100]	@ movhi
+ 201 0098 A4F87450 		strh	r5, [r4, #116]	@ movhi
+ 202 009c A168     		ldr	r1, [r4, #8]
+ 203 009e 0448     		ldr	r0, .L7+8
+ 204 00a0 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 205 00a4 FFF7FEBF 		b	printf
+ 206              	.L8:
+ 207              		.align	2
+ 208              	.L7:
+ 209 00a8 00000000 		.word	_m_compass_draw
+ 210 00ac CDCCCCCC 		.word	-858993459
+ 211 00b0 00000000 		.word	.LC0
+ 213              		.comm	makise_color_palette,4,4
+ 214              		.section	.rodata.gui_create_compass.str1.4,"aMS",%progbits,1
+ 215              		.align	2
+ 216              	.LC0:
+ 217 0000 436F6D70 		.ascii	"Compass %d created\012\000"
+ 217      61737320 
+ 217      25642063 
+ 217      72656174 
+ 217      65640A00 
+ 218              		.ident	"GCC: (Arch Repository) 6.3.0"
+ARM GAS  /tmp/ccKq4N2X.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gui_compass.c
-     /tmp/ccZPjnnk.s:19     .text._m_compass_draw:0000000000000000 $t
-     /tmp/ccZPjnnk.s:27     .text._m_compass_draw:0000000000000000 _m_compass_draw
-     /tmp/ccZPjnnk.s:142    .text._m_compass_draw:0000000000000138 $d
-     /tmp/ccZPjnnk.s:147    .text.gui_create_compass:0000000000000000 $t
-     /tmp/ccZPjnnk.s:155    .text.gui_create_compass:0000000000000000 gui_create_compass
-     /tmp/ccZPjnnk.s:221    .text.gui_create_compass:00000000000000a8 $d
+     /tmp/ccKq4N2X.s:17     .text._m_compass_draw:0000000000000000 $t
+     /tmp/ccKq4N2X.s:25     .text._m_compass_draw:0000000000000000 _m_compass_draw
+     /tmp/ccKq4N2X.s:132    .text._m_compass_draw:000000000000011c $d
+     /tmp/ccKq4N2X.s:135    .text.gui_create_compass:0000000000000000 $t
+     /tmp/ccKq4N2X.s:143    .text.gui_create_compass:0000000000000000 gui_create_compass
+     /tmp/ccKq4N2X.s:209    .text.gui_create_compass:00000000000000a8 $d
                             *COM*:0000000000000004 makise_color_palette
-     /tmp/ccZPjnnk.s:227    .rodata.gui_create_compass.str1.4:0000000000000000 $d
+     /tmp/ccKq4N2X.s:215    .rodata.gui_create_compass.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_ui2d
 __aeabi_f2d
 __aeabi_dmul
 __aeabi_d2iz
-__aeabi_dadd
-__aeabi_d2f
 makise_d_circle
 makise_d_char
 cos

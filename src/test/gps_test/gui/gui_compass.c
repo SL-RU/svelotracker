@@ -65,7 +65,7 @@ uint8_t _m_compass_draw   (MElement* b)
     makise_d_line(b->gui->buffer, c->x, c->y, c->x + x, c->y + y, MC_Blue);
     makise_dex_polyline(b->gui->buffer, c->x, c->y, *c->angle, c->arrow, 5, MC_Blue);
 
-    *c->angle += 3.14 / 8.0;
+    //*c->angle += 3.14 / 8.0;
     //printf("Compass %d dr\n", b->id);
     return M_OK;
 }

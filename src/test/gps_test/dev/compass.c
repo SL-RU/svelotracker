@@ -13,27 +13,20 @@ void compass_register_write(uint8_t reg, uint8_t data)
     HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, d, 2, 100);
 }
 
-
-uint16_t lsm303_read_pos(uint8_t reg)
-{
-    uint8_t r[2] = {0};
-    HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
-    HAL_I2C_Master_Receive(&hi2c1, 0x3a, r, 1, 100);
-    reg += 1;
-    HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
-    HAL_I2C_Master_Receive(&hi2c1, 0x3a, r + 1, 1, 100);
-    return (uint16_t)(r[0] | (r[1] << 8));
-}
-
 float ang = 0;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 //    printf("GPIO 12 EXTI\n");
+    uint8_t mag[6];
+    uint8_t reg = LSM303_OUT_X_L_M;
+    HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, &reg, 1, 100);
+    HAL_I2C_Master_Receive(&COMPASS_I2C, COMPASS_I2C_ADDR, mag, 6, 100);
+    int x = (int)(mag[1] << 8) + mag[0];
+    int y = (int)(mag[3] << 8) + mag[2];
+    int z = (int)(mag[5] << 8) + mag[4];
 
-    double x = (double)lsm303_read_pos(LSM303_OUT_X_L_M);
-    double y = (double)lsm303_read_pos(LSM303_OUT_Y_L_M);
-    double z = (double)lsm303_read_pos(LSM303_OUT_Z_L_M);
-
+    printf("mag %d05 %d05 %d05\n", x, y, z);
+    
     double
 	pitch = atan2(x, sqrt(y*y + z*z)),
 	roll  = atan2(-y, -z),
@@ -49,6 +42,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
     ang = pitch;
 
+
+    
     // Declination correction (if supplied)
     /* if( fabs(_declination) > 0.0 ) */
     /* { */
@@ -64,6 +59,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //    heading_y = sin(heading);
     
 //    printf("%f\n", ang);
+
 }
 
 void compass_init()
@@ -71,6 +67,7 @@ void compass_init()
 //  Magnetometer data-ready signal on INT1 enable
     compass_register_write(LSM303_CTRL3, 0b11001010);
     compass_register_write(LSM303_CTRL4, 0b00000000);
+    compass_register_write(LSM303_INT_CTRL_M, 0b00100001);
     
 /* CTRL5 register description */
 /*  TEMP_EN Temperature sensor enable. Default value: 0 */
@@ -106,13 +103,14 @@ void compass_init()
 /* in the CTRL5 (24h) register. */
 /* MD[1:0] Magnetic sensor mode selection. Default 10 */
 /* Refer to Table 54 */
-    compass_register_write(LSM303_CTRL7, 0b00);
+    compass_register_write(LSM303_CTRL7, 0b010001);
 
 
     printf("acc %d\n", compass_register_read(LSM303_WHO_AM_I));
-//    HAL_I2C_Master_Transmit(&hi2c1, 0x3a, &reg, 1, 100);
-
-    lsm303_read_pos(LSM303_OUT_X_L_M);
+    uint8_t reg = LSM303_OUT_X_L_M;
+    HAL_I2C_Master_Transmit(&COMPASS_I2C, COMPASS_I2C_ADDR, &reg, 1, 100);
+    uint8_t mag[6];
+    HAL_I2C_Master_Receive(&COMPASS_I2C, COMPASS_I2C_ADDR, mag, 1, 100);
 
     
     for (int i = 0; i < 100; i++) {

@@ -13,7 +13,8 @@
 #define      LSM303_CTRL4              0x23  
 #define      LSM303_CTRL5              0x24  
 #define      LSM303_CTRL6              0x25  
-#define      LSM303_CTRL7              0x26 
+#define      LSM303_CTRL7              0x26
+#define      LSM303_INT_CTRL_M         0x12
 #define      LSM303_WHO_AM_I           0x0F  
 #define      LSM303_OUT_X_L_M          0x08
 #define      LSM303_OUT_X_H_M          0x09

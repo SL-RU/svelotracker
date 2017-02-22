@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc2rh6Pr.s 			page 1
+ARM GAS  /tmp/ccvusM5J.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc2rh6Pr.s 			page 1
   56 004e 1294     		str	r4, [sp, #72]
   57 0050 0F92     		str	r2, [sp, #60]
   58 0052 1095     		str	r5, [sp, #64]
-ARM GAS  /tmp/cc2rh6Pr.s 			page 2
+ARM GAS  /tmp/ccvusM5J.s 			page 2
 
 
   59 0054 1395     		str	r5, [sp, #76]
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc2rh6Pr.s 			page 1
  115              		@ frame_needed = 0, uses_anonymous_args = 0
  116 0000 08B5     		push	{r3, lr}
  117 0002 FFF7FEFF 		bl	HAL_Init
-ARM GAS  /tmp/cc2rh6Pr.s 			page 3
+ARM GAS  /tmp/ccvusM5J.s 			page 3
 
 
  118 0006 FFF7FEFF 		bl	SystemClock_Config
@@ -177,19 +177,19 @@ ARM GAS  /tmp/cc2rh6Pr.s 			page 1
  173 0000 FEE7     		b	.L18
  175              		.comm	makise_color_palette,4,4
  176 0002 00BF     		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/cc2rh6Pr.s 			page 4
+ARM GAS  /tmp/ccvusM5J.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/cc2rh6Pr.s:13     .text.SystemClock_Config:0000000000000000 $t
-     /tmp/cc2rh6Pr.s:21     .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/cc2rh6Pr.s:99     .text.SystemClock_Config:00000000000000a8 $d
-     /tmp/cc2rh6Pr.s:104    .text.startup.main:0000000000000000 $t
-     /tmp/cc2rh6Pr.s:112    .text.startup.main:0000000000000000 main
-     /tmp/cc2rh6Pr.s:156    .text.startup.main:000000000000007c $d
-     /tmp/cc2rh6Pr.s:159    .text.Error_Handler:0000000000000000 $t
-     /tmp/cc2rh6Pr.s:167    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccvusM5J.s:13     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccvusM5J.s:21     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccvusM5J.s:99     .text.SystemClock_Config:00000000000000a8 $d
+     /tmp/ccvusM5J.s:104    .text.startup.main:0000000000000000 $t
+     /tmp/ccvusM5J.s:112    .text.startup.main:0000000000000000 main
+     /tmp/ccvusM5J.s:156    .text.startup.main:000000000000007c $d
+     /tmp/ccvusM5J.s:159    .text.Error_Handler:0000000000000000 $t
+     /tmp/ccvusM5J.s:167    .text.Error_Handler:0000000000000000 Error_Handler
                             *COM*:0000000000000004 makise_color_palette
 
 UNDEFINED SYMBOLS

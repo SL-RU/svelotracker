@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc5hcyeu.s 			page 1
+ARM GAS  /tmp/ccNs6PUm.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
   58              		@ link register save eliminated.
   59 0000 4FF47A73 		mov	r3, #1000
   60 0004 0D22     		movs	r2, #13
-ARM GAS  /tmp/cc5hcyeu.s 			page 2
+ARM GAS  /tmp/ccNs6PUm.s 			page 2
 
 
   61 0006 0249     		ldr	r1, .L6
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  117 0052 6423     		movs	r3, #100
  118 0054 0422     		movs	r2, #4
  119 0056 3046     		mov	r0, r6
-ARM GAS  /tmp/cc5hcyeu.s 			page 3
+ARM GAS  /tmp/ccNs6PUm.s 			page 3
 
 
  120 0058 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  176 001a 88B0     		sub	sp, sp, #32
  177 001c 0024     		movs	r4, #0
  178 001e 1E26     		movs	r6, #30
-ARM GAS  /tmp/cc5hcyeu.s 			page 4
+ARM GAS  /tmp/ccNs6PUm.s 			page 4
 
 
  179 0020 0293     		str	r3, [sp, #8]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  233 00aa 0F4B     		ldr	r3, .L19+24
  234 00ac 1168     		ldr	r1, [r2]
  235 00ae 0F48     		ldr	r0, .L19+28
-ARM GAS  /tmp/cc5hcyeu.s 			page 5
+ARM GAS  /tmp/ccNs6PUm.s 			page 5
 
 
  236 00b0 0393     		str	r3, [sp, #12]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  294              		@ args = 0, pretend = 0, frame = 0
  295              		@ frame_needed = 0, uses_anonymous_args = 0
  296              		@ link register save eliminated.
-ARM GAS  /tmp/cc5hcyeu.s 			page 6
+ARM GAS  /tmp/ccNs6PUm.s 			page 6
 
 
  297 0000 8022     		movs	r2, #128
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  354 0004 00000000 		.word	F_Arial24
  355 0008 00000000 		.word	0
  356 000c 00000000 		.word	0
-ARM GAS  /tmp/cc5hcyeu.s 			page 7
+ARM GAS  /tmp/ccNs6PUm.s 			page 7
 
 
  357 0010 09000000 		.word	9
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  414      4D434F4C 
  414      440D6C00 
  415              		.section	.rodata.b_time.str1.4,"aMS",%progbits,1
-ARM GAS  /tmp/cc5hcyeu.s 			page 8
+ARM GAS  /tmp/ccNs6PUm.s 			page 8
 
 
  416              		.align	2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  440 00e0 69702065 		.ascii	"ip ex ea commodo consequat. Duis aute irure dolor i"
  440      78206561 
  440      20636F6D 
-ARM GAS  /tmp/cc5hcyeu.s 			page 9
+ARM GAS  /tmp/ccNs6PUm.s 			page 9
 
 
  440      6D6F646F 
@@ -504,50 +504,50 @@ ARM GAS  /tmp/cc5hcyeu.s 			page 1
  444      6C6C6974 
  444      20616E69 
  445              		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/cc5hcyeu.s 			page 10
+ARM GAS  /tmp/ccNs6PUm.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 app_main.c
-     /tmp/cc5hcyeu.s:13     .text.b_rem:0000000000000000 $t
-     /tmp/cc5hcyeu.s:21     .text.b_rem:0000000000000000 b_rem
-     /tmp/cc5hcyeu.s:42     .text.b_rem:0000000000000024 $d
-     /tmp/cc5hcyeu.s:47     .text.b_st:0000000000000000 $t
-     /tmp/cc5hcyeu.s:55     .text.b_st:0000000000000000 b_st
-     /tmp/cc5hcyeu.s:67     .text.b_st:0000000000000010 $d
-     /tmp/cc5hcyeu.s:71     .text.b_time:0000000000000000 $t
-     /tmp/cc5hcyeu.s:79     .text.b_time:0000000000000000 b_time
-     /tmp/cc5hcyeu.s:148    .text.b_time:0000000000000094 $d
-     /tmp/cc5hcyeu.s:156    .text.app_main_init:0000000000000000 $t
-     /tmp/cc5hcyeu.s:164    .text.app_main_init:0000000000000000 app_main_init
-     /tmp/cc5hcyeu.s:252    .text.app_main_init:00000000000000d0 $d
+     /tmp/ccNs6PUm.s:13     .text.b_rem:0000000000000000 $t
+     /tmp/ccNs6PUm.s:21     .text.b_rem:0000000000000000 b_rem
+     /tmp/ccNs6PUm.s:42     .text.b_rem:0000000000000024 $d
+     /tmp/ccNs6PUm.s:47     .text.b_st:0000000000000000 $t
+     /tmp/ccNs6PUm.s:55     .text.b_st:0000000000000000 b_st
+     /tmp/ccNs6PUm.s:67     .text.b_st:0000000000000010 $d
+     /tmp/ccNs6PUm.s:71     .text.b_time:0000000000000000 $t
+     /tmp/ccNs6PUm.s:79     .text.b_time:0000000000000000 b_time
+     /tmp/ccNs6PUm.s:148    .text.b_time:0000000000000094 $d
+     /tmp/ccNs6PUm.s:156    .text.app_main_init:0000000000000000 $t
+     /tmp/ccNs6PUm.s:164    .text.app_main_init:0000000000000000 app_main_init
+     /tmp/ccNs6PUm.s:252    .text.app_main_init:00000000000000d0 $d
                             *COM*:0000000000000078 comp
                             *COM*:000000000000005c tf
                             *COM*:0000000000000144 but
-     /tmp/cc5hcyeu.s:265    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
-     /tmp/cc5hcyeu.s:273    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
-     /tmp/cc5hcyeu.s:282    .text.HAL_UART_RxCpltCallback:0000000000000008 $d
-     /tmp/cc5hcyeu.s:285    .text.app_main_upd:0000000000000000 $t
-     /tmp/cc5hcyeu.s:293    .text.app_main_upd:0000000000000000 app_main_upd
-     /tmp/cc5hcyeu.s:304    .text.app_main_upd:000000000000000c $d
-     /tmp/cc5hcyeu.s:322    .bss.buf:0000000000000000 buf
-     /tmp/cc5hcyeu.s:329    .bss.last_ch:0000000000000000 last_ch
-     /tmp/cc5hcyeu.s:387    .data.text_style:0000000000000000 text_style
-     /tmp/cc5hcyeu.s:352    .data.button_style:0000000000000000 button_style
-     /tmp/cc5hcyeu.s:336    .bss.out:0000000000000000 out
-     /tmp/cc5hcyeu.s:343    .data.but_t:0000000000000000 but_t
-     /tmp/cc5hcyeu.s:380    .data.sample_string:0000000000000000 sample_string
+     /tmp/ccNs6PUm.s:265    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
+     /tmp/ccNs6PUm.s:273    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
+     /tmp/ccNs6PUm.s:282    .text.HAL_UART_RxCpltCallback:0000000000000008 $d
+     /tmp/ccNs6PUm.s:285    .text.app_main_upd:0000000000000000 $t
+     /tmp/ccNs6PUm.s:293    .text.app_main_upd:0000000000000000 app_main_upd
+     /tmp/ccNs6PUm.s:304    .text.app_main_upd:000000000000000c $d
+     /tmp/ccNs6PUm.s:322    .bss.buf:0000000000000000 buf
+     /tmp/ccNs6PUm.s:329    .bss.last_ch:0000000000000000 last_ch
+     /tmp/ccNs6PUm.s:387    .data.text_style:0000000000000000 text_style
+     /tmp/ccNs6PUm.s:352    .data.button_style:0000000000000000 button_style
+     /tmp/ccNs6PUm.s:336    .bss.out:0000000000000000 out
+     /tmp/ccNs6PUm.s:343    .data.but_t:0000000000000000 but_t
+     /tmp/ccNs6PUm.s:380    .data.sample_string:0000000000000000 sample_string
                             *COM*:0000000000000004 makise_color_palette
-     /tmp/cc5hcyeu.s:318    .bss.buf:0000000000000000 $d
-     /tmp/cc5hcyeu.s:325    .bss.last_ch:0000000000000000 $d
-     /tmp/cc5hcyeu.s:332    .bss.out:0000000000000000 $d
-     /tmp/cc5hcyeu.s:339    .data.but_t:0000000000000000 $d
-     /tmp/cc5hcyeu.s:348    .data.button_style:0000000000000000 $d
-     /tmp/cc5hcyeu.s:377    .data.sample_string:0000000000000000 $d
-     /tmp/cc5hcyeu.s:383    .data.text_style:0000000000000000 $d
-     /tmp/cc5hcyeu.s:412    .rodata.b_st.str1.4:0000000000000000 $d
-     /tmp/cc5hcyeu.s:416    .rodata.b_time.str1.4:0000000000000000 $d
-     /tmp/cc5hcyeu.s:426    .rodata.str1.4:0000000000000000 $d
+     /tmp/ccNs6PUm.s:318    .bss.buf:0000000000000000 $d
+     /tmp/ccNs6PUm.s:325    .bss.last_ch:0000000000000000 $d
+     /tmp/ccNs6PUm.s:332    .bss.out:0000000000000000 $d
+     /tmp/ccNs6PUm.s:339    .data.but_t:0000000000000000 $d
+     /tmp/ccNs6PUm.s:348    .data.button_style:0000000000000000 $d
+     /tmp/ccNs6PUm.s:377    .data.sample_string:0000000000000000 $d
+     /tmp/ccNs6PUm.s:383    .data.text_style:0000000000000000 $d
+     /tmp/ccNs6PUm.s:412    .rodata.b_st.str1.4:0000000000000000 $d
+     /tmp/ccNs6PUm.s:416    .rodata.b_time.str1.4:0000000000000000 $d
+     /tmp/ccNs6PUm.s:426    .rodata.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -564,7 +564,7 @@ compass_get_angle
 gui_create_compass
 m_create_text_field
 host
-ARM GAS  /tmp/cc5hcyeu.s 			page 11
+ARM GAS  /tmp/ccNs6PUm.s 			page 11
 
 
 printf

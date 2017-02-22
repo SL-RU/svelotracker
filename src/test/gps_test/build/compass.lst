@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccBegJhy.s 			page 1
+ARM GAS  /tmp/ccsIaK4U.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccBegJhy.s 			page 1
   57              		.thumb
   58              		.thumb_func
   59              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccBegJhy.s 			page 2
+ARM GAS  /tmp/ccsIaK4U.s 			page 2
 
 
   61              	compass_register_write:
@@ -82,426 +82,275 @@ ARM GAS  /tmp/ccBegJhy.s 			page 1
   79 0022 00BF     		.align	2
   80              	.L7:
   81 0024 00000000 		.word	hi2c1
-  83              		.section	.text.lsm303_read_pos,"ax",%progbits
-  84              		.align	1
-  85              		.p2align 2,,3
-  86              		.global	lsm303_read_pos
-  87              		.syntax unified
-  88              		.thumb
-  89              		.thumb_func
-  90              		.fpu fpv4-sp-d16
-  92              	lsm303_read_pos:
-  93              		@ args = 0, pretend = 0, frame = 16
-  94              		@ frame_needed = 0, uses_anonymous_args = 0
-  95 0000 70B5     		push	{r4, r5, r6, lr}
-  96 0002 1A4C     		ldr	r4, .L11
-  97 0004 86B0     		sub	sp, sp, #24
-  98 0006 6425     		movs	r5, #100
-  99 0008 8DF80F00 		strb	r0, [sp, #15]
- 100 000c 0DF10F02 		add	r2, sp, #15
- 101 0010 2046     		mov	r0, r4
- 102 0012 0095     		str	r5, [sp]
- 103 0014 0026     		movs	r6, #0
- 104 0016 0123     		movs	r3, #1
- 105 0018 3A21     		movs	r1, #58
- 106 001a ADF81460 		strh	r6, [sp, #20]	@ movhi
- 107 001e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 108 0022 05AA     		add	r2, sp, #20
- 109 0024 0095     		str	r5, [sp]
- 110 0026 2046     		mov	r0, r4
- 111 0028 0123     		movs	r3, #1
- 112 002a 3A21     		movs	r1, #58
- 113 002c FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 114 0030 9DF80F60 		ldrb	r6, [sp, #15]	@ zero_extendqisi2
- 115 0034 0095     		str	r5, [sp]
- 116 0036 0DF10F02 		add	r2, sp, #15
- 117 003a 0136     		adds	r6, r6, #1
- 118 003c 2046     		mov	r0, r4
- 119 003e 0123     		movs	r3, #1
-ARM GAS  /tmp/ccBegJhy.s 			page 3
+  83              		.global	__aeabi_i2d
+  84              		.global	__aeabi_d2f
+  85              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
+  86              		.align	1
+  87              		.p2align 2,,3
+  88              		.global	HAL_GPIO_EXTI_Callback
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  92              		.fpu fpv4-sp-d16
+  94              	HAL_GPIO_EXTI_Callback:
+  95              		@ args = 0, pretend = 0, frame = 16
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  98 0002 2DED028B 		vpush.64	{d8}
+  99 0006 87B0     		sub	sp, sp, #28
+ 100 0008 06AA     		add	r2, sp, #24
+ 101 000a 264C     		ldr	r4, .L11
+ 102 000c 264F     		ldr	r7, .L11+4
+ 103 000e 6425     		movs	r5, #100
+ 104 0010 0823     		movs	r3, #8
+ 105 0012 02F8093D 		strb	r3, [r2, #-9]!
+ 106 0016 2046     		mov	r0, r4
+ 107 0018 0095     		str	r5, [sp]
+ 108 001a 0123     		movs	r3, #1
+ 109 001c 3A21     		movs	r1, #58
+ 110 001e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 111 0022 0095     		str	r5, [sp]
+ 112 0024 04AA     		add	r2, sp, #16
+ 113 0026 2046     		mov	r0, r4
+ 114 0028 0623     		movs	r3, #6
+ 115 002a 3A21     		movs	r1, #58
+ 116 002c FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 117 0030 9DF81110 		ldrb	r1, [sp, #17]	@ zero_extendqisi2
+ 118 0034 9DF81320 		ldrb	r2, [sp, #19]	@ zero_extendqisi2
+ 119 0038 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ARM GAS  /tmp/ccsIaK4U.s 			page 3
 
 
- 120 0040 3A21     		movs	r1, #58
- 121 0042 8DF80F60 		strb	r6, [sp, #15]
- 122 0046 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 123 004a 0095     		str	r5, [sp]
- 124 004c 2046     		mov	r0, r4
- 125 004e 0123     		movs	r3, #1
- 126 0050 0DF11502 		add	r2, sp, #21
- 127 0054 3A21     		movs	r1, #58
- 128 0056 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 129 005a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
- 130 005e 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
- 131 0062 43EA0020 		orr	r0, r3, r0, lsl #8
- 132 0066 06B0     		add	sp, sp, #24
- 133              		@ sp needed
- 134 0068 70BD     		pop	{r4, r5, r6, pc}
- 135              	.L12:
- 136 006a 00BF     		.align	2
- 137              	.L11:
- 138 006c 00000000 		.word	hi2c1
- 140              		.global	__aeabi_ui2d
- 141              		.global	__aeabi_dmul
- 142              		.global	__aeabi_dadd
- 143              		.global	__aeabi_d2f
- 144              		.section	.text.HAL_GPIO_EXTI_Callback,"ax",%progbits
- 145              		.align	1
- 146              		.p2align 2,,3
- 147              		.global	HAL_GPIO_EXTI_Callback
- 148              		.syntax unified
- 149              		.thumb
- 150              		.thumb_func
- 151              		.fpu fpv4-sp-d16
- 153              	HAL_GPIO_EXTI_Callback:
- 154              		@ args = 0, pretend = 0, frame = 8
- 155              		@ frame_needed = 0, uses_anonymous_args = 0
- 156 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 157 0004 2DED028B 		vpush.64	{d8}
- 158 0008 654C     		ldr	r4, .L15
- 159 000a 664F     		ldr	r7, .L15+4
- 160 000c 84B0     		sub	sp, sp, #16
- 161 000e 6425     		movs	r5, #100
- 162 0010 4FF0000A 		mov	r10, #0
- 163 0014 0DF10B02 		add	r2, sp, #11
- 164 0018 0095     		str	r5, [sp]
- 165 001a 2046     		mov	r0, r4
- 166 001c 0826     		movs	r6, #8
- 167 001e 0123     		movs	r3, #1
- 168 0020 3A21     		movs	r1, #58
- 169 0022 8DF80B60 		strb	r6, [sp, #11]
- 170 0026 ADF80CA0 		strh	r10, [sp, #12]	@ movhi
- 171 002a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 172 002e 0095     		str	r5, [sp]
- 173 0030 03AA     		add	r2, sp, #12
- 174 0032 2046     		mov	r0, r4
- 175 0034 0123     		movs	r3, #1
- 176 0036 3A21     		movs	r1, #58
- 177 0038 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 178 003c 9DF80B60 		ldrb	r6, [sp, #11]	@ zero_extendqisi2
-ARM GAS  /tmp/ccBegJhy.s 			page 4
+ 120 003c 9DF81060 		ldrb	r6, [sp, #16]	@ zero_extendqisi2
+ 121 0040 9DF81250 		ldrb	r5, [sp, #18]	@ zero_extendqisi2
+ 122 0044 9DF81440 		ldrb	r4, [sp, #20]	@ zero_extendqisi2
+ 123 0048 1848     		ldr	r0, .L11+8
+ 124 004a 06EB0126 		add	r6, r6, r1, lsl #8
+ 125 004e 05EB0225 		add	r5, r5, r2, lsl #8
+ 126 0052 04EB0324 		add	r4, r4, r3, lsl #8
+ 127 0056 2346     		mov	r3, r4
+ 128 0058 2A46     		mov	r2, r5
+ 129 005a 3146     		mov	r1, r6
+ 130 005c 04FB04F4 		mul	r4, r4, r4
+ 131 0060 FFF7FEFF 		bl	printf
+ 132 0064 05FB0540 		mla	r0, r5, r5, r4
+ 133 0068 FFF7FEFF 		bl	__aeabi_i2d
+ 134 006c 41EC100B 		vmov	d0, r0, r1
+ 135 0070 FFF7FEFF 		bl	sqrt
+ 136 0074 3046     		mov	r0, r6
+ 137 0076 B0EE408A 		vmov.f32	s16, s0
+ 138 007a F0EE608A 		vmov.f32	s17, s1
+ 139 007e FFF7FEFF 		bl	__aeabi_i2d
+ 140 0082 B0EE481A 		vmov.f32	s2, s16
+ 141 0086 F0EE681A 		vmov.f32	s3, s17
+ 142 008a 41EC100B 		vmov	d0, r0, r1
+ 143 008e FFF7FEFF 		bl	atan2
+ 144 0092 51EC100B 		vmov	r0, r1, d0
+ 145 0096 FFF7FEFF 		bl	__aeabi_d2f
+ 146 009a 3860     		str	r0, [r7]	@ float
+ 147 009c 07B0     		add	sp, sp, #28
+ 148              		@ sp needed
+ 149 009e BDEC028B 		vldm	sp!, {d8}
+ 150 00a2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 151              	.L12:
+ 152              		.align	2
+ 153              	.L11:
+ 154 00a4 00000000 		.word	hi2c1
+ 155 00a8 00000000 		.word	.LANCHOR0
+ 156 00ac 00000000 		.word	.LC0
+ 158              		.section	.text.compass_init,"ax",%progbits
+ 159              		.align	1
+ 160              		.p2align 2,,3
+ 161              		.global	compass_init
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.fpu fpv4-sp-d16
+ 167              	compass_init:
+ 168              		@ args = 0, pretend = 0, frame = 16
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 171 0002 3E4C     		ldr	r4, .L15
+ 172 0004 87B0     		sub	sp, sp, #28
+ 173 0006 6425     		movs	r5, #100
+ 174 0008 04AA     		add	r2, sp, #16
+ 175 000a 2046     		mov	r0, r4
+ 176 000c 0095     		str	r5, [sp]
+ 177 000e 2227     		movs	r7, #34
+ 178 0010 CA26     		movs	r6, #202
+ARM GAS  /tmp/ccsIaK4U.s 			page 4
 
 
- 179 0040 0095     		str	r5, [sp]
- 180 0042 0DF10B02 		add	r2, sp, #11
- 181 0046 0136     		adds	r6, r6, #1
- 182 0048 2046     		mov	r0, r4
- 183 004a 0123     		movs	r3, #1
- 184 004c 3A21     		movs	r1, #58
- 185 004e 8DF80B60 		strb	r6, [sp, #11]
- 186 0052 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 187 0056 0095     		str	r5, [sp]
- 188 0058 0DF10D02 		add	r2, sp, #13
- 189 005c 2046     		mov	r0, r4
- 190 005e 0123     		movs	r3, #1
- 191 0060 3A21     		movs	r1, #58
- 192 0062 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 193 0066 9DF80D10 		ldrb	r1, [sp, #13]	@ zero_extendqisi2
- 194 006a 9DF80C60 		ldrb	r6, [sp, #12]	@ zero_extendqisi2
- 195 006e 0095     		str	r5, [sp]
- 196 0070 4FF00A0E 		mov	lr, #10
- 197 0074 0DF10A02 		add	r2, sp, #10
- 198 0078 46EA0126 		orr	r6, r6, r1, lsl #8
- 199 007c 2046     		mov	r0, r4
- 200 007e 0123     		movs	r3, #1
- 201 0080 3A21     		movs	r1, #58
- 202 0082 8DF80AE0 		strb	lr, [sp, #10]
- 203 0086 ADF80CA0 		strh	r10, [sp, #12]	@ movhi
- 204 008a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 205 008e 0095     		str	r5, [sp]
- 206 0090 03AA     		add	r2, sp, #12
- 207 0092 2046     		mov	r0, r4
- 208 0094 0123     		movs	r3, #1
- 209 0096 3A21     		movs	r1, #58
- 210 0098 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 211 009c 9DF80AE0 		ldrb	lr, [sp, #10]	@ zero_extendqisi2
- 212 00a0 0095     		str	r5, [sp]
- 213 00a2 0EF1010E 		add	lr, lr, #1
- 214 00a6 0DF10A02 		add	r2, sp, #10
- 215 00aa 2046     		mov	r0, r4
- 216 00ac 0123     		movs	r3, #1
- 217 00ae 3A21     		movs	r1, #58
- 218 00b0 8DF80AE0 		strb	lr, [sp, #10]
- 219 00b4 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 220 00b8 0DF10D02 		add	r2, sp, #13
- 221 00bc 0095     		str	r5, [sp]
- 222 00be 2046     		mov	r0, r4
- 223 00c0 0123     		movs	r3, #1
- 224 00c2 3A21     		movs	r1, #58
- 225 00c4 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 226 00c8 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
- 227 00cc 9DF80D00 		ldrb	r0, [sp, #13]	@ zero_extendqisi2
- 228 00d0 43EA0020 		orr	r0, r3, r0, lsl #8
- 229 00d4 FFF7FEFF 		bl	__aeabi_ui2d
- 230 00d8 8946     		mov	r9, r1
- 231 00da 0C21     		movs	r1, #12
- 232 00dc 8046     		mov	r8, r0
- 233 00de 0095     		str	r5, [sp]
- 234 00e0 0DF10902 		add	r2, sp, #9
- 235 00e4 8DF80910 		strb	r1, [sp, #9]
-ARM GAS  /tmp/ccBegJhy.s 			page 5
+ 179 0012 0223     		movs	r3, #2
+ 180 0014 3A21     		movs	r1, #58
+ 181 0016 8DF81070 		strb	r7, [sp, #16]
+ 182 001a 8DF81160 		strb	r6, [sp, #17]
+ 183 001e 2327     		movs	r7, #35
+ 184 0020 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 185 0024 0026     		movs	r6, #0
+ 186 0026 04AA     		add	r2, sp, #16
+ 187 0028 0095     		str	r5, [sp]
+ 188 002a 2046     		mov	r0, r4
+ 189 002c 0223     		movs	r3, #2
+ 190 002e 3A21     		movs	r1, #58
+ 191 0030 8DF81070 		strb	r7, [sp, #16]
+ 192 0034 8DF81160 		strb	r6, [sp, #17]
+ 193 0038 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 194 003c 1221     		movs	r1, #18
+ 195 003e 04AA     		add	r2, sp, #16
+ 196 0040 8DF81010 		strb	r1, [sp, #16]
+ 197 0044 0095     		str	r5, [sp]
+ 198 0046 2046     		mov	r0, r4
+ 199 0048 2127     		movs	r7, #33
+ 200 004a 0223     		movs	r3, #2
+ 201 004c 3A21     		movs	r1, #58
+ 202 004e 8DF81170 		strb	r7, [sp, #17]
+ 203 0052 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 204 0056 2421     		movs	r1, #36
+ 205 0058 04AA     		add	r2, sp, #16
+ 206 005a 8DF81010 		strb	r1, [sp, #16]
+ 207 005e 0095     		str	r5, [sp]
+ 208 0060 2046     		mov	r0, r4
+ 209 0062 7027     		movs	r7, #112
+ 210 0064 0223     		movs	r3, #2
+ 211 0066 3A21     		movs	r1, #58
+ 212 0068 8DF81170 		strb	r7, [sp, #17]
+ 213 006c FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 214 0070 2521     		movs	r1, #37
+ 215 0072 04AA     		add	r2, sp, #16
+ 216 0074 8DF81010 		strb	r1, [sp, #16]
+ 217 0078 0095     		str	r5, [sp]
+ 218 007a 2046     		mov	r0, r4
+ 219 007c 2027     		movs	r7, #32
+ 220 007e 0223     		movs	r3, #2
+ 221 0080 3A21     		movs	r1, #58
+ 222 0082 8DF81170 		strb	r7, [sp, #17]
+ 223 0086 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 224 008a 1127     		movs	r7, #17
+ 225 008c 2621     		movs	r1, #38
+ 226 008e 04AA     		add	r2, sp, #16
+ 227 0090 8DF81010 		strb	r1, [sp, #16]
+ 228 0094 8DF81170 		strb	r7, [sp, #17]
+ 229 0098 0095     		str	r5, [sp]
+ 230 009a 0F27     		movs	r7, #15
+ 231 009c 2046     		mov	r0, r4
+ 232 009e 0223     		movs	r3, #2
+ 233 00a0 3A21     		movs	r1, #58
+ 234 00a2 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 235 00a6 0DEB0702 		add	r2, sp, r7
+ARM GAS  /tmp/ccsIaK4U.s 			page 5
 
 
- 236 00e8 2046     		mov	r0, r4
- 237 00ea 0123     		movs	r3, #1
- 238 00ec 3A21     		movs	r1, #58
- 239 00ee ADF80CA0 		strh	r10, [sp, #12]	@ movhi
- 240 00f2 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 241 00f6 0095     		str	r5, [sp]
- 242 00f8 03AA     		add	r2, sp, #12
- 243 00fa 2046     		mov	r0, r4
- 244 00fc 0123     		movs	r3, #1
- 245 00fe 3A21     		movs	r1, #58
- 246 0100 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 247 0104 9DF809E0 		ldrb	lr, [sp, #9]	@ zero_extendqisi2
- 248 0108 0095     		str	r5, [sp]
- 249 010a 0EF1010E 		add	lr, lr, #1
- 250 010e 0DF10902 		add	r2, sp, #9
- 251 0112 2046     		mov	r0, r4
- 252 0114 0123     		movs	r3, #1
- 253 0116 3A21     		movs	r1, #58
- 254 0118 8DF809E0 		strb	lr, [sp, #9]
- 255 011c FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 256 0120 0DF10D02 		add	r2, sp, #13
- 257 0124 0095     		str	r5, [sp]
- 258 0126 2046     		mov	r0, r4
- 259 0128 0123     		movs	r3, #1
- 260 012a 3A21     		movs	r1, #58
- 261 012c FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 262 0130 9DF80C30 		ldrb	r3, [sp, #12]	@ zero_extendqisi2
- 263 0134 9DF80D00 		ldrb	r0, [sp, #13]	@ zero_extendqisi2
- 264 0138 43EA0020 		orr	r0, r3, r0, lsl #8
- 265 013c FFF7FEFF 		bl	__aeabi_ui2d
- 266 0140 0246     		mov	r2, r0
- 267 0142 0B46     		mov	r3, r1
- 268 0144 FFF7FEFF 		bl	__aeabi_dmul
- 269 0148 4246     		mov	r2, r8
- 270 014a 0446     		mov	r4, r0
- 271 014c 0D46     		mov	r5, r1
- 272 014e 4B46     		mov	r3, r9
- 273 0150 4046     		mov	r0, r8
- 274 0152 4946     		mov	r1, r9
- 275 0154 FFF7FEFF 		bl	__aeabi_dmul
- 276 0158 0246     		mov	r2, r0
- 277 015a 0B46     		mov	r3, r1
- 278 015c 2046     		mov	r0, r4
- 279 015e 2946     		mov	r1, r5
- 280 0160 FFF7FEFF 		bl	__aeabi_dadd
- 281 0164 41EC100B 		vmov	d0, r0, r1
- 282 0168 FFF7FEFF 		bl	sqrt
- 283 016c 3046     		mov	r0, r6
- 284 016e B0EE408A 		vmov.f32	s16, s0
- 285 0172 F0EE608A 		vmov.f32	s17, s1
- 286 0176 FFF7FEFF 		bl	__aeabi_ui2d
- 287 017a B0EE481A 		vmov.f32	s2, s16
- 288 017e F0EE681A 		vmov.f32	s3, s17
- 289 0182 41EC100B 		vmov	d0, r0, r1
- 290 0186 FFF7FEFF 		bl	atan2
- 291 018a 51EC100B 		vmov	r0, r1, d0
- 292 018e FFF7FEFF 		bl	__aeabi_d2f
-ARM GAS  /tmp/ccBegJhy.s 			page 6
+ 236 00aa 0095     		str	r5, [sp]
+ 237 00ac 2046     		mov	r0, r4
+ 238 00ae 0123     		movs	r3, #1
+ 239 00b0 3A21     		movs	r1, #58
+ 240 00b2 8DF81060 		strb	r6, [sp, #16]
+ 241 00b6 8DF80F70 		strb	r7, [sp, #15]
+ 242 00ba FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 243 00be 04AA     		add	r2, sp, #16
+ 244 00c0 0123     		movs	r3, #1
+ 245 00c2 0095     		str	r5, [sp]
+ 246 00c4 2046     		mov	r0, r4
+ 247 00c6 3A21     		movs	r1, #58
+ 248 00c8 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 249 00cc 9DF81010 		ldrb	r1, [sp, #16]	@ zero_extendqisi2
+ 250 00d0 0B48     		ldr	r0, .L15+4
+ 251 00d2 FFF7FEFF 		bl	printf
+ 252 00d6 06AA     		add	r2, sp, #24
+ 253 00d8 0823     		movs	r3, #8
+ 254 00da 02F80A3D 		strb	r3, [r2, #-10]!
+ 255 00de 2046     		mov	r0, r4
+ 256 00e0 0095     		str	r5, [sp]
+ 257 00e2 0123     		movs	r3, #1
+ 258 00e4 3A21     		movs	r1, #58
+ 259 00e6 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 260 00ea 0095     		str	r5, [sp]
+ 261 00ec 04AA     		add	r2, sp, #16
+ 262 00ee 2046     		mov	r0, r4
+ 263 00f0 0123     		movs	r3, #1
+ 264 00f2 3A21     		movs	r1, #58
+ 265 00f4 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 266 00f8 07B0     		add	sp, sp, #28
+ 267              		@ sp needed
+ 268 00fa F0BD     		pop	{r4, r5, r6, r7, pc}
+ 269              	.L16:
+ 270              		.align	2
+ 271              	.L15:
+ 272 00fc 00000000 		.word	hi2c1
+ 273 0100 00000000 		.word	.LC1
+ 275              		.section	.text.compass_get_angle,"ax",%progbits
+ 276              		.align	1
+ 277              		.p2align 2,,3
+ 278              		.global	compass_get_angle
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 282              		.fpu fpv4-sp-d16
+ 284              	compass_get_angle:
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287              		@ link register save eliminated.
+ 288 0000 0048     		ldr	r0, .L18
+ 289 0002 7047     		bx	lr
+ 290              	.L19:
+ 291              		.align	2
+ 292              	.L18:
+ 293 0004 00000000 		.word	.LANCHOR0
+ 295              		.global	ang
+ARM GAS  /tmp/ccsIaK4U.s 			page 6
 
 
- 293 0192 3860     		str	r0, [r7]	@ float
- 294 0194 04B0     		add	sp, sp, #16
- 295              		@ sp needed
- 296 0196 BDEC028B 		vldm	sp!, {d8}
- 297 019a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
- 298              	.L16:
- 299 019e 00BF     		.align	2
- 300              	.L15:
- 301 01a0 00000000 		.word	hi2c1
- 302 01a4 00000000 		.word	.LANCHOR0
- 304              		.section	.text.compass_init,"ax",%progbits
- 305              		.align	1
- 306              		.p2align 2,,3
- 307              		.global	compass_init
- 308              		.syntax unified
- 309              		.thumb
- 310              		.thumb_func
- 311              		.fpu fpv4-sp-d16
- 313              	compass_init:
- 314              		@ args = 0, pretend = 0, frame = 8
- 315              		@ frame_needed = 0, uses_anonymous_args = 0
- 316 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 317 0002 434C     		ldr	r4, .L19
- 318 0004 85B0     		sub	sp, sp, #20
- 319 0006 6425     		movs	r5, #100
- 320 0008 03AA     		add	r2, sp, #12
- 321 000a 2046     		mov	r0, r4
- 322 000c 0095     		str	r5, [sp]
- 323 000e 2227     		movs	r7, #34
- 324 0010 CA26     		movs	r6, #202
- 325 0012 0223     		movs	r3, #2
- 326 0014 3A21     		movs	r1, #58
- 327 0016 8DF80C70 		strb	r7, [sp, #12]
- 328 001a 8DF80D60 		strb	r6, [sp, #13]
- 329 001e 2327     		movs	r7, #35
- 330 0020 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 331 0024 0026     		movs	r6, #0
- 332 0026 03AA     		add	r2, sp, #12
- 333 0028 0095     		str	r5, [sp]
- 334 002a 2046     		mov	r0, r4
- 335 002c 0223     		movs	r3, #2
- 336 002e 3A21     		movs	r1, #58
- 337 0030 8DF80C70 		strb	r7, [sp, #12]
- 338 0034 8DF80D60 		strb	r6, [sp, #13]
- 339 0038 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 340 003c 2421     		movs	r1, #36
- 341 003e 03AA     		add	r2, sp, #12
- 342 0040 8DF80C10 		strb	r1, [sp, #12]
- 343 0044 0095     		str	r5, [sp]
- 344 0046 2046     		mov	r0, r4
- 345 0048 7027     		movs	r7, #112
- 346 004a 0223     		movs	r3, #2
- 347 004c 3A21     		movs	r1, #58
- 348 004e 8DF80D70 		strb	r7, [sp, #13]
- 349 0052 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 350 0056 2521     		movs	r1, #37
- 351 0058 03AA     		add	r2, sp, #12
-ARM GAS  /tmp/ccBegJhy.s 			page 7
-
-
- 352 005a 8DF80C10 		strb	r1, [sp, #12]
- 353 005e 0095     		str	r5, [sp]
- 354 0060 2046     		mov	r0, r4
- 355 0062 2027     		movs	r7, #32
- 356 0064 0223     		movs	r3, #2
- 357 0066 3A21     		movs	r1, #58
- 358 0068 8DF80D70 		strb	r7, [sp, #13]
- 359 006c FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 360 0070 2627     		movs	r7, #38
- 361 0072 03AA     		add	r2, sp, #12
- 362 0074 0095     		str	r5, [sp]
- 363 0076 2046     		mov	r0, r4
- 364 0078 0223     		movs	r3, #2
- 365 007a 3A21     		movs	r1, #58
- 366 007c 8DF80D60 		strb	r6, [sp, #13]
- 367 0080 8DF80C70 		strb	r7, [sp, #12]
- 368 0084 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 369 0088 0F27     		movs	r7, #15
- 370 008a 0DF10B02 		add	r2, sp, #11
- 371 008e 0095     		str	r5, [sp]
- 372 0090 2046     		mov	r0, r4
- 373 0092 0123     		movs	r3, #1
- 374 0094 3A21     		movs	r1, #58
- 375 0096 8DF80C60 		strb	r6, [sp, #12]
- 376 009a 8DF80B70 		strb	r7, [sp, #11]
- 377 009e FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 378 00a2 03AA     		add	r2, sp, #12
- 379 00a4 0123     		movs	r3, #1
- 380 00a6 0095     		str	r5, [sp]
- 381 00a8 2046     		mov	r0, r4
- 382 00aa 3A21     		movs	r1, #58
- 383 00ac FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 384 00b0 9DF80C10 		ldrb	r1, [sp, #12]	@ zero_extendqisi2
- 385 00b4 1748     		ldr	r0, .L19+4
- 386 00b6 FFF7FEFF 		bl	printf
- 387 00ba 0827     		movs	r7, #8
- 388 00bc 0DF10A02 		add	r2, sp, #10
- 389 00c0 0095     		str	r5, [sp]
- 390 00c2 2046     		mov	r0, r4
- 391 00c4 0123     		movs	r3, #1
- 392 00c6 3A21     		movs	r1, #58
- 393 00c8 ADF80C60 		strh	r6, [sp, #12]	@ movhi
- 394 00cc 8DF80A70 		strb	r7, [sp, #10]
- 395 00d0 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 396 00d4 03AA     		add	r2, sp, #12
- 397 00d6 0095     		str	r5, [sp]
- 398 00d8 2046     		mov	r0, r4
- 399 00da 0123     		movs	r3, #1
- 400 00dc 3A21     		movs	r1, #58
- 401 00de FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 402 00e2 9DF80A60 		ldrb	r6, [sp, #10]	@ zero_extendqisi2
- 403 00e6 0095     		str	r5, [sp]
- 404 00e8 0DF10A02 		add	r2, sp, #10
- 405 00ec 0136     		adds	r6, r6, #1
- 406 00ee 2046     		mov	r0, r4
- 407 00f0 0123     		movs	r3, #1
- 408 00f2 3A21     		movs	r1, #58
-ARM GAS  /tmp/ccBegJhy.s 			page 8
-
-
- 409 00f4 8DF80A60 		strb	r6, [sp, #10]
- 410 00f8 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 411 00fc 0095     		str	r5, [sp]
- 412 00fe 2046     		mov	r0, r4
- 413 0100 0123     		movs	r3, #1
- 414 0102 0DF10D02 		add	r2, sp, #13
- 415 0106 3A21     		movs	r1, #58
- 416 0108 FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 417 010c 05B0     		add	sp, sp, #20
- 418              		@ sp needed
- 419 010e F0BD     		pop	{r4, r5, r6, r7, pc}
- 420              	.L20:
- 421              		.align	2
- 422              	.L19:
- 423 0110 00000000 		.word	hi2c1
- 424 0114 00000000 		.word	.LC0
- 426              		.section	.text.compass_get_angle,"ax",%progbits
- 427              		.align	1
- 428              		.p2align 2,,3
- 429              		.global	compass_get_angle
- 430              		.syntax unified
- 431              		.thumb
- 432              		.thumb_func
- 433              		.fpu fpv4-sp-d16
- 435              	compass_get_angle:
- 436              		@ args = 0, pretend = 0, frame = 0
- 437              		@ frame_needed = 0, uses_anonymous_args = 0
- 438              		@ link register save eliminated.
- 439 0000 0048     		ldr	r0, .L22
- 440 0002 7047     		bx	lr
- 441              	.L23:
- 442              		.align	2
- 443              	.L22:
- 444 0004 00000000 		.word	.LANCHOR0
- 446              		.global	ang
- 447              		.section	.bss.ang,"aw",%nobits
- 448              		.align	2
- 449              		.set	.LANCHOR0,. + 0
- 452              	ang:
- 453 0000 00000000 		.space	4
- 454              		.section	.rodata.compass_init.str1.4,"aMS",%progbits,1
- 455              		.align	2
- 456              	.LC0:
- 457 0000 61636320 		.ascii	"acc %d\012\000"
- 457      25640A00 
- 458              		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/ccBegJhy.s 			page 9
+ 296              		.section	.bss.ang,"aw",%nobits
+ 297              		.align	2
+ 298              		.set	.LANCHOR0,. + 0
+ 301              	ang:
+ 302 0000 00000000 		.space	4
+ 303              		.section	.rodata.HAL_GPIO_EXTI_Callback.str1.4,"aMS",%progbits,1
+ 304              		.align	2
+ 305              	.LC0:
+ 306 0000 6D616720 		.ascii	"mag %d05 %d05 %d05\012\000"
+ 306      25643035 
+ 306      20256430 
+ 306      35202564 
+ 306      30350A00 
+ 307              		.section	.rodata.compass_init.str1.4,"aMS",%progbits,1
+ 308              		.align	2
+ 309              	.LC1:
+ 310 0000 61636320 		.ascii	"acc %d\012\000"
+ 310      25640A00 
+ 311              		.ident	"GCC: (Arch Repository) 6.3.0"
+ARM GAS  /tmp/ccsIaK4U.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 compass.c
-     /tmp/ccBegJhy.s:13     .text.compass_register_read:0000000000000000 $t
-     /tmp/ccBegJhy.s:21     .text.compass_register_read:0000000000000000 compass_register_read
-     /tmp/ccBegJhy.s:50     .text.compass_register_read:000000000000003c $d
-     /tmp/ccBegJhy.s:53     .text.compass_register_write:0000000000000000 $t
-     /tmp/ccBegJhy.s:61     .text.compass_register_write:0000000000000000 compass_register_write
-     /tmp/ccBegJhy.s:81     .text.compass_register_write:0000000000000024 $d
-     /tmp/ccBegJhy.s:84     .text.lsm303_read_pos:0000000000000000 $t
-     /tmp/ccBegJhy.s:92     .text.lsm303_read_pos:0000000000000000 lsm303_read_pos
-     /tmp/ccBegJhy.s:138    .text.lsm303_read_pos:000000000000006c $d
-     /tmp/ccBegJhy.s:145    .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
-     /tmp/ccBegJhy.s:153    .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
-     /tmp/ccBegJhy.s:301    .text.HAL_GPIO_EXTI_Callback:00000000000001a0 $d
-     /tmp/ccBegJhy.s:305    .text.compass_init:0000000000000000 $t
-     /tmp/ccBegJhy.s:313    .text.compass_init:0000000000000000 compass_init
-     /tmp/ccBegJhy.s:423    .text.compass_init:0000000000000110 $d
-     /tmp/ccBegJhy.s:427    .text.compass_get_angle:0000000000000000 $t
-     /tmp/ccBegJhy.s:435    .text.compass_get_angle:0000000000000000 compass_get_angle
-     /tmp/ccBegJhy.s:444    .text.compass_get_angle:0000000000000004 $d
-     /tmp/ccBegJhy.s:452    .bss.ang:0000000000000000 ang
-     /tmp/ccBegJhy.s:448    .bss.ang:0000000000000000 $d
-     /tmp/ccBegJhy.s:455    .rodata.compass_init.str1.4:0000000000000000 $d
+     /tmp/ccsIaK4U.s:13     .text.compass_register_read:0000000000000000 $t
+     /tmp/ccsIaK4U.s:21     .text.compass_register_read:0000000000000000 compass_register_read
+     /tmp/ccsIaK4U.s:50     .text.compass_register_read:000000000000003c $d
+     /tmp/ccsIaK4U.s:53     .text.compass_register_write:0000000000000000 $t
+     /tmp/ccsIaK4U.s:61     .text.compass_register_write:0000000000000000 compass_register_write
+     /tmp/ccsIaK4U.s:81     .text.compass_register_write:0000000000000024 $d
+     /tmp/ccsIaK4U.s:86     .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
+     /tmp/ccsIaK4U.s:94     .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
+     /tmp/ccsIaK4U.s:154    .text.HAL_GPIO_EXTI_Callback:00000000000000a4 $d
+     /tmp/ccsIaK4U.s:159    .text.compass_init:0000000000000000 $t
+     /tmp/ccsIaK4U.s:167    .text.compass_init:0000000000000000 compass_init
+     /tmp/ccsIaK4U.s:272    .text.compass_init:00000000000000fc $d
+     /tmp/ccsIaK4U.s:276    .text.compass_get_angle:0000000000000000 $t
+     /tmp/ccsIaK4U.s:284    .text.compass_get_angle:0000000000000000 compass_get_angle
+     /tmp/ccsIaK4U.s:293    .text.compass_get_angle:0000000000000004 $d
+     /tmp/ccsIaK4U.s:301    .bss.ang:0000000000000000 ang
+     /tmp/ccsIaK4U.s:297    .bss.ang:0000000000000000 $d
+     /tmp/ccsIaK4U.s:304    .rodata.HAL_GPIO_EXTI_Callback.str1.4:0000000000000000 $d
+     /tmp/ccsIaK4U.s:308    .rodata.compass_init.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Master_Transmit
 HAL_I2C_Master_Receive
 hi2c1
-__aeabi_ui2d
-__aeabi_dmul
-__aeabi_dadd
+__aeabi_i2d
 __aeabi_d2f
+printf
 sqrt
 atan2
-printf
