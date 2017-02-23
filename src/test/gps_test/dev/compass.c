@@ -65,9 +65,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 void compass_init()
 {
 //  Magnetometer data-ready signal on INT1 enable
-    compass_register_write(LSM303_CTRL3, 0b11001010);
-    compass_register_write(LSM303_CTRL4, 0b00000000);
-    compass_register_write(LSM303_INT_CTRL_M, 0b00100001);
+    compass_register_write(LSM303_CTRL0,      0b01000000);
+    compass_register_write(LSM303_CTRL3,      0b11001010);
+    compass_register_write(LSM303_CTRL4,      0b00010100);
+    compass_register_write(LSM303_INT_CTRL_M, 0b00000000);
     
 /* CTRL5 register description */
 /*  TEMP_EN Temperature sensor enable. Default value: 0 */
