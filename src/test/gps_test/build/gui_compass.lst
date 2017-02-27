@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKq4N2X.s 			page 1
+ARM GAS  /tmp/cckOdSNS.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -12,235 +12,592 @@ ARM GAS  /tmp/ccKq4N2X.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"gui_compass.c"
-  12              		.global	__aeabi_ui2d
-  13              		.global	__aeabi_f2d
-  14              		.global	__aeabi_dmul
-  15              		.global	__aeabi_d2iz
-  16              		.section	.text._m_compass_draw,"ax",%progbits
-  17              		.align	1
-  18              		.p2align 2,,3
-  19              		.global	_m_compass_draw
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
-  23              		.fpu fpv4-sp-d16
-  25              	_m_compass_draw:
-  26              		@ args = 0, pretend = 0, frame = 16
-  27              		@ frame_needed = 0, uses_anonymous_args = 0
-  28 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
-  29 0004 2DED028B 		vpush.64	{d8}
-  30 0008 446B     		ldr	r4, [r0, #52]
-  31 000a 444E     		ldr	r6, .L3
-  32 000c B4F86030 		ldrh	r3, [r4, #96]
-  33 0010 B4F85C20 		ldrh	r2, [r4, #92]
-  34 0014 B4F85810 		ldrh	r1, [r4, #88]
-  35 0018 87B0     		sub	sp, sp, #28
-  36 001a 0546     		mov	r5, r0
-  37 001c 0068     		ldr	r0, [r0]
-  38 001e 4FF0010A 		mov	r10, #1
-  39 0022 0068     		ldr	r0, [r0]
-  40 0024 CDF800A0 		str	r10, [sp]
-  41 0028 FFF7FEFF 		bl	makise_d_circle
-  42 002c 216E     		ldr	r1, [r4, #96]
-  43 002e E36D     		ldr	r3, [r4, #92]
-  44 0030 2868     		ldr	r0, [r5]
-  45 0032 B4F85820 		ldrh	r2, [r4, #88]
-  46 0036 0068     		ldr	r0, [r0]
-  47 0038 0096     		str	r6, [sp]
-  48 003a 0227     		movs	r7, #2
-  49 003c 0B44     		add	r3, r3, r1
-  50 003e 0197     		str	r7, [sp, #4]
-  51 0040 9BB2     		uxth	r3, r3
-  52 0042 5321     		movs	r1, #83
-  53 0044 FFF7FEFF 		bl	makise_d_char
-  54 0048 216E     		ldr	r1, [r4, #96]
-  55 004a E36D     		ldr	r3, [r4, #92]
-  56 004c 2868     		ldr	r0, [r5]
-  57 004e B4F85820 		ldrh	r2, [r4, #88]
-  58 0052 0068     		ldr	r0, [r0]
-ARM GAS  /tmp/ccKq4N2X.s 			page 2
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	__aeabi_ui2d
+  16              		.global	__aeabi_f2d
+  17              		.global	__aeabi_dmul
+  18              		.global	__aeabi_d2iz
+  19              		.section	.text._m_compass_draw,"ax",%progbits
+  20              		.align	1
+  21              		.p2align 2,,3
+  22              		.global	_m_compass_draw
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  26              		.fpu fpv4-sp-d16
+  28              	_m_compass_draw:
+  29              	.LFB127:
+  30              		.file 1 "gui/gui_compass.c"
+   1:gui/gui_compass.c **** #include "gui_custom.h"
+   2:gui/gui_compass.c **** 
+   3:gui/gui_compass.c **** uint8_t _m_compass_draw   (MElement* b);
+   4:gui/gui_compass.c **** MInputResultEnum _m_compass_input  (MElement* b, MInputData data);
+   5:gui/gui_compass.c **** MFocusEnum _m_compass_focus  (MElement* b, MFocusEnum act);
+   6:gui/gui_compass.c **** 
+   7:gui/gui_compass.c **** 
+   8:gui/gui_compass.c **** void gui_create_compass(MCompass *b, MContainer *c,
+   9:gui/gui_compass.c **** 			int32_t x, int32_t y, //position of center
+  10:gui/gui_compass.c **** 			uint32_t r, //radius
+  11:gui/gui_compass.c **** 			float *angle)
+  12:gui/gui_compass.c **** {
+  13:gui/gui_compass.c ****     MElement *e = &b->el;
+  14:gui/gui_compass.c ****     e->gui = c->gui;
+  15:gui/gui_compass.c **** 
+  16:gui/gui_compass.c ****     e->data = b;
+  17:gui/gui_compass.c **** 
+  18:gui/gui_compass.c ****     e->draw = &_m_compass_draw;
+  19:gui/gui_compass.c ****     e->predraw = 0;
+  20:gui/gui_compass.c ****     e->update = 0;
+  21:gui/gui_compass.c ****     e->input = 0;
+  22:gui/gui_compass.c ****     e->focus = 0;
+  23:gui/gui_compass.c ****     e->free = 0;
+  24:gui/gui_compass.c ****     
+  25:gui/gui_compass.c ****     e->position.x  = x - r;
+  26:gui/gui_compass.c ****     e->position.y  = y - r;
+  27:gui/gui_compass.c ****     e->position.width  = r * 2;
+  28:gui/gui_compass.c ****     e->position.height = r * 2;
+ARM GAS  /tmp/cckOdSNS.s 			page 2
 
 
-  59 0054 0197     		str	r7, [sp, #4]
-  60 0056 5B1A     		subs	r3, r3, r1
-  61 0058 9BB2     		uxth	r3, r3
-  62 005a 0096     		str	r6, [sp]
-  63 005c 4E21     		movs	r1, #78
-  64 005e FFF7FEFF 		bl	makise_d_char
-  65 0062 206E     		ldr	r0, [r4, #96]
-  66 0064 FFF7FEFF 		bl	__aeabi_ui2d
-  67 0068 636D     		ldr	r3, [r4, #84]
-  68 006a 8046     		mov	r8, r0
-  69 006c 1868     		ldr	r0, [r3]	@ float
-  70 006e 8946     		mov	r9, r1
-  71 0070 FFF7FEFF 		bl	__aeabi_f2d
-  72 0074 41EC100B 		vmov	d0, r0, r1
-  73 0078 41EC180B 		vmov	d8, r0, r1
-  74 007c FFF7FEFF 		bl	cos
-  75 0080 53EC102B 		vmov	r2, r3, d0
-  76 0084 B0EE480A 		vmov.f32	s0, s16
-  77 0088 F0EE680A 		vmov.f32	s1, s17
-  78 008c CDE90223 		strd	r2, [sp, #8]
-  79 0090 FFF7FEFF 		bl	sin
-  80 0094 DDE90223 		ldrd	r2, [sp, #8]
-  81 0098 4046     		mov	r0, r8
-  82 009a 4946     		mov	r1, r9
-  83 009c 8DED040B 		vstr.64	d0, [sp, #16]
-  84 00a0 FFF7FEFF 		bl	__aeabi_dmul
-  85 00a4 FFF7FEFF 		bl	__aeabi_d2iz
-  86 00a8 9DED040B 		vldr.64	d0, [sp, #16]
-  87 00ac 2B68     		ldr	r3, [r5]
-  88 00ae A76D     		ldr	r7, [r4, #88]
-  89 00b0 1B68     		ldr	r3, [r3]
-  90 00b2 0293     		str	r3, [sp, #8]
-  91 00b4 00EB070E 		add	lr, r0, r7
-  92 00b8 53EC102B 		vmov	r2, r3, d0
-  93 00bc 4FF0040B 		mov	fp, #4
-  94 00c0 4046     		mov	r0, r8
-  95 00c2 4946     		mov	r1, r9
-  96 00c4 E66D     		ldr	r6, [r4, #92]
-  97 00c6 CDF804B0 		str	fp, [sp, #4]
-  98 00ca 0FFA8EF8 		sxth	r8, lr
-  99 00ce FFF7FEFF 		bl	__aeabi_dmul
- 100 00d2 FFF7FEFF 		bl	__aeabi_d2iz
- 101 00d6 3044     		add	r0, r0, r6
- 102 00d8 00B2     		sxth	r0, r0
- 103 00da 32B2     		sxth	r2, r6
- 104 00dc 39B2     		sxth	r1, r7
- 105 00de 4346     		mov	r3, r8
- 106 00e0 0090     		str	r0, [sp]
- 107 00e2 0298     		ldr	r0, [sp, #8]
- 108 00e4 FFF7FEFF 		bl	makise_d_line
- 109 00e8 636D     		ldr	r3, [r4, #84]
- 110 00ea 1868     		ldr	r0, [r3]	@ float
- 111 00ec FFF7FEFF 		bl	__aeabi_f2d
- 112 00f0 2B68     		ldr	r3, [r5]
- 113 00f2 A66D     		ldr	r6, [r4, #88]
- 114 00f4 1D68     		ldr	r5, [r3]
- 115 00f6 E26D     		ldr	r2, [r4, #92]
-ARM GAS  /tmp/ccKq4N2X.s 			page 3
+  29:gui/gui_compass.c **** 
+  30:gui/gui_compass.c ****     e->enabled = 1;
+  31:gui/gui_compass.c ****     e->id = makise_g_newid();
+  32:gui/gui_compass.c ****     
+  33:gui/gui_compass.c ****     e->focus_prior = 0;
+  34:gui/gui_compass.c ****     
+  35:gui/gui_compass.c ****     b->x = x;
+  36:gui/gui_compass.c ****     b->y = y;
+  37:gui/gui_compass.c ****     b->r = r;
+  38:gui/gui_compass.c ****     b->angle = angle;
+  39:gui/gui_compass.c ****     
+  40:gui/gui_compass.c ****     makise_g_cont_add(c, e);
+  41:gui/gui_compass.c **** 
+  42:gui/gui_compass.c ****     b->arrow[0] = (MakisePoint){r / 10, 0};
+  43:gui/gui_compass.c ****     b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+  44:gui/gui_compass.c ****     b->arrow[2] = (MakisePoint){- (r / 10), 0};
+  45:gui/gui_compass.c ****     b->arrow[3] = (MakisePoint){0, -(r * 9 / 10)};
+  46:gui/gui_compass.c ****     b->arrow[4] = (MakisePoint){r / 10, 0};
+  47:gui/gui_compass.c ****     
+  48:gui/gui_compass.c ****     printf("Compass %d created\n", e->id);
+  49:gui/gui_compass.c **** }
+  50:gui/gui_compass.c **** 
+  51:gui/gui_compass.c **** uint8_t _m_compass_draw   (MElement* b)
+  52:gui/gui_compass.c **** {
+  31              		.loc 1 52 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 16
+  34              		@ frame_needed = 0, uses_anonymous_args = 0
+  35              	.LVL0:
+  36 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 36
+  39              		.cfi_offset 4, -36
+  40              		.cfi_offset 5, -32
+  41              		.cfi_offset 6, -28
+  42              		.cfi_offset 7, -24
+  43              		.cfi_offset 8, -20
+  44              		.cfi_offset 9, -16
+  45              		.cfi_offset 10, -12
+  46              		.cfi_offset 11, -8
+  47              		.cfi_offset 14, -4
+  48 0004 2DED028B 		vpush.64	{d8}
+  49              	.LCFI1:
+  50              		.cfi_def_cfa_offset 44
+  51              		.cfi_offset 80, -44
+  52              		.cfi_offset 81, -40
+  53:gui/gui_compass.c ****     MCompass *c = (MCompass*)b->data;
+  53              		.loc 1 53 0
+  54 0008 446B     		ldr	r4, [r0, #52]
+  55              	.LVL1:
+  54:gui/gui_compass.c ****     
+  55:gui/gui_compass.c ****     makise_d_circle(b->gui->buffer,
+  56:gui/gui_compass.c **** 		    c->x, c->y, c->r,
+  57:gui/gui_compass.c **** 		    MC_White);
+  58:gui/gui_compass.c **** 		    
+  59:gui/gui_compass.c ****     makise_d_char(b->gui->buffer, 'S', c->x, c->y + c->r, &F_Arial15, MC_Red);
+  56              		.loc 1 59 0
+ARM GAS  /tmp/cckOdSNS.s 			page 3
 
 
- 116 00f8 CDF804B0 		str	fp, [sp, #4]
- 117 00fc 04F16403 		add	r3, r4, #100
- 118 0100 0524     		movs	r4, #5
- 119 0102 41EC100B 		vmov	d0, r0, r1
- 120 0106 0094     		str	r4, [sp]
- 121 0108 2846     		mov	r0, r5
- 122 010a 3146     		mov	r1, r6
- 123 010c FFF7FEFF 		bl	makise_dex_polyline
- 124 0110 5046     		mov	r0, r10
- 125 0112 07B0     		add	sp, sp, #28
- 126              		@ sp needed
- 127 0114 BDEC028B 		vldm	sp!, {d8}
- 128 0118 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 129              	.L4:
- 130              		.align	2
- 131              	.L3:
- 132 011c 00000000 		.word	F_Arial15
- 134              		.section	.text.gui_create_compass,"ax",%progbits
- 135              		.align	1
- 136              		.p2align 2,,3
- 137              		.global	gui_create_compass
- 138              		.syntax unified
- 139              		.thumb
- 140              		.thumb_func
- 141              		.fpu fpv4-sp-d16
- 143              	gui_create_compass:
- 144              		@ args = 8, pretend = 0, frame = 0
- 145              		@ frame_needed = 0, uses_anonymous_args = 0
- 146 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 147 0004 089D     		ldr	r5, [sp, #32]
- 148 0006 284E     		ldr	r6, .L7
- 149 0008 DDF824A0 		ldr	r10, [sp, #36]
- 150 000c 0446     		mov	r4, r0
- 151 000e 9146     		mov	r9, r2
- 152 0010 501B     		subs	r0, r2, r5
- 153 0012 9846     		mov	r8, r3
- 154 0014 0122     		movs	r2, #1
- 155 0016 5B1B     		subs	r3, r3, r5
- 156 0018 0F46     		mov	r7, r1
- 157 001a 0968     		ldr	r1, [r1]
- 158 001c E663     		str	r6, [r4, #60]
- 159 001e 2362     		str	r3, [r4, #32]
- 160 0020 0026     		movs	r6, #0
- 161 0022 05FA02F3 		lsl	r3, r5, r2
- 162 0026 2276     		strb	r2, [r4, #24]
- 163 0028 6362     		str	r3, [r4, #36]
- 164 002a A362     		str	r3, [r4, #40]
- 165 002c 6160     		str	r1, [r4, #4]
- 166 002e A463     		str	r4, [r4, #56]
- 167 0030 E061     		str	r0, [r4, #28]
- 168 0032 2664     		str	r6, [r4, #64]
- 169 0034 6664     		str	r6, [r4, #68]
- 170 0036 A664     		str	r6, [r4, #72]
- 171 0038 E664     		str	r6, [r4, #76]
- 172 003a 2665     		str	r6, [r4, #80]
- 173 003c FFF7FEFF 		bl	makise_g_newid
- 174 0040 211D     		adds	r1, r4, #4
-ARM GAS  /tmp/ccKq4N2X.s 			page 4
+  57 000a 444E     		ldr	r6, .L3
+  55:gui/gui_compass.c **** 		    c->x, c->y, c->r,
+  58              		.loc 1 55 0
+  59 000c B4F86030 		ldrh	r3, [r4, #96]
+  60 0010 B4F85C20 		ldrh	r2, [r4, #92]
+  61 0014 B4F85810 		ldrh	r1, [r4, #88]
+  52:gui/gui_compass.c ****     MCompass *c = (MCompass*)b->data;
+  62              		.loc 1 52 0
+  63 0018 87B0     		sub	sp, sp, #28
+  64              	.LCFI2:
+  65              		.cfi_def_cfa_offset 72
+  52:gui/gui_compass.c ****     MCompass *c = (MCompass*)b->data;
+  66              		.loc 1 52 0
+  67 001a 0546     		mov	r5, r0
+  55:gui/gui_compass.c **** 		    c->x, c->y, c->r,
+  68              		.loc 1 55 0
+  69 001c 0068     		ldr	r0, [r0]
+  70              	.LVL2:
+  71 001e 4FF0010A 		mov	r10, #1
+  72 0022 0068     		ldr	r0, [r0]
+  73 0024 CDF800A0 		str	r10, [sp]
+  74 0028 FFF7FEFF 		bl	makise_d_circle
+  75              	.LVL3:
+  76              		.loc 1 59 0
+  77 002c 216E     		ldr	r1, [r4, #96]
+  78 002e E36D     		ldr	r3, [r4, #92]
+  79 0030 2868     		ldr	r0, [r5]
+  80 0032 B4F85820 		ldrh	r2, [r4, #88]
+  81 0036 0068     		ldr	r0, [r0]
+  82 0038 0096     		str	r6, [sp]
+  83 003a 0227     		movs	r7, #2
+  84 003c 0B44     		add	r3, r3, r1
+  85 003e 0197     		str	r7, [sp, #4]
+  86 0040 9BB2     		uxth	r3, r3
+  87 0042 5321     		movs	r1, #83
+  88 0044 FFF7FEFF 		bl	makise_d_char
+  89              	.LVL4:
+  60:gui/gui_compass.c ****     makise_d_char(b->gui->buffer, 'N', c->x, c->y - c->r, &F_Arial15, MC_Red);
+  90              		.loc 1 60 0
+  91 0048 216E     		ldr	r1, [r4, #96]
+  92 004a E36D     		ldr	r3, [r4, #92]
+  93 004c 2868     		ldr	r0, [r5]
+  94 004e B4F85820 		ldrh	r2, [r4, #88]
+  95 0052 0068     		ldr	r0, [r0]
+  96 0054 0197     		str	r7, [sp, #4]
+  97 0056 5B1A     		subs	r3, r3, r1
+  98 0058 9BB2     		uxth	r3, r3
+  99 005a 0096     		str	r6, [sp]
+ 100 005c 4E21     		movs	r1, #78
+ 101 005e FFF7FEFF 		bl	makise_d_char
+ 102              	.LVL5:
+  61:gui/gui_compass.c **** 
+  62:gui/gui_compass.c ****     int32_t x = (int32_t)(c->r * cos(*c->angle));
+ 103              		.loc 1 62 0
+ 104 0062 206E     		ldr	r0, [r4, #96]
+ 105 0064 FFF7FEFF 		bl	__aeabi_ui2d
+ 106              	.LVL6:
+ARM GAS  /tmp/cckOdSNS.s 			page 4
 
 
- 175 0042 A060     		str	r0, [r4, #8]
- 176 0044 2566     		str	r5, [r4, #96]
- 177 0046 3846     		mov	r0, r7
- 178 0048 84F83460 		strb	r6, [r4, #52]
- 179 004c C4F85890 		str	r9, [r4, #88]
- 180 0050 C4F85C80 		str	r8, [r4, #92]
- 181 0054 C4F854A0 		str	r10, [r4, #84]
- 182 0058 FFF7FEFF 		bl	makise_g_cont_add
- 183 005c 134A     		ldr	r2, .L7+4
- 184 005e A4F86660 		strh	r6, [r4, #102]	@ movhi
- 185 0062 05EBC503 		add	r3, r5, r5, lsl #3
- 186 0066 A2FB0515 		umull	r1, r5, r2, r5
- 187 006a A2FB0323 		umull	r2, r3, r2, r3
- 188 006e ED08     		lsrs	r5, r5, #3
- 189 0070 DB08     		lsrs	r3, r3, #3
- 190 0072 5942     		negs	r1, r3
- 191 0074 6A42     		negs	r2, r5
- 192 0076 2DB2     		sxth	r5, r5
- 193 0078 A4F87210 		strh	r1, [r4, #114]	@ movhi
- 194 007c A4F86860 		strh	r6, [r4, #104]	@ movhi
- 195 0080 A4F86E60 		strh	r6, [r4, #110]	@ movhi
- 196 0084 A4F87060 		strh	r6, [r4, #112]	@ movhi
- 197 0088 A4F87660 		strh	r6, [r4, #118]	@ movhi
- 198 008c A4F86A30 		strh	r3, [r4, #106]	@ movhi
- 199 0090 A4F86C20 		strh	r2, [r4, #108]	@ movhi
- 200 0094 A4F86450 		strh	r5, [r4, #100]	@ movhi
- 201 0098 A4F87450 		strh	r5, [r4, #116]	@ movhi
- 202 009c A168     		ldr	r1, [r4, #8]
- 203 009e 0448     		ldr	r0, .L7+8
- 204 00a0 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
- 205 00a4 FFF7FEBF 		b	printf
- 206              	.L8:
- 207              		.align	2
- 208              	.L7:
- 209 00a8 00000000 		.word	_m_compass_draw
- 210 00ac CDCCCCCC 		.word	-858993459
- 211 00b0 00000000 		.word	.LC0
- 213              		.comm	makise_color_palette,4,4
- 214              		.section	.rodata.gui_create_compass.str1.4,"aMS",%progbits,1
- 215              		.align	2
- 216              	.LC0:
- 217 0000 436F6D70 		.ascii	"Compass %d created\012\000"
- 217      61737320 
- 217      25642063 
- 217      72656174 
- 217      65640A00 
- 218              		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/ccKq4N2X.s 			page 5
+ 107 0068 636D     		ldr	r3, [r4, #84]
+ 108 006a 8046     		mov	r8, r0
+ 109 006c 1868     		ldr	r0, [r3]	@ float
+ 110 006e 8946     		mov	r9, r1
+ 111 0070 FFF7FEFF 		bl	__aeabi_f2d
+ 112              	.LVL7:
+ 113 0074 41EC100B 		vmov	d0, r0, r1
+ 114 0078 41EC180B 		vmov	d8, r0, r1
+ 115 007c FFF7FEFF 		bl	cos
+ 116              	.LVL8:
+ 117 0080 53EC102B 		vmov	r2, r3, d0
+  63:gui/gui_compass.c ****     int32_t y = (int32_t)(c->r * sin(*c->angle));
+ 118              		.loc 1 63 0
+ 119 0084 B0EE480A 		vmov.f32	s0, s16
+ 120 0088 F0EE680A 		vmov.f32	s1, s17
+  62:gui/gui_compass.c ****     int32_t y = (int32_t)(c->r * sin(*c->angle));
+ 121              		.loc 1 62 0
+ 122 008c CDE90223 		strd	r2, [sp, #8]
+ 123              	.LVL9:
+ 124              		.loc 1 63 0
+ 125 0090 FFF7FEFF 		bl	sin
+ 126              	.LVL10:
+  62:gui/gui_compass.c ****     int32_t y = (int32_t)(c->r * sin(*c->angle));
+ 127              		.loc 1 62 0
+ 128 0094 DDE90223 		ldrd	r2, [sp, #8]
+ 129 0098 4046     		mov	r0, r8
+ 130 009a 4946     		mov	r1, r9
+ 131              		.loc 1 63 0
+ 132 009c 8DED040B 		vstr.64	d0, [sp, #16]
+ 133              	.LVL11:
+  62:gui/gui_compass.c ****     int32_t y = (int32_t)(c->r * sin(*c->angle));
+ 134              		.loc 1 62 0
+ 135 00a0 FFF7FEFF 		bl	__aeabi_dmul
+ 136              	.LVL12:
+ 137 00a4 FFF7FEFF 		bl	__aeabi_d2iz
+ 138              	.LVL13:
+ 139              		.loc 1 63 0
+ 140 00a8 9DED040B 		vldr.64	d0, [sp, #16]
+  64:gui/gui_compass.c ****     
+  65:gui/gui_compass.c ****     makise_d_line(b->gui->buffer, c->x, c->y, c->x + x, c->y + y, MC_Blue);
+ 141              		.loc 1 65 0
+ 142 00ac 2B68     		ldr	r3, [r5]
+ 143 00ae A76D     		ldr	r7, [r4, #88]
+ 144 00b0 1B68     		ldr	r3, [r3]
+ 145 00b2 0293     		str	r3, [sp, #8]
+ 146              	.LVL14:
+ 147 00b4 00EB070E 		add	lr, r0, r7
+  63:gui/gui_compass.c ****     
+ 148              		.loc 1 63 0
+ 149 00b8 53EC102B 		vmov	r2, r3, d0
+ 150              		.loc 1 65 0
+ 151 00bc 4FF0040B 		mov	fp, #4
+  63:gui/gui_compass.c ****     
+ 152              		.loc 1 63 0
+ 153 00c0 4046     		mov	r0, r8
+ 154 00c2 4946     		mov	r1, r9
+ 155              		.loc 1 65 0
+ARM GAS  /tmp/cckOdSNS.s 			page 5
+
+
+ 156 00c4 E66D     		ldr	r6, [r4, #92]
+ 157 00c6 CDF804B0 		str	fp, [sp, #4]
+ 158 00ca 0FFA8EF8 		sxth	r8, lr
+ 159              	.LVL15:
+  63:gui/gui_compass.c ****     
+ 160              		.loc 1 63 0
+ 161 00ce FFF7FEFF 		bl	__aeabi_dmul
+ 162              	.LVL16:
+ 163 00d2 FFF7FEFF 		bl	__aeabi_d2iz
+ 164              	.LVL17:
+ 165              		.loc 1 65 0
+ 166 00d6 3044     		add	r0, r0, r6
+ 167 00d8 00B2     		sxth	r0, r0
+ 168 00da 32B2     		sxth	r2, r6
+ 169 00dc 39B2     		sxth	r1, r7
+ 170 00de 4346     		mov	r3, r8
+ 171 00e0 0090     		str	r0, [sp]
+ 172 00e2 0298     		ldr	r0, [sp, #8]
+ 173 00e4 FFF7FEFF 		bl	makise_d_line
+ 174              	.LVL18:
+  66:gui/gui_compass.c ****     makise_dex_polyline(b->gui->buffer, c->x, c->y, *c->angle, c->arrow, 5, MC_Blue);
+ 175              		.loc 1 66 0
+ 176 00e8 636D     		ldr	r3, [r4, #84]
+ 177 00ea 1868     		ldr	r0, [r3]	@ float
+ 178 00ec FFF7FEFF 		bl	__aeabi_f2d
+ 179              	.LVL19:
+ 180 00f0 2B68     		ldr	r3, [r5]
+ 181 00f2 A66D     		ldr	r6, [r4, #88]
+ 182 00f4 1D68     		ldr	r5, [r3]
+ 183              	.LVL20:
+ 184 00f6 E26D     		ldr	r2, [r4, #92]
+ 185 00f8 CDF804B0 		str	fp, [sp, #4]
+ 186 00fc 04F16403 		add	r3, r4, #100
+ 187 0100 0524     		movs	r4, #5
+ 188              	.LVL21:
+ 189 0102 41EC100B 		vmov	d0, r0, r1
+ 190 0106 0094     		str	r4, [sp]
+ 191 0108 2846     		mov	r0, r5
+ 192 010a 3146     		mov	r1, r6
+ 193 010c FFF7FEFF 		bl	makise_dex_polyline
+ 194              	.LVL22:
+  67:gui/gui_compass.c **** 
+  68:gui/gui_compass.c ****     //*c->angle += 3.14 / 8.0;
+  69:gui/gui_compass.c ****     //printf("Compass %d dr\n", b->id);
+  70:gui/gui_compass.c ****     return M_OK;
+  71:gui/gui_compass.c **** }
+ 195              		.loc 1 71 0
+ 196 0110 5046     		mov	r0, r10
+ 197 0112 07B0     		add	sp, sp, #28
+ 198              	.LCFI3:
+ 199              		.cfi_def_cfa_offset 44
+ 200              		@ sp needed
+ 201 0114 BDEC028B 		vldm	sp!, {d8}
+ 202              	.LCFI4:
+ 203              		.cfi_restore 80
+ 204              		.cfi_restore 81
+ 205              		.cfi_def_cfa_offset 36
+ARM GAS  /tmp/cckOdSNS.s 			page 6
+
+
+ 206 0118 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 207              	.L4:
+ 208              		.align	2
+ 209              	.L3:
+ 210 011c 00000000 		.word	F_Arial15
+ 211              		.cfi_endproc
+ 212              	.LFE127:
+ 214              		.section	.text.gui_create_compass,"ax",%progbits
+ 215              		.align	1
+ 216              		.p2align 2,,3
+ 217              		.global	gui_create_compass
+ 218              		.syntax unified
+ 219              		.thumb
+ 220              		.thumb_func
+ 221              		.fpu fpv4-sp-d16
+ 223              	gui_create_compass:
+ 224              	.LFB126:
+  12:gui/gui_compass.c ****     MElement *e = &b->el;
+ 225              		.loc 1 12 0
+ 226              		.cfi_startproc
+ 227              		@ args = 8, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229              	.LVL23:
+ 230 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 231              	.LCFI5:
+ 232              		.cfi_def_cfa_offset 32
+ 233              		.cfi_offset 4, -32
+ 234              		.cfi_offset 5, -28
+ 235              		.cfi_offset 6, -24
+ 236              		.cfi_offset 7, -20
+ 237              		.cfi_offset 8, -16
+ 238              		.cfi_offset 9, -12
+ 239              		.cfi_offset 10, -8
+ 240              		.cfi_offset 14, -4
+  12:gui/gui_compass.c ****     MElement *e = &b->el;
+ 241              		.loc 1 12 0
+ 242 0004 089D     		ldr	r5, [sp, #32]
+  18:gui/gui_compass.c ****     e->predraw = 0;
+ 243              		.loc 1 18 0
+ 244 0006 284E     		ldr	r6, .L7
+  12:gui/gui_compass.c ****     MElement *e = &b->el;
+ 245              		.loc 1 12 0
+ 246 0008 DDF824A0 		ldr	r10, [sp, #36]
+ 247 000c 0446     		mov	r4, r0
+ 248              	.LVL24:
+ 249 000e 9146     		mov	r9, r2
+  25:gui/gui_compass.c ****     e->position.y  = y - r;
+ 250              		.loc 1 25 0
+ 251 0010 501B     		subs	r0, r2, r5
+ 252              	.LVL25:
+  12:gui/gui_compass.c ****     MElement *e = &b->el;
+ 253              		.loc 1 12 0
+ 254 0012 9846     		mov	r8, r3
+  30:gui/gui_compass.c ****     e->id = makise_g_newid();
+ 255              		.loc 1 30 0
+ 256 0014 0122     		movs	r2, #1
+ 257              	.LVL26:
+ARM GAS  /tmp/cckOdSNS.s 			page 7
+
+
+  26:gui/gui_compass.c ****     e->position.width  = r * 2;
+ 258              		.loc 1 26 0
+ 259 0016 5B1B     		subs	r3, r3, r5
+ 260              	.LVL27:
+  12:gui/gui_compass.c ****     MElement *e = &b->el;
+ 261              		.loc 1 12 0
+ 262 0018 0F46     		mov	r7, r1
+  14:gui/gui_compass.c **** 
+ 263              		.loc 1 14 0
+ 264 001a 0968     		ldr	r1, [r1]
+ 265              	.LVL28:
+  18:gui/gui_compass.c ****     e->predraw = 0;
+ 266              		.loc 1 18 0
+ 267 001c E663     		str	r6, [r4, #60]
+  26:gui/gui_compass.c ****     e->position.width  = r * 2;
+ 268              		.loc 1 26 0
+ 269 001e 2362     		str	r3, [r4, #32]
+  19:gui/gui_compass.c ****     e->update = 0;
+ 270              		.loc 1 19 0
+ 271 0020 0026     		movs	r6, #0
+  27:gui/gui_compass.c ****     e->position.height = r * 2;
+ 272              		.loc 1 27 0
+ 273 0022 05FA02F3 		lsl	r3, r5, r2
+  30:gui/gui_compass.c ****     e->id = makise_g_newid();
+ 274              		.loc 1 30 0
+ 275 0026 2276     		strb	r2, [r4, #24]
+  27:gui/gui_compass.c ****     e->position.height = r * 2;
+ 276              		.loc 1 27 0
+ 277 0028 6362     		str	r3, [r4, #36]
+  28:gui/gui_compass.c **** 
+ 278              		.loc 1 28 0
+ 279 002a A362     		str	r3, [r4, #40]
+  14:gui/gui_compass.c **** 
+ 280              		.loc 1 14 0
+ 281 002c 6160     		str	r1, [r4, #4]
+  16:gui/gui_compass.c **** 
+ 282              		.loc 1 16 0
+ 283 002e A463     		str	r4, [r4, #56]
+  25:gui/gui_compass.c ****     e->position.y  = y - r;
+ 284              		.loc 1 25 0
+ 285 0030 E061     		str	r0, [r4, #28]
+  19:gui/gui_compass.c ****     e->update = 0;
+ 286              		.loc 1 19 0
+ 287 0032 2664     		str	r6, [r4, #64]
+  20:gui/gui_compass.c ****     e->input = 0;
+ 288              		.loc 1 20 0
+ 289 0034 6664     		str	r6, [r4, #68]
+  21:gui/gui_compass.c ****     e->focus = 0;
+ 290              		.loc 1 21 0
+ 291 0036 A664     		str	r6, [r4, #72]
+  22:gui/gui_compass.c ****     e->free = 0;
+ 292              		.loc 1 22 0
+ 293 0038 E664     		str	r6, [r4, #76]
+  23:gui/gui_compass.c ****     
+ 294              		.loc 1 23 0
+ 295 003a 2665     		str	r6, [r4, #80]
+  31:gui/gui_compass.c ****     
+ARM GAS  /tmp/cckOdSNS.s 			page 8
+
+
+ 296              		.loc 1 31 0
+ 297 003c FFF7FEFF 		bl	makise_g_newid
+ 298              	.LVL29:
+  40:gui/gui_compass.c **** 
+ 299              		.loc 1 40 0
+ 300 0040 211D     		adds	r1, r4, #4
+ 301              	.LVL30:
+  31:gui/gui_compass.c ****     
+ 302              		.loc 1 31 0
+ 303 0042 A060     		str	r0, [r4, #8]
+  37:gui/gui_compass.c ****     b->angle = angle;
+ 304              		.loc 1 37 0
+ 305 0044 2566     		str	r5, [r4, #96]
+  40:gui/gui_compass.c **** 
+ 306              		.loc 1 40 0
+ 307 0046 3846     		mov	r0, r7
+  33:gui/gui_compass.c ****     
+ 308              		.loc 1 33 0
+ 309 0048 84F83460 		strb	r6, [r4, #52]
+  35:gui/gui_compass.c ****     b->y = y;
+ 310              		.loc 1 35 0
+ 311 004c C4F85890 		str	r9, [r4, #88]
+  36:gui/gui_compass.c ****     b->r = r;
+ 312              		.loc 1 36 0
+ 313 0050 C4F85C80 		str	r8, [r4, #92]
+  38:gui/gui_compass.c ****     
+ 314              		.loc 1 38 0
+ 315 0054 C4F854A0 		str	r10, [r4, #84]
+  40:gui/gui_compass.c **** 
+ 316              		.loc 1 40 0
+ 317 0058 FFF7FEFF 		bl	makise_g_cont_add
+ 318              	.LVL31:
+  42:gui/gui_compass.c ****     b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+ 319              		.loc 1 42 0
+ 320 005c 134A     		ldr	r2, .L7+4
+ 321 005e A4F86660 		strh	r6, [r4, #102]	@ movhi
+  43:gui/gui_compass.c ****     b->arrow[2] = (MakisePoint){- (r / 10), 0};
+ 322              		.loc 1 43 0
+ 323 0062 05EBC503 		add	r3, r5, r5, lsl #3
+  42:gui/gui_compass.c ****     b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+ 324              		.loc 1 42 0
+ 325 0066 A2FB0515 		umull	r1, r5, r2, r5
+  43:gui/gui_compass.c ****     b->arrow[2] = (MakisePoint){- (r / 10), 0};
+ 326              		.loc 1 43 0
+ 327 006a A2FB0323 		umull	r2, r3, r2, r3
+  42:gui/gui_compass.c ****     b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+ 328              		.loc 1 42 0
+ 329 006e ED08     		lsrs	r5, r5, #3
+  43:gui/gui_compass.c ****     b->arrow[2] = (MakisePoint){- (r / 10), 0};
+ 330              		.loc 1 43 0
+ 331 0070 DB08     		lsrs	r3, r3, #3
+  45:gui/gui_compass.c ****     b->arrow[4] = (MakisePoint){r / 10, 0};
+ 332              		.loc 1 45 0
+ 333 0072 5942     		negs	r1, r3
+  44:gui/gui_compass.c ****     b->arrow[3] = (MakisePoint){0, -(r * 9 / 10)};
+ 334              		.loc 1 44 0
+ 335 0074 6A42     		negs	r2, r5
+ARM GAS  /tmp/cckOdSNS.s 			page 9
+
+
+  42:gui/gui_compass.c ****     b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+ 336              		.loc 1 42 0
+ 337 0076 2DB2     		sxth	r5, r5
+  45:gui/gui_compass.c ****     b->arrow[4] = (MakisePoint){r / 10, 0};
+ 338              		.loc 1 45 0
+ 339 0078 A4F87210 		strh	r1, [r4, #114]	@ movhi
+  43:gui/gui_compass.c ****     b->arrow[2] = (MakisePoint){- (r / 10), 0};
+ 340              		.loc 1 43 0
+ 341 007c A4F86860 		strh	r6, [r4, #104]	@ movhi
+  44:gui/gui_compass.c ****     b->arrow[3] = (MakisePoint){0, -(r * 9 / 10)};
+ 342              		.loc 1 44 0
+ 343 0080 A4F86E60 		strh	r6, [r4, #110]	@ movhi
+  45:gui/gui_compass.c ****     b->arrow[4] = (MakisePoint){r / 10, 0};
+ 344              		.loc 1 45 0
+ 345 0084 A4F87060 		strh	r6, [r4, #112]	@ movhi
+  46:gui/gui_compass.c ****     
+ 346              		.loc 1 46 0
+ 347 0088 A4F87660 		strh	r6, [r4, #118]	@ movhi
+  43:gui/gui_compass.c ****     b->arrow[2] = (MakisePoint){- (r / 10), 0};
+ 348              		.loc 1 43 0
+ 349 008c A4F86A30 		strh	r3, [r4, #106]	@ movhi
+  44:gui/gui_compass.c ****     b->arrow[3] = (MakisePoint){0, -(r * 9 / 10)};
+ 350              		.loc 1 44 0
+ 351 0090 A4F86C20 		strh	r2, [r4, #108]	@ movhi
+  42:gui/gui_compass.c ****     b->arrow[1] = (MakisePoint){0, r * 9 / 10};
+ 352              		.loc 1 42 0
+ 353 0094 A4F86450 		strh	r5, [r4, #100]	@ movhi
+  46:gui/gui_compass.c ****     
+ 354              		.loc 1 46 0
+ 355 0098 A4F87450 		strh	r5, [r4, #116]	@ movhi
+  48:gui/gui_compass.c **** }
+ 356              		.loc 1 48 0
+ 357 009c A168     		ldr	r1, [r4, #8]
+ 358 009e 0448     		ldr	r0, .L7+8
+  49:gui/gui_compass.c **** 
+ 359              		.loc 1 49 0
+ 360 00a0 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 361              	.LCFI6:
+ 362              		.cfi_restore 14
+ 363              		.cfi_restore 10
+ 364              		.cfi_restore 9
+ 365              		.cfi_restore 8
+ 366              		.cfi_restore 7
+ 367              		.cfi_restore 6
+ 368              		.cfi_restore 5
+ 369              		.cfi_restore 4
+ 370              		.cfi_def_cfa_offset 0
+ 371              	.LVL32:
+  48:gui/gui_compass.c **** }
+ 372              		.loc 1 48 0
+ 373 00a4 FFF7FEBF 		b	printf
+ 374              	.LVL33:
+ 375              	.L8:
+ 376              		.align	2
+ 377              	.L7:
+ 378 00a8 00000000 		.word	_m_compass_draw
+ 379 00ac CDCCCCCC 		.word	-858993459
+ARM GAS  /tmp/cckOdSNS.s 			page 10
+
+
+ 380 00b0 00000000 		.word	.LC0
+ 381              		.cfi_endproc
+ 382              	.LFE126:
+ 384              		.comm	makise_color_palette,4,4
+ 385              		.section	.rodata.gui_create_compass.str1.4,"aMS",%progbits,1
+ 386              		.align	2
+ 387              	.LC0:
+ 388 0000 436F6D70 		.ascii	"Compass %d created\012\000"
+ 388      61737320 
+ 388      25642063 
+ 388      72656174 
+ 388      65640A00 
+ 389              		.text
+ 390              	.Letext0:
+ 391              		.file 2 "MakiseGUI/MakiseGUI/makise.h"
+ 392              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 393              		.file 4 "/usr/arm-none-eabi/include/sys/lock.h"
+ 394              		.file 5 "/usr/arm-none-eabi/include/sys/_types.h"
+ 395              		.file 6 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
+ 396              		.file 7 "/usr/arm-none-eabi/include/sys/reent.h"
+ 397              		.file 8 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 398              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ 399              		.file 10 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 400              		.file 11 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 401              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 402              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 403              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 404              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 405              		.file 16 "Inc/spi.h"
+ 406              		.file 17 "Inc/tim.h"
+ 407              		.file 18 "MakiseGUI/MakiseGUI/ILI9340C/ili9340.h"
+ 408              		.file 19 "MakiseGUI/MakiseGUI/makise_colors.h"
+ 409              		.file 20 "MakiseGUI/MakiseGUI/makise_text.h"
+ 410              		.file 21 "MakiseGUI/MakiseGUI/fonts/fonts.h"
+ 411              		.file 22 "MakiseGUI/MakiseGUI/makise_primitives.h"
+ 412              		.file 23 "MakiseGUI/MakiseGUI/gui/makise_gui.h"
+ 413              		.file 24 "MakiseGUI/MakiseGUI/gui/makise_gui_input.h"
+ 414              		.file 25 "MakiseGUI/MakiseGUI/gui/makise_gui_container.h"
+ 415              		.file 26 "MakiseGUI/MakiseGUI/gui/makise_gui_elements.h"
+ 416              		.file 27 "gui/gui.h"
+ 417              		.file 28 "gui/gui_custom.h"
+ 418              		.file 29 "/usr/arm-none-eabi/include/math.h"
+ 419              		.file 30 "/usr/arm-none-eabi/include/stdio.h"
+ARM GAS  /tmp/cckOdSNS.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gui_compass.c
-     /tmp/ccKq4N2X.s:17     .text._m_compass_draw:0000000000000000 $t
-     /tmp/ccKq4N2X.s:25     .text._m_compass_draw:0000000000000000 _m_compass_draw
-     /tmp/ccKq4N2X.s:132    .text._m_compass_draw:000000000000011c $d
-     /tmp/ccKq4N2X.s:135    .text.gui_create_compass:0000000000000000 $t
-     /tmp/ccKq4N2X.s:143    .text.gui_create_compass:0000000000000000 gui_create_compass
-     /tmp/ccKq4N2X.s:209    .text.gui_create_compass:00000000000000a8 $d
+     /tmp/cckOdSNS.s:20     .text._m_compass_draw:0000000000000000 $t
+     /tmp/cckOdSNS.s:28     .text._m_compass_draw:0000000000000000 _m_compass_draw
+     /tmp/cckOdSNS.s:210    .text._m_compass_draw:000000000000011c $d
+     /tmp/cckOdSNS.s:215    .text.gui_create_compass:0000000000000000 $t
+     /tmp/cckOdSNS.s:223    .text.gui_create_compass:0000000000000000 gui_create_compass
+     /tmp/cckOdSNS.s:378    .text.gui_create_compass:00000000000000a8 $d
                             *COM*:0000000000000004 makise_color_palette
-     /tmp/ccKq4N2X.s:215    .rodata.gui_create_compass.str1.4:0000000000000000 $d
+     /tmp/cckOdSNS.s:386    .rodata.gui_create_compass.str1.4:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 __aeabi_ui2d

@@ -23,5 +23,24 @@ void gui_create_compass(MCompass *b, MContainer *c,
 			uint32_t r, //radius
 			float *angle);
 
+typedef struct {
+  MakiseGUI *gui;
+  MElement el;
+
+  double *pitch,
+    *roll,
+    *yaw;
+    
+
+    MakisePoint arrow[5];
+    
+} MCube;
+
+void gui_create_cube(MCube *b, MContainer *c,
+		     int32_t x, int32_t y, //position of center
+		     double *pitch,
+		     double *roll,
+		     double *yaw);
+
 
 #endif

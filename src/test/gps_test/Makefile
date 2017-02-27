@@ -11,7 +11,7 @@ TARGET = gps_test
 # building variables
 ######################################
 # debug build?
-DEBUG = 0
+DEBUG = 1
 # optimization
 OPT = -Ofast
 
@@ -25,74 +25,74 @@ BUILD_DIR = build
 # source
 ######################################
 C_SOURCES = \
-  app/app_main.c \
-  Controls/controls_595.c \
-  dev/compass.c \
-  dev/gps.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
+  Src/main.c \
+  Src/dma.c \
+  Src/stm32f4xx_it.c \
+  Src/usart.c \
+  Src/i2c.c \
+  Src/sdio.c \
+  Src/fatfs.c \
+  Src/system_stm32f4xx.c \
+  Src/spi.c \
+  Src/tim.c \
+  Src/printf.c \
+  Src/gpio.c \
+  Src/stm32f4xx_hal_msp.c \
+  Src/bsp_driver_sd.c \
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.c \
-  gui/gui.c \
-  gui/gui_compass.c \
-  gui/inputs.c \
-  MakiseGUI/MakiseGUI/makise.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
+  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
   MakiseGUI/MakiseGUI/makise_colors.c \
-  MakiseGUI/MakiseGUI/makise_primitives.c \
   MakiseGUI/MakiseGUI/makise_text.c \
-  MakiseGUI/MakiseGUI/fonts/Arial12.c \
-  MakiseGUI/MakiseGUI/fonts/Arial15.c \
-  MakiseGUI/MakiseGUI/fonts/Arial16.c \
-  MakiseGUI/MakiseGUI/fonts/Arial24.c \
+  MakiseGUI/MakiseGUI/makise_primitives.c \
+  MakiseGUI/MakiseGUI/makise.c \
+  MakiseGUI/MakiseGUI/ILI9340C/ili9340.c \
   MakiseGUI/MakiseGUI/fonts/fonts.c \
+  MakiseGUI/MakiseGUI/fonts/Arial12.c \
+  MakiseGUI/MakiseGUI/fonts/Arial24.c \
+  MakiseGUI/MakiseGUI/fonts/Arial16.c \
+  MakiseGUI/MakiseGUI/fonts/Arial15.c \
   MakiseGUI/MakiseGUI/gui/makise_gui.c \
   MakiseGUI/MakiseGUI/gui/makise_gui_container.c \
   MakiseGUI/MakiseGUI/gui/makise_gui_elements.c \
   MakiseGUI/MakiseGUI/gui/makise_gui_input.c \
+  MakiseGUI/MakiseGUI/gui/elements/makise_e_slist.c \
+  MakiseGUI/MakiseGUI/gui/elements/makise_e_tabs.c \
+  MakiseGUI/MakiseGUI/gui/elements/makise_e_text_field.c \
+  MakiseGUI/MakiseGUI/gui/elements/makise_e_slider.c \
   MakiseGUI/MakiseGUI/gui/elements/makise_e.c \
   MakiseGUI/MakiseGUI/gui/elements/makise_e_buttons.c \
   MakiseGUI/MakiseGUI/gui/elements/makise_e_canvas.c \
   MakiseGUI/MakiseGUI/gui/elements/makise_e_lable.c \
-  MakiseGUI/MakiseGUI/gui/elements/makise_e_slider.c \
-  MakiseGUI/MakiseGUI/gui/elements/makise_e_slist.c \
-  MakiseGUI/MakiseGUI/gui/elements/makise_e_tabs.c \
-  MakiseGUI/MakiseGUI/gui/elements/makise_e_text_field.c \
-  MakiseGUI/MakiseGUI/ILI9340C/ili9340.c \
-  Middlewares/Third_Party/FatFs/src/diskio.c \
+  dev/compass.c \
+  dev/gps.c \
+  app/app_main.c \
+  Controls/controls_595.c \
   Middlewares/Third_Party/FatFs/src/ff.c \
   Middlewares/Third_Party/FatFs/src/ff_gen_drv.c \
+  Middlewares/Third_Party/FatFs/src/diskio.c \
   Middlewares/Third_Party/FatFs/src/drivers/sd_diskio.c \
   Middlewares/Third_Party/FatFs/src/option/syscall.c \
-  Src/bsp_driver_sd.c \
-  Src/dma.c \
-  Src/fatfs.c \
-  Src/gpio.c \
-  Src/i2c.c \
-  Src/main.c \
-  Src/printf.c \
-  Src/sdio.c \
-  Src/spi.c \
-  Src/stm32f4xx_hal_msp.c \
-  Src/stm32f4xx_it.c \
-  Src/system_stm32f4xx.c \
-  Src/tim.c \
-  Src/usart.c  
+  gui/inputs.c \
+  gui/gui_compass.c \
+  gui/gui.c  
 ASM_SOURCES = \
   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f401xe.s
 
@@ -115,23 +115,23 @@ AS_DEFS =
 C_DEFS = -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE
 # includes for gcc
 AS_INCLUDES =
-C_INCLUDES = -Iapp
-C_INCLUDES += -IControls
-C_INCLUDES += -Idev
-C_INCLUDES += -IDrivers/CMSIS/Device/ST/STM32F4xx/Include
-C_INCLUDES += -IDrivers/CMSIS/Include
-C_INCLUDES += -IDrivers/STM32F4xx_HAL_Driver/Inc
+C_INCLUDES = -IDrivers/STM32F4xx_HAL_Driver/Inc
 C_INCLUDES += -IDrivers/STM32F4xx_HAL_Driver/Inc/Legacy
-C_INCLUDES += -Igui
-C_INCLUDES += -IInc
+C_INCLUDES += -IDrivers/CMSIS/Include
+C_INCLUDES += -IDrivers/CMSIS/Device/ST/STM32F4xx/Include
 C_INCLUDES += -IMakiseGUI/MakiseGUI
+C_INCLUDES += -IMakiseGUI/MakiseGUI/ILI9340C
 C_INCLUDES += -IMakiseGUI/MakiseGUI/fonts
 C_INCLUDES += -IMakiseGUI/MakiseGUI/gui
 C_INCLUDES += -IMakiseGUI/MakiseGUI/gui/elements
 C_INCLUDES += -IMakiseGUI/MakiseGUI/gui/styles
-C_INCLUDES += -IMakiseGUI/MakiseGUI/ILI9340C
+C_INCLUDES += -IInc
+C_INCLUDES += -Idev
+C_INCLUDES += -Iapp
+C_INCLUDES += -IControls
 C_INCLUDES += -IMiddlewares/Third_Party/FatFs/src
 C_INCLUDES += -IMiddlewares/Third_Party/FatFs/src/drivers
+C_INCLUDES += -Igui
 # compile gcc flags
 ASFLAGS = -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 CFLAGS = -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc94AyDJ.s 			page 1
+ARM GAS  /tmp/ccXYyLlO.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -12,26 +12,54 @@ ARM GAS  /tmp/cc94AyDJ.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"gps.c"
-  12              		.section	.text.gps_init,"ax",%progbits
-  13              		.align	1
-  14              		.p2align 2,,3
-  15              		.global	gps_init
-  16              		.syntax unified
-  17              		.thumb
-  18              		.thumb_func
-  19              		.fpu fpv4-sp-d16
-  21              	gps_init:
-  22              		@ args = 0, pretend = 0, frame = 0
-  23              		@ frame_needed = 0, uses_anonymous_args = 0
-  24              		@ link register save eliminated.
-  25 0000 7047     		bx	lr
-  27 0002 00BF     		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/cc94AyDJ.s 			page 2
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.gps_init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	gps_init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	gps_init:
+  25              	.LFB126:
+  26              		.file 1 "dev/gps.c"
+   1:dev/gps.c     **** #include "gps.h"
+   2:dev/gps.c     **** 
+   3:dev/gps.c     **** void gps_init()
+   4:dev/gps.c     **** {
+  27              		.loc 1 4 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 7047     		bx	lr
+  33              		.cfi_endproc
+  34              	.LFE126:
+  36 0002 00BF     		.text
+  37              	.Letext0:
+  38              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  39              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  40              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+  41              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+  42              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+  43              		.file 7 "/usr/arm-none-eabi/include/sys/lock.h"
+  44              		.file 8 "/usr/arm-none-eabi/include/sys/_types.h"
+  45              		.file 9 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
+  46              		.file 10 "/usr/arm-none-eabi/include/sys/reent.h"
+  47              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+  48              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+  49              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+  50              		.file 14 "Inc/usart.h"
+ARM GAS  /tmp/ccXYyLlO.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 gps.c
-     /tmp/cc94AyDJ.s:13     .text.gps_init:0000000000000000 $t
-     /tmp/cc94AyDJ.s:21     .text.gps_init:0000000000000000 gps_init
+     /tmp/ccXYyLlO.s:16     .text.gps_init:0000000000000000 $t
+     /tmp/ccXYyLlO.s:24     .text.gps_init:0000000000000000 gps_init
+                     .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

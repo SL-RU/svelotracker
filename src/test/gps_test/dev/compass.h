@@ -22,6 +22,13 @@
 #define      LSM303_OUT_Y_H_M          0x0B
 #define      LSM303_OUT_Z_L_M          0x0C
 #define      LSM303_OUT_Z_H_M          0x0D
+#define      LSM303_OUT_X_L_A          0x28
+#define      LSM303_OUT_X_H_A          0x29
+#define      LSM303_OUT_Y_L_A          0x2A
+#define      LSM303_OUT_Y_H_A          0x2B
+#define      LSM303_OUT_Z_L_A          0x2C
+#define      LSM303_OUT_Z_H_A          0x2D
+
 
 #define      COMPASS_I2C               hi2c1
 #define      COMPASS_I2C_ADDR          0x3A

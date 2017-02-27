@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchMuu8c.s 			page 1
+ARM GAS  /tmp/ccTnl6Ia.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -12,9 +12,31 @@ ARM GAS  /tmp/cchMuu8c.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"fonts.c"
-  12              		.comm	makise_color_palette,4,4
-  13              		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/cchMuu8c.s 			page 2
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.comm	makise_color_palette,4,4
+  16              	.Letext0:
+  17              		.file 1 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  18              		.file 2 "/usr/arm-none-eabi/include/sys/lock.h"
+  19              		.file 3 "/usr/arm-none-eabi/include/sys/_types.h"
+  20              		.file 4 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
+  21              		.file 5 "/usr/arm-none-eabi/include/sys/reent.h"
+  22              		.file 6 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  23              		.file 7 "Drivers/CMSIS/Include/core_cm4.h"
+  24              		.file 8 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+  25              		.file 9 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+  26              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+  27              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+  28              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+  29              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+  30              		.file 14 "Inc/spi.h"
+  31              		.file 15 "Inc/tim.h"
+  32              		.file 16 "MakiseGUI/MakiseGUI/ILI9340C/ili9340.h"
+  33              		.file 17 "MakiseGUI/MakiseGUI/makise_colors.h"
+  34              		.file 18 "MakiseGUI/MakiseGUI/makise_text.h"
+  35              		.file 19 "MakiseGUI/MakiseGUI/fonts/fonts.h"
+ARM GAS  /tmp/ccTnl6Ia.s 			page 2
 
 
 DEFINED SYMBOLS

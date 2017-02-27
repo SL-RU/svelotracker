@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccNs6PUm.s 			page 1
+ARM GAS  /tmp/ccbQgl6J.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -12,542 +12,872 @@ ARM GAS  /tmp/ccNs6PUm.s 			page 1
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"app_main.c"
-  12              		.section	.text.b_rem,"ax",%progbits
-  13              		.align	1
-  14              		.p2align 2,,3
-  15              		.global	b_rem
-  16              		.syntax unified
-  17              		.thumb
-  18              		.thumb_func
-  19              		.fpu fpv4-sp-d16
-  21              	b_rem:
-  22              		@ args = 0, pretend = 0, frame = 0
-  23              		@ frame_needed = 0, uses_anonymous_args = 0
-  24 0000 38B5     		push	{r3, r4, r5, lr}
-  25 0002 084C     		ldr	r4, .L3
-  26 0004 4625     		movs	r5, #70
-  27 0006 2A46     		mov	r2, r5
-  28 0008 0021     		movs	r1, #0
-  29 000a 2046     		mov	r0, r4
-  30 000c FFF7FEFF 		bl	memset
-  31 0010 2A46     		mov	r2, r5
-  32 0012 2146     		mov	r1, r4
-  33 0014 0448     		ldr	r0, .L3+4
-  34 0016 FFF7FEFF 		bl	HAL_UART_Receive_DMA
-  35 001a 044B     		ldr	r3, .L3+8
-  36 001c 0022     		movs	r2, #0
-  37 001e 1A60     		str	r2, [r3]
-  38 0020 38BD     		pop	{r3, r4, r5, pc}
-  39              	.L4:
-  40 0022 00BF     		.align	2
-  41              	.L3:
-  42 0024 00000000 		.word	.LANCHOR0
-  43 0028 00000000 		.word	huart1
-  44 002c 00000000 		.word	.LANCHOR1
-  46              		.section	.text.b_st,"ax",%progbits
-  47              		.align	1
-  48              		.p2align 2,,3
-  49              		.global	b_st
-  50              		.syntax unified
-  51              		.thumb
-  52              		.thumb_func
-  53              		.fpu fpv4-sp-d16
-  55              	b_st:
-  56              		@ args = 0, pretend = 0, frame = 0
-  57              		@ frame_needed = 0, uses_anonymous_args = 0
-  58              		@ link register save eliminated.
-  59 0000 4FF47A73 		mov	r3, #1000
-  60 0004 0D22     		movs	r2, #13
-ARM GAS  /tmp/ccNs6PUm.s 			page 2
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.b_rem,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	b_rem
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	b_rem:
+  25              	.LFB126:
+  26              		.file 1 "app/app_main.c"
+   1:app/app_main.c **** #include "app_main.h"
+   2:app/app_main.c **** #include "compass.h"
+   3:app/app_main.c **** #include "i2c.h"
+   4:app/app_main.c **** 
+   5:app/app_main.c **** char* sample_string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp
+   6:app/app_main.c **** char* but_t[3] =
+   7:app/app_main.c **** {
+   8:app/app_main.c ****     "I2C",
+   9:app/app_main.c ****     "start",
+  10:app/app_main.c ****     "clear"
+  11:app/app_main.c **** };
+  12:app/app_main.c **** 
+  13:app/app_main.c **** char out[9048] = {0};
+  14:app/app_main.c **** 
+  15:app/app_main.c **** MakiseStyle button_style =
+  16:app/app_main.c **** {
+  17:app/app_main.c ****     MC_White,
+  18:app/app_main.c ****     &F_Arial24,
+  19:app/app_main.c ****     0,
+  20:app/app_main.c ****     //bg       font     border   double_border
+  21:app/app_main.c ****     {MC_Black, MC_Gray, MC_Gray, 0},  //unactive
+  22:app/app_main.c ****     {MC_Black, MC_White, MC_White, 0},//normal
+  23:app/app_main.c ****     {MC_White, MC_Black, MC_White, 0}, //focused
+  24:app/app_main.c ****     {MC_Green, MC_White, MC_White, 0}, //active
+  25:app/app_main.c **** };
+  26:app/app_main.c **** MakiseStyle text_style =
+  27:app/app_main.c **** {
+  28:app/app_main.c ****     MC_White,
+  29:app/app_main.c ****     &F_Arial15,
+  30:app/app_main.c ****     3,
+  31:app/app_main.c ****     //bg       font     border   double_border
+  32:app/app_main.c ****     {MC_Transparent, MC_White, MC_Transparent, 0},  //unactive
+ARM GAS  /tmp/ccbQgl6J.s 			page 2
 
 
-  61 0006 0249     		ldr	r1, .L6
-  62 0008 0248     		ldr	r0, .L6+4
-  63 000a FFF7FEBF 		b	HAL_UART_Transmit
-  64              	.L7:
-  65 000e 00BF     		.align	2
-  66              	.L6:
-  67 0010 00000000 		.word	.LC0
-  68 0014 00000000 		.word	huart1
-  70              		.section	.text.b_time,"ax",%progbits
-  71              		.align	1
-  72              		.p2align 2,,3
-  73              		.global	b_time
-  74              		.syntax unified
-  75              		.thumb
-  76              		.thumb_func
-  77              		.fpu fpv4-sp-d16
-  79              	b_time:
-  80              		@ args = 0, pretend = 0, frame = 0
-  81              		@ frame_needed = 0, uses_anonymous_args = 0
-  82 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
-  83 0004 234D     		ldr	r5, .L15
-  84 0006 244C     		ldr	r4, .L15+4
-  85 0008 244E     		ldr	r6, .L15+8
-  86 000a DFF89C80 		ldr	r8, .L15+20
-  87 000e 4622     		movs	r2, #70
-  88 0010 0021     		movs	r1, #0
-  89 0012 2846     		mov	r0, r5
-  90 0014 FFF7FEFF 		bl	memset
-  91 0018 2846     		mov	r0, r5
-  92 001a FFF7FEFF 		bl	strlen
-  93 001e 0746     		mov	r7, r0
-  94 0020 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
-  95 0022 E851     		str	r0, [r5, r7]	@ unaligned
-  96 0024 3D44     		add	r5, r5, r7
-  97 0026 2068     		ldr	r0, [r4]
-  98 0028 B4F804C0 		ldrh	ip, [r4, #4]	@ unaligned
-  99 002c 94F806E0 		ldrb	lr, [r4, #6]	@ zero_extendqisi2
- 100 0030 6960     		str	r1, [r5, #4]	@ unaligned
- 101 0032 0024     		movs	r4, #0
- 102 0034 AA60     		str	r2, [r5, #8]	@ unaligned
- 103 0036 EB60     		str	r3, [r5, #12]	@ unaligned
- 104 0038 2861     		str	r0, [r5, #16]	@ unaligned
- 105 003a A5F814C0 		strh	ip, [r5, #20]	@ unaligned
- 106 003e 85F816E0 		strb	lr, [r5, #22]
- 107 0042 174F     		ldr	r7, .L15+12
- 108 0044 2546     		mov	r5, r4
- 109 0046 02E0     		b	.L10
- 110              	.L9:
- 111 0048 0134     		adds	r4, r4, #1
- 112 004a 7F2C     		cmp	r4, #127
- 113 004c 17D0     		beq	.L14
- 114              	.L10:
- 115 004e 6100     		lsls	r1, r4, #1
- 116 0050 89B2     		uxth	r1, r1
- 117 0052 6423     		movs	r3, #100
- 118 0054 0422     		movs	r2, #4
- 119 0056 3046     		mov	r0, r6
-ARM GAS  /tmp/ccNs6PUm.s 			page 3
+  33:app/app_main.c ****     {MC_Transparent, MC_White, MC_Transparent, 0},  //unactive
+  34:app/app_main.c ****     {0, 0, 0, 0}, //focused
+  35:app/app_main.c ****     {0, 0, 0, 0}, //active
+  36:app/app_main.c **** };
+  37:app/app_main.c **** 
+  38:app/app_main.c **** 
+  39:app/app_main.c **** MButton but[3];
+  40:app/app_main.c **** MTextField tf;
+  41:app/app_main.c **** MCompass comp;
+  42:app/app_main.c **** 
+  43:app/app_main.c **** uint32_t last_ch = 0;
+  44:app/app_main.c **** void b_rem(MButton *b)
+  45:app/app_main.c **** {
+  27              		.loc 1 45 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 3, -16
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  46:app/app_main.c ****     memset(out, 0, 70);
+  39              		.loc 1 46 0
+  40 0002 084C     		ldr	r4, .L3
+  41 0004 4625     		movs	r5, #70
+  42 0006 2A46     		mov	r2, r5
+  43 0008 0021     		movs	r1, #0
+  44 000a 2046     		mov	r0, r4
+  45              	.LVL1:
+  46 000c FFF7FEFF 		bl	memset
+  47              	.LVL2:
+  47:app/app_main.c ****     HAL_UART_Receive_DMA(&huart1, out, 70);
+  48              		.loc 1 47 0
+  49 0010 2A46     		mov	r2, r5
+  50 0012 2146     		mov	r1, r4
+  51 0014 0448     		ldr	r0, .L3+4
+  52 0016 FFF7FEFF 		bl	HAL_UART_Receive_DMA
+  53              	.LVL3:
+  48:app/app_main.c ****     last_ch = 0;
+  54              		.loc 1 48 0
+  55 001a 044B     		ldr	r3, .L3+8
+  56 001c 0022     		movs	r2, #0
+  57 001e 1A60     		str	r2, [r3]
+  58 0020 38BD     		pop	{r3, r4, r5, pc}
+  59              	.L4:
+  60 0022 00BF     		.align	2
+  61              	.L3:
+  62 0024 00000000 		.word	.LANCHOR0
+  63 0028 00000000 		.word	huart1
+  64 002c 00000000 		.word	.LANCHOR1
+  65              		.cfi_endproc
+  66              	.LFE126:
+  68              		.section	.text.b_st,"ax",%progbits
+ARM GAS  /tmp/ccbQgl6J.s 			page 3
 
 
- 120 0058 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
- 121 005c 0028     		cmp	r0, #0
- 122 005e F3D1     		bne	.L9
- 123 0060 0346     		mov	r3, r0
- 124 0062 2246     		mov	r2, r4
- 125 0064 4146     		mov	r1, r8
- 126 0066 3846     		mov	r0, r7
- 127 0068 FFF7FEFF 		bl	sprintf
- 128 006c 0134     		adds	r4, r4, #1
- 129 006e 3946     		mov	r1, r7
- 130 0070 0848     		ldr	r0, .L15
- 131 0072 0135     		adds	r5, r5, #1
- 132 0074 FFF7FEFF 		bl	strcat
- 133 0078 7F2C     		cmp	r4, #127
- 134 007a EDB2     		uxtb	r5, r5
- 135 007c E7D1     		bne	.L10
- 136              	.L14:
- 137 007e 2A46     		mov	r2, r5
- 138 0080 0849     		ldr	r1, .L15+16
- 139 0082 0748     		ldr	r0, .L15+12
- 140 0084 FFF7FEFF 		bl	sprintf
- 141 0088 0549     		ldr	r1, .L15+12
- 142 008a 0248     		ldr	r0, .L15
- 143 008c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
- 144 0090 FFF7FEBF 		b	strcat
- 145              	.L16:
- 146              		.align	2
- 147              	.L15:
- 148 0094 00000000 		.word	.LANCHOR0
- 149 0098 00000000 		.word	.LC1
- 150 009c 00000000 		.word	hi2c1
- 151 00a0 00000000 		.word	.LANCHOR2
- 152 00a4 40000000 		.word	.LC3
- 153 00a8 18000000 		.word	.LC2
- 155              		.section	.text.app_main_init,"ax",%progbits
- 156              		.align	1
- 157              		.p2align 2,,3
- 158              		.global	app_main_init
- 159              		.syntax unified
- 160              		.thumb
- 161              		.thumb_func
- 162              		.fpu fpv4-sp-d16
- 164              	app_main_init:
- 165              		@ args = 0, pretend = 0, frame = 0
- 166              		@ frame_needed = 0, uses_anonymous_args = 0
- 167 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
- 168 0004 324D     		ldr	r5, .L19
- 169 0006 DFF8EC90 		ldr	r9, .L19+36
- 170 000a 2B68     		ldr	r3, [r5]
- 171 000c DFF8E880 		ldr	r8, .L19+40
- 172 0010 1968     		ldr	r1, [r3]
- 173 0012 D9F80030 		ldr	r3, [r9]
- 174 0016 2F4F     		ldr	r7, .L19+4
- 175 0018 2F4A     		ldr	r2, .L19+8
- 176 001a 88B0     		sub	sp, sp, #32
- 177 001c 0024     		movs	r4, #0
- 178 001e 1E26     		movs	r6, #30
-ARM GAS  /tmp/ccNs6PUm.s 			page 4
+  69              		.align	1
+  70              		.p2align 2,,3
+  71              		.global	b_st
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  75              		.fpu fpv4-sp-d16
+  77              	b_st:
+  78              	.LFB127:
+  49:app/app_main.c **** }
+  50:app/app_main.c **** void b_st(MButton *b)
+  51:app/app_main.c **** {
+  79              		.loc 1 51 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84              	.LVL4:
+  52:app/app_main.c ****     HAL_UART_Transmit(&huart1, "$PSTMCOLD\r\l", 13, 1000);
+  85              		.loc 1 52 0
+  86 0000 4FF47A73 		mov	r3, #1000
+  87 0004 0D22     		movs	r2, #13
+  88 0006 0249     		ldr	r1, .L6
+  89 0008 0248     		ldr	r0, .L6+4
+  90              	.LVL5:
+  91 000a FFF7FEBF 		b	HAL_UART_Transmit
+  92              	.LVL6:
+  93              	.L7:
+  94 000e 00BF     		.align	2
+  95              	.L6:
+  96 0010 00000000 		.word	.LC0
+  97 0014 00000000 		.word	huart1
+  98              		.cfi_endproc
+  99              	.LFE127:
+ 101              		.section	.text.b_time,"ax",%progbits
+ 102              		.align	1
+ 103              		.p2align 2,,3
+ 104              		.global	b_time
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 108              		.fpu fpv4-sp-d16
+ 110              	b_time:
+ 111              	.LFB128:
+  53:app/app_main.c **** }
+  54:app/app_main.c **** uint8_t buf[1024] = {0};
+  55:app/app_main.c **** void b_time(MButton *b)
+  56:app/app_main.c **** {
+ 112              		.loc 1 56 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              	.LVL7:
+ 117 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 118              	.LCFI1:
+ 119              		.cfi_def_cfa_offset 24
+ 120              		.cfi_offset 4, -24
+ARM GAS  /tmp/ccbQgl6J.s 			page 4
 
 
- 179 0020 0293     		str	r3, [sp, #8]
- 180 0022 4FF0500A 		mov	r10, #80
- 181 0026 0A23     		movs	r3, #10
- 182 0028 4046     		mov	r0, r8
- 183 002a 0594     		str	r4, [sp, #20]
- 184 002c 0494     		str	r4, [sp, #16]
- 185 002e 0392     		str	r2, [sp, #12]
- 186 0030 0697     		str	r7, [sp, #24]
- 187 0032 1A46     		mov	r2, r3
- 188 0034 0196     		str	r6, [sp, #4]
- 189 0036 CDF800A0 		str	r10, [sp]
- 190 003a FFF7FEFF 		bl	m_create_button
- 191 003e 2B68     		ldr	r3, [r5]
- 192 0040 D9F80420 		ldr	r2, [r9, #4]
- 193 0044 1968     		ldr	r1, [r3]
- 194 0046 254B     		ldr	r3, .L19+12
- 195 0048 0594     		str	r4, [sp, #20]
- 196 004a 0494     		str	r4, [sp, #16]
- 197 004c 0292     		str	r2, [sp, #8]
- 198 004e 08F16C00 		add	r0, r8, #108
- 199 0052 0393     		str	r3, [sp, #12]
- 200 0054 CDF800A0 		str	r10, [sp]
- 201 0058 0697     		str	r7, [sp, #24]
- 202 005a 0196     		str	r6, [sp, #4]
- 203 005c 0A23     		movs	r3, #10
- 204 005e 5A22     		movs	r2, #90
- 205 0060 FFF7FEFF 		bl	m_create_button
- 206 0064 2B68     		ldr	r3, [r5]
- 207 0066 D9F80820 		ldr	r2, [r9, #8]
- 208 006a 1968     		ldr	r1, [r3]
- 209 006c 1C4B     		ldr	r3, .L19+16
- 210 006e 0292     		str	r2, [sp, #8]
- 211 0070 4FF06409 		mov	r9, #100
- 212 0074 08F1D800 		add	r0, r8, #216
- 213 0078 0594     		str	r4, [sp, #20]
- 214 007a 0494     		str	r4, [sp, #16]
- 215 007c 0393     		str	r3, [sp, #12]
- 216 007e AA22     		movs	r2, #170
- 217 0080 0697     		str	r7, [sp, #24]
- 218 0082 0196     		str	r6, [sp, #4]
- 219 0084 CDF80090 		str	r9, [sp]
- 220 0088 0A23     		movs	r3, #10
- 221 008a FFF7FEFF 		bl	m_create_button
- 222 008e 2B68     		ldr	r3, [r5]
- 223 0090 1C68     		ldr	r4, [r3]
- 224 0092 FFF7FEFF 		bl	compass_get_angle
- 225 0096 2146     		mov	r1, r4
- 226 0098 0190     		str	r0, [sp, #4]
- 227 009a CDF80090 		str	r9, [sp]
- 228 009e 7823     		movs	r3, #120
- 229 00a0 A022     		movs	r2, #160
- 230 00a2 1048     		ldr	r0, .L19+20
- 231 00a4 FFF7FEFF 		bl	gui_create_compass
- 232 00a8 2A68     		ldr	r2, [r5]
- 233 00aa 0F4B     		ldr	r3, .L19+24
- 234 00ac 1168     		ldr	r1, [r2]
- 235 00ae 0F48     		ldr	r0, .L19+28
-ARM GAS  /tmp/ccNs6PUm.s 			page 5
+ 121              		.cfi_offset 5, -20
+ 122              		.cfi_offset 6, -16
+ 123              		.cfi_offset 7, -12
+ 124              		.cfi_offset 8, -8
+ 125              		.cfi_offset 14, -4
+  57:app/app_main.c ****     memset(out, 0, 70);
+ 126              		.loc 1 57 0
+ 127 0004 234D     		ldr	r5, .L15
+  58:app/app_main.c ****     strcat(out, "I2C devices ping test\n");
+ 128              		.loc 1 58 0
+ 129 0006 244C     		ldr	r4, .L15+4
+ 130              	.LBB2:
+  59:app/app_main.c ****     uint8_t c = 0, a = 0;
+  60:app/app_main.c ****     for(uint8_t i = 0; i < 127; i++)
+  61:app/app_main.c ****     {
+  62:app/app_main.c **** 	if((a = HAL_I2C_IsDeviceReady(&hi2c1, i<<1, 4, 100)) == HAL_OK)
+ 131              		.loc 1 62 0
+ 132 0008 244E     		ldr	r6, .L15+8
+  63:app/app_main.c **** 	{
+  64:app/app_main.c **** 	    c++;
+  65:app/app_main.c **** 	    sprintf(buf, "I2C device with address 0x%02x is %d\n", i, a);
+ 133              		.loc 1 65 0
+ 134 000a DFF89C80 		ldr	r8, .L15+20
+ 135              	.LBE2:
+  57:app/app_main.c ****     strcat(out, "I2C devices ping test\n");
+ 136              		.loc 1 57 0
+ 137 000e 4622     		movs	r2, #70
+ 138 0010 0021     		movs	r1, #0
+ 139 0012 2846     		mov	r0, r5
+ 140              	.LVL8:
+ 141 0014 FFF7FEFF 		bl	memset
+ 142              	.LVL9:
+  58:app/app_main.c ****     uint8_t c = 0, a = 0;
+ 143              		.loc 1 58 0
+ 144 0018 2846     		mov	r0, r5
+ 145 001a FFF7FEFF 		bl	strlen
+ 146              	.LVL10:
+ 147 001e 0746     		mov	r7, r0
+ 148 0020 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 149 0022 E851     		str	r0, [r5, r7]	@ unaligned
+ 150 0024 3D44     		add	r5, r5, r7
+ 151 0026 2068     		ldr	r0, [r4]
+ 152 0028 B4F804C0 		ldrh	ip, [r4, #4]	@ unaligned
+ 153 002c 94F806E0 		ldrb	lr, [r4, #6]	@ zero_extendqisi2
+ 154 0030 6960     		str	r1, [r5, #4]	@ unaligned
+ 155 0032 0024     		movs	r4, #0
+ 156 0034 AA60     		str	r2, [r5, #8]	@ unaligned
+ 157 0036 EB60     		str	r3, [r5, #12]	@ unaligned
+ 158 0038 2861     		str	r0, [r5, #16]	@ unaligned
+ 159 003a A5F814C0 		strh	ip, [r5, #20]	@ unaligned
+ 160 003e 85F816E0 		strb	lr, [r5, #22]
+ 161              	.LVL11:
+ 162              	.LBB3:
+ 163              		.loc 1 65 0
+ 164 0042 174F     		ldr	r7, .L15+12
+ 165              	.LBE3:
+  59:app/app_main.c ****     for(uint8_t i = 0; i < 127; i++)
+ARM GAS  /tmp/ccbQgl6J.s 			page 5
 
 
- 236 00b0 0393     		str	r3, [sp, #12]
- 237 00b2 9622     		movs	r2, #150
- 238 00b4 4FF49B73 		mov	r3, #310
- 239 00b8 0290     		str	r0, [sp, #8]
- 240 00ba 0192     		str	r2, [sp, #4]
- 241 00bc 0093     		str	r3, [sp]
- 242 00be 0522     		movs	r2, #5
- 243 00c0 3223     		movs	r3, #50
- 244 00c2 0B48     		ldr	r0, .L19+32
- 245 00c4 FFF7FEFF 		bl	m_create_text_field
- 246 00c8 08B0     		add	sp, sp, #32
- 247              		@ sp needed
- 248 00ca BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
- 249              	.L20:
- 250 00ce 00BF     		.align	2
- 251              	.L19:
- 252 00d0 00000000 		.word	host
- 253 00d4 00000000 		.word	.LANCHOR3
- 254 00d8 00000000 		.word	b_time
- 255 00dc 00000000 		.word	b_st
- 256 00e0 00000000 		.word	b_rem
- 257 00e4 00000000 		.word	comp
- 258 00e8 00000000 		.word	.LANCHOR5
- 259 00ec 00000000 		.word	.LANCHOR0
- 260 00f0 00000000 		.word	tf
- 261 00f4 00000000 		.word	.LANCHOR4
- 262 00f8 00000000 		.word	but
- 264              		.section	.text.HAL_UART_RxCpltCallback,"ax",%progbits
- 265              		.align	1
- 266              		.p2align 2,,3
- 267              		.global	HAL_UART_RxCpltCallback
- 268              		.syntax unified
- 269              		.thumb
- 270              		.thumb_func
- 271              		.fpu fpv4-sp-d16
- 273              	HAL_UART_RxCpltCallback:
- 274              		@ args = 0, pretend = 0, frame = 0
- 275              		@ frame_needed = 0, uses_anonymous_args = 0
- 276              		@ link register save eliminated.
- 277 0000 0148     		ldr	r0, .L22
- 278 0002 FFF7FEBF 		b	printf
- 279              	.L23:
- 280 0006 00BF     		.align	2
- 281              	.L22:
- 282 0008 00000000 		.word	.LANCHOR0
- 284              		.section	.text.app_main_upd,"ax",%progbits
- 285              		.align	1
- 286              		.p2align 2,,3
- 287              		.global	app_main_upd
- 288              		.syntax unified
- 289              		.thumb
- 290              		.thumb_func
- 291              		.fpu fpv4-sp-d16
- 293              	app_main_upd:
- 294              		@ args = 0, pretend = 0, frame = 0
- 295              		@ frame_needed = 0, uses_anonymous_args = 0
- 296              		@ link register save eliminated.
-ARM GAS  /tmp/ccNs6PUm.s 			page 6
+ 166              		.loc 1 59 0
+ 167 0044 2546     		mov	r5, r4
+ 168 0046 02E0     		b	.L10
+ 169              	.LVL12:
+ 170              	.L9:
+ 171 0048 0134     		adds	r4, r4, #1
+ 172              	.LVL13:
+ 173              	.LBB4:
+  60:app/app_main.c ****     {
+ 174              		.loc 1 60 0 discriminator 2
+ 175 004a 7F2C     		cmp	r4, #127
+ 176 004c 17D0     		beq	.L14
+ 177              	.LVL14:
+ 178              	.L10:
+  62:app/app_main.c **** 	{
+ 179              		.loc 1 62 0
+ 180 004e 6100     		lsls	r1, r4, #1
+ 181 0050 89B2     		uxth	r1, r1
+ 182 0052 6423     		movs	r3, #100
+ 183 0054 0422     		movs	r2, #4
+ 184 0056 3046     		mov	r0, r6
+ 185 0058 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 186              	.LVL15:
+ 187 005c 0028     		cmp	r0, #0
+ 188 005e F3D1     		bne	.L9
+ 189              		.loc 1 65 0
+ 190 0060 0346     		mov	r3, r0
+ 191 0062 2246     		mov	r2, r4
+ 192 0064 4146     		mov	r1, r8
+ 193 0066 3846     		mov	r0, r7
+ 194              	.LVL16:
+ 195 0068 FFF7FEFF 		bl	sprintf
+ 196              	.LVL17:
+ 197 006c 0134     		adds	r4, r4, #1
+ 198              	.LVL18:
+  66:app/app_main.c **** 	    strcat(out, buf);
+ 199              		.loc 1 66 0
+ 200 006e 3946     		mov	r1, r7
+ 201 0070 0848     		ldr	r0, .L15
+  64:app/app_main.c **** 	    sprintf(buf, "I2C device with address 0x%02x is %d\n", i, a);
+ 202              		.loc 1 64 0
+ 203 0072 0135     		adds	r5, r5, #1
+ 204              	.LVL19:
+ 205              		.loc 1 66 0
+ 206 0074 FFF7FEFF 		bl	strcat
+ 207              	.LVL20:
+  60:app/app_main.c ****     {
+ 208              		.loc 1 60 0
+ 209 0078 7F2C     		cmp	r4, #127
+  64:app/app_main.c **** 	    sprintf(buf, "I2C device with address 0x%02x is %d\n", i, a);
+ 210              		.loc 1 64 0
+ 211 007a EDB2     		uxtb	r5, r5
+ 212              	.LVL21:
+  60:app/app_main.c ****     {
+ 213              		.loc 1 60 0
+ 214 007c E7D1     		bne	.L10
+ 215              	.L14:
+ARM GAS  /tmp/ccbQgl6J.s 			page 6
 
 
- 297 0000 8022     		movs	r2, #128
- 298 0002 0021     		movs	r1, #0
- 299 0004 0148     		ldr	r0, .L25
- 300 0006 FFF7FEBF 		b	memset
- 301              	.L26:
- 302 000a 00BF     		.align	2
- 303              	.L25:
- 304 000c 00000000 		.word	.LANCHOR2
- 306              		.global	buf
- 307              		.global	last_ch
- 308              		.comm	comp,120,4
- 309              		.comm	tf,92,4
- 310              		.comm	but,324,4
- 311              		.global	text_style
- 312              		.global	button_style
- 313              		.global	out
- 314              		.global	but_t
- 315              		.global	sample_string
- 316              		.comm	makise_color_palette,4,4
- 317              		.section	.bss.buf,"aw",%nobits
- 318              		.align	2
- 319              		.set	.LANCHOR2,. + 0
- 322              	buf:
- 323 0000 00000000 		.space	1024
- 323      00000000 
- 323      00000000 
- 323      00000000 
- 323      00000000 
- 324              		.section	.bss.last_ch,"aw",%nobits
- 325              		.align	2
- 326              		.set	.LANCHOR1,. + 0
- 329              	last_ch:
- 330 0000 00000000 		.space	4
- 331              		.section	.bss.out,"aw",%nobits
- 332              		.align	2
- 333              		.set	.LANCHOR0,. + 0
- 336              	out:
- 337 0000 00000000 		.space	9048
- 337      00000000 
- 337      00000000 
- 337      00000000 
- 337      00000000 
- 338              		.section	.data.but_t,"aw",%progbits
- 339              		.align	2
- 340              		.set	.LANCHOR4,. + 0
- 343              	but_t:
- 344 0000 00000000 		.word	.LC4
- 345 0004 04000000 		.word	.LC5
- 346 0008 0C000000 		.word	.LC6
- 347              		.section	.data.button_style,"aw",%progbits
- 348              		.align	2
- 349              		.set	.LANCHOR3,. + 0
- 352              	button_style:
- 353 0000 01000000 		.word	1
- 354 0004 00000000 		.word	F_Arial24
- 355 0008 00000000 		.word	0
- 356 000c 00000000 		.word	0
-ARM GAS  /tmp/ccNs6PUm.s 			page 7
+ 216              	.LBE4:
+  67:app/app_main.c **** 	}
+  68:app/app_main.c ****     }
+  69:app/app_main.c ****     sprintf(buf, "TOTAL I2C devices: %d\n", c);
+ 217              		.loc 1 69 0
+ 218 007e 2A46     		mov	r2, r5
+ 219 0080 0849     		ldr	r1, .L15+16
+ 220 0082 0748     		ldr	r0, .L15+12
+ 221 0084 FFF7FEFF 		bl	sprintf
+ 222              	.LVL22:
+  70:app/app_main.c ****     strcat(out, buf);
+ 223              		.loc 1 70 0
+ 224 0088 0549     		ldr	r1, .L15+12
+ 225 008a 0248     		ldr	r0, .L15
+  71:app/app_main.c ****     
+  72:app/app_main.c **** }
+ 226              		.loc 1 72 0
+ 227 008c BDE8F041 		pop	{r4, r5, r6, r7, r8, lr}
+ 228              	.LCFI2:
+ 229              		.cfi_restore 14
+ 230              		.cfi_restore 8
+ 231              		.cfi_restore 7
+ 232              		.cfi_restore 6
+ 233              		.cfi_restore 5
+ 234              		.cfi_restore 4
+ 235              		.cfi_def_cfa_offset 0
+ 236              	.LVL23:
+  70:app/app_main.c ****     strcat(out, buf);
+ 237              		.loc 1 70 0
+ 238 0090 FFF7FEBF 		b	strcat
+ 239              	.LVL24:
+ 240              	.L16:
+ 241              		.align	2
+ 242              	.L15:
+ 243 0094 00000000 		.word	.LANCHOR0
+ 244 0098 00000000 		.word	.LC1
+ 245 009c 00000000 		.word	hi2c1
+ 246 00a0 00000000 		.word	.LANCHOR2
+ 247 00a4 40000000 		.word	.LC3
+ 248 00a8 18000000 		.word	.LC2
+ 249              		.cfi_endproc
+ 250              	.LFE128:
+ 252              		.section	.text.app_main_init,"ax",%progbits
+ 253              		.align	1
+ 254              		.p2align 2,,3
+ 255              		.global	app_main_init
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.fpu fpv4-sp-d16
+ 261              	app_main_init:
+ 262              	.LFB129:
+  73:app/app_main.c **** 
+  74:app/app_main.c **** void app_main_init()
+  75:app/app_main.c **** {
+ 263              		.loc 1 75 0
+ 264              		.cfi_startproc
+ARM GAS  /tmp/ccbQgl6J.s 			page 7
 
 
- 357 0010 09000000 		.word	9
- 358 0014 09000000 		.word	9
- 359 0018 0000     		.short	0
- 360 001a 0000     		.space	2
- 361 001c 00000000 		.word	0
- 362 0020 01000000 		.word	1
- 363 0024 01000000 		.word	1
- 364 0028 0000     		.short	0
- 365 002a 0000     		.space	2
- 366 002c 01000000 		.word	1
- 367 0030 00000000 		.word	0
- 368 0034 01000000 		.word	1
- 369 0038 0000     		.short	0
- 370 003a 0000     		.space	2
- 371 003c 03000000 		.word	3
- 372 0040 01000000 		.word	1
- 373 0044 01000000 		.word	1
- 374 0048 0000     		.short	0
- 375 004a 0000     		.space	2
- 376              		.section	.data.sample_string,"aw",%progbits
- 377              		.align	2
- 380              	sample_string:
- 381 0000 14000000 		.word	.LC7
- 382              		.section	.data.text_style,"aw",%progbits
- 383              		.align	2
- 384              		.set	.LANCHOR5,. + 0
- 387              	text_style:
- 388 0000 01000000 		.word	1
- 389 0004 00000000 		.word	F_Arial15
- 390 0008 03000000 		.word	3
- 391 000c FFFF0000 		.word	65535
- 392 0010 01000000 		.word	1
- 393 0014 FFFF0000 		.word	65535
- 394 0018 0000     		.short	0
- 395 001a 0000     		.space	2
- 396 001c FFFF0000 		.word	65535
- 397 0020 01000000 		.word	1
- 398 0024 FFFF0000 		.word	65535
- 399 0028 0000     		.short	0
- 400 002a 0000     		.space	2
- 401 002c 00000000 		.word	0
- 402 0030 00000000 		.word	0
- 403 0034 00000000 		.word	0
- 404 0038 0000     		.short	0
- 405 003a 0000     		.space	2
- 406 003c 00000000 		.word	0
- 407 0040 00000000 		.word	0
- 408 0044 00000000 		.word	0
- 409 0048 0000     		.short	0
- 410 004a 0000     		.space	2
- 411              		.section	.rodata.b_st.str1.4,"aMS",%progbits,1
- 412              		.align	2
- 413              	.LC0:
- 414 0000 24505354 		.ascii	"$PSTMCOLD\015l\000"
- 414      4D434F4C 
- 414      440D6C00 
- 415              		.section	.rodata.b_time.str1.4,"aMS",%progbits,1
-ARM GAS  /tmp/ccNs6PUm.s 			page 8
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 268              	.LCFI3:
+ 269              		.cfi_def_cfa_offset 32
+ 270              		.cfi_offset 4, -32
+ 271              		.cfi_offset 5, -28
+ 272              		.cfi_offset 6, -24
+ 273              		.cfi_offset 7, -20
+ 274              		.cfi_offset 8, -16
+ 275              		.cfi_offset 9, -12
+ 276              		.cfi_offset 10, -8
+ 277              		.cfi_offset 14, -4
+  76:app/app_main.c ****     m_create_button(&but[0], host->host,
+ 278              		.loc 1 76 0
+ 279 0004 324D     		ldr	r5, .L19
+ 280 0006 DFF8EC90 		ldr	r9, .L19+36
+ 281 000a 2B68     		ldr	r3, [r5]
+ 282 000c DFF8E880 		ldr	r8, .L19+40
+ 283 0010 1968     		ldr	r1, [r3]
+ 284 0012 D9F80030 		ldr	r3, [r9]
+ 285 0016 2F4F     		ldr	r7, .L19+4
+ 286 0018 2F4A     		ldr	r2, .L19+8
+  75:app/app_main.c ****     m_create_button(&but[0], host->host,
+ 287              		.loc 1 75 0
+ 288 001a 88B0     		sub	sp, sp, #32
+ 289              	.LCFI4:
+ 290              		.cfi_def_cfa_offset 64
+ 291              		.loc 1 76 0
+ 292 001c 0024     		movs	r4, #0
+ 293 001e 1E26     		movs	r6, #30
+ 294 0020 0293     		str	r3, [sp, #8]
+ 295 0022 4FF0500A 		mov	r10, #80
+ 296 0026 0A23     		movs	r3, #10
+ 297 0028 4046     		mov	r0, r8
+ 298 002a 0594     		str	r4, [sp, #20]
+ 299 002c 0494     		str	r4, [sp, #16]
+ 300 002e 0392     		str	r2, [sp, #12]
+ 301 0030 0697     		str	r7, [sp, #24]
+ 302 0032 1A46     		mov	r2, r3
+ 303 0034 0196     		str	r6, [sp, #4]
+ 304 0036 CDF800A0 		str	r10, [sp]
+ 305 003a FFF7FEFF 		bl	m_create_button
+ 306              	.LVL25:
+  77:app/app_main.c **** 		    10, 10, 80, 30,
+  78:app/app_main.c **** 		    but_t[0],
+  79:app/app_main.c **** 		    &b_time, 0, 0,
+  80:app/app_main.c **** 		    &button_style);
+  81:app/app_main.c ****     m_create_button(&but[1], host->host,
+ 307              		.loc 1 81 0
+ 308 003e 2B68     		ldr	r3, [r5]
+ 309 0040 D9F80420 		ldr	r2, [r9, #4]
+ 310 0044 1968     		ldr	r1, [r3]
+ 311 0046 254B     		ldr	r3, .L19+12
+ 312 0048 0594     		str	r4, [sp, #20]
+ 313 004a 0494     		str	r4, [sp, #16]
+ 314 004c 0292     		str	r2, [sp, #8]
+ARM GAS  /tmp/ccbQgl6J.s 			page 8
 
 
- 416              		.align	2
- 417              	.LC1:
- 418 0000 49324320 		.ascii	"I2C devices ping test\012\000"
- 418      64657669 
- 418      63657320 
- 418      70696E67 
- 418      20746573 
- 419 0017 00       		.space	1
- 420              	.LC2:
- 421 0018 49324320 		.ascii	"I2C device with address 0x%02x is %d\012\000"
- 421      64657669 
- 421      63652077 
- 421      69746820 
- 421      61646472 
- 422 003e 0000     		.space	2
- 423              	.LC3:
- 424 0040 544F5441 		.ascii	"TOTAL I2C devices: %d\012\000"
- 424      4C204932 
- 424      43206465 
- 424      76696365 
- 424      733A2025 
- 425              		.section	.rodata.str1.4,"aMS",%progbits,1
- 426              		.align	2
- 427              	.LC4:
- 428 0000 49324300 		.ascii	"I2C\000"
- 429              	.LC5:
- 430 0004 73746172 		.ascii	"start\000"
- 430      7400
- 431 000a 0000     		.space	2
- 432              	.LC6:
- 433 000c 636C6561 		.ascii	"clear\000"
- 433      7200
- 434 0012 0000     		.space	2
- 435              	.LC7:
- 436 0014 4C6F7265 		.ascii	"Lorem ipsum dolor sit amet, consectetur adipiscing "
- 436      6D206970 
- 436      73756D20 
- 436      646F6C6F 
- 436      72207369 
- 437 0047 656C6974 		.ascii	"elit, sed do eiusmod tempor incididunt ut labore et"
- 437      2C207365 
- 437      6420646F 
- 437      20656975 
- 437      736D6F64 
- 438 007a 20646F6C 		.ascii	" dolore magna aliqua. Ut enim ad minim veniam, quis"
- 438      6F726520 
- 438      6D61676E 
- 438      6120616C 
- 438      69717561 
- 439 00ad 206E6F73 		.ascii	" nostrud exercitation ullamco laboris nisi ut aliqu"
- 439      74727564 
- 439      20657865 
- 439      72636974 
- 439      6174696F 
- 440 00e0 69702065 		.ascii	"ip ex ea commodo consequat. Duis aute irure dolor i"
- 440      78206561 
- 440      20636F6D 
-ARM GAS  /tmp/ccNs6PUm.s 			page 9
+ 315 004e 08F16C00 		add	r0, r8, #108
+ 316 0052 0393     		str	r3, [sp, #12]
+ 317 0054 CDF800A0 		str	r10, [sp]
+ 318 0058 0697     		str	r7, [sp, #24]
+ 319 005a 0196     		str	r6, [sp, #4]
+ 320 005c 0A23     		movs	r3, #10
+ 321 005e 5A22     		movs	r2, #90
+ 322 0060 FFF7FEFF 		bl	m_create_button
+ 323              	.LVL26:
+  82:app/app_main.c **** 		    90, 10, 80, 30,
+  83:app/app_main.c **** 		    but_t[1],
+  84:app/app_main.c **** 		    &b_st, 0, 0,
+  85:app/app_main.c **** 		    &button_style);
+  86:app/app_main.c ****     m_create_button(&but[2], host->host,
+ 324              		.loc 1 86 0
+ 325 0064 2B68     		ldr	r3, [r5]
+ 326 0066 D9F80820 		ldr	r2, [r9, #8]
+ 327 006a 1968     		ldr	r1, [r3]
+ 328 006c 1C4B     		ldr	r3, .L19+16
+ 329 006e 0292     		str	r2, [sp, #8]
+ 330 0070 4FF06409 		mov	r9, #100
+ 331 0074 08F1D800 		add	r0, r8, #216
+ 332 0078 0594     		str	r4, [sp, #20]
+ 333 007a 0494     		str	r4, [sp, #16]
+ 334 007c 0393     		str	r3, [sp, #12]
+ 335 007e AA22     		movs	r2, #170
+ 336 0080 0697     		str	r7, [sp, #24]
+ 337 0082 0196     		str	r6, [sp, #4]
+ 338 0084 CDF80090 		str	r9, [sp]
+ 339 0088 0A23     		movs	r3, #10
+ 340 008a FFF7FEFF 		bl	m_create_button
+ 341              	.LVL27:
+  87:app/app_main.c **** 		    170, 10, 100, 30,
+  88:app/app_main.c **** 		    but_t[2],
+  89:app/app_main.c **** 		    &b_rem, 0, 0,
+  90:app/app_main.c **** 		    &button_style);
+  91:app/app_main.c **** 
+  92:app/app_main.c ****     gui_create_compass(&comp, host->host, 160, 120, 100, compass_get_angle());
+ 342              		.loc 1 92 0
+ 343 008e 2B68     		ldr	r3, [r5]
+ 344 0090 1C68     		ldr	r4, [r3]
+ 345 0092 FFF7FEFF 		bl	compass_get_angle
+ 346              	.LVL28:
+ 347 0096 2146     		mov	r1, r4
+ 348 0098 0190     		str	r0, [sp, #4]
+ 349 009a CDF80090 		str	r9, [sp]
+ 350 009e 7823     		movs	r3, #120
+ 351 00a0 A022     		movs	r2, #160
+ 352 00a2 1048     		ldr	r0, .L19+20
+ 353 00a4 FFF7FEFF 		bl	gui_create_compass
+ 354              	.LVL29:
+  93:app/app_main.c ****     
+  94:app/app_main.c ****     m_create_text_field(&tf, host->host, 
+ 355              		.loc 1 94 0
+ 356 00a8 2A68     		ldr	r2, [r5]
+ 357 00aa 0F4B     		ldr	r3, .L19+24
+ 358 00ac 1168     		ldr	r1, [r2]
+ARM GAS  /tmp/ccbQgl6J.s 			page 9
 
 
- 440      6D6F646F 
- 440      20636F6E 
- 441 0113 6E207265 		.ascii	"n reprehenderit in voluptate velit esse cillum dolo"
- 441      70726568 
- 441      656E6465 
- 441      72697420 
- 441      696E2076 
- 442 0146 72652065 		.ascii	"re eu fugiat nulla pariatur. Excepteur sint occaeca"
- 442      75206675 
- 442      67696174 
- 442      206E756C 
- 442      6C612070 
- 443 0179 74206375 		.ascii	"t cupidatat non proident, sunt in culpa qui officia"
- 443      70696461 
- 443      74617420 
- 443      6E6F6E20 
- 443      70726F69 
- 444 01ac 20646573 		.ascii	" deserunt mollit anim id est laborum.\000"
- 444      6572756E 
- 444      74206D6F 
- 444      6C6C6974 
- 444      20616E69 
- 445              		.ident	"GCC: (Arch Repository) 6.3.0"
-ARM GAS  /tmp/ccNs6PUm.s 			page 10
+ 359 00ae 0F48     		ldr	r0, .L19+28
+ 360 00b0 0393     		str	r3, [sp, #12]
+ 361 00b2 9622     		movs	r2, #150
+ 362 00b4 4FF49B73 		mov	r3, #310
+ 363 00b8 0290     		str	r0, [sp, #8]
+ 364 00ba 0192     		str	r2, [sp, #4]
+ 365 00bc 0093     		str	r3, [sp]
+ 366 00be 0522     		movs	r2, #5
+ 367 00c0 3223     		movs	r3, #50
+ 368 00c2 0B48     		ldr	r0, .L19+32
+ 369 00c4 FFF7FEFF 		bl	m_create_text_field
+ 370              	.LVL30:
+  95:app/app_main.c ****     			5, 50, 310, 150, 
+  96:app/app_main.c ****     			out, 
+  97:app/app_main.c ****     			&text_style); 
+  98:app/app_main.c ****     /* HAL_UART_Receive_DMA(&huart1, out, 128); */
+  99:app/app_main.c **** }
+ 371              		.loc 1 99 0
+ 372 00c8 08B0     		add	sp, sp, #32
+ 373              	.LCFI5:
+ 374              		.cfi_def_cfa_offset 32
+ 375              		@ sp needed
+ 376 00ca BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 377              	.L20:
+ 378 00ce 00BF     		.align	2
+ 379              	.L19:
+ 380 00d0 00000000 		.word	host
+ 381 00d4 00000000 		.word	.LANCHOR3
+ 382 00d8 00000000 		.word	b_time
+ 383 00dc 00000000 		.word	b_st
+ 384 00e0 00000000 		.word	b_rem
+ 385 00e4 00000000 		.word	comp
+ 386 00e8 00000000 		.word	.LANCHOR5
+ 387 00ec 00000000 		.word	.LANCHOR0
+ 388 00f0 00000000 		.word	tf
+ 389 00f4 00000000 		.word	.LANCHOR4
+ 390 00f8 00000000 		.word	but
+ 391              		.cfi_endproc
+ 392              	.LFE129:
+ 394              		.section	.text.HAL_UART_RxCpltCallback,"ax",%progbits
+ 395              		.align	1
+ 396              		.p2align 2,,3
+ 397              		.global	HAL_UART_RxCpltCallback
+ 398              		.syntax unified
+ 399              		.thumb
+ 400              		.thumb_func
+ 401              		.fpu fpv4-sp-d16
+ 403              	HAL_UART_RxCpltCallback:
+ 404              	.LFB130:
+ 100:app/app_main.c **** 
+ 101:app/app_main.c **** void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
+ 102:app/app_main.c **** {
+ 405              		.loc 1 102 0
+ 406              		.cfi_startproc
+ 407              		@ args = 0, pretend = 0, frame = 0
+ 408              		@ frame_needed = 0, uses_anonymous_args = 0
+ 409              		@ link register save eliminated.
+ARM GAS  /tmp/ccbQgl6J.s 			page 10
+
+
+ 410              	.LVL31:
+ 103:app/app_main.c ****     printf(out);
+ 411              		.loc 1 103 0
+ 412 0000 0148     		ldr	r0, .L22
+ 413              	.LVL32:
+ 414 0002 FFF7FEBF 		b	printf
+ 415              	.LVL33:
+ 416              	.L23:
+ 417 0006 00BF     		.align	2
+ 418              	.L22:
+ 419 0008 00000000 		.word	.LANCHOR0
+ 420              		.cfi_endproc
+ 421              	.LFE130:
+ 423              		.section	.text.app_main_upd,"ax",%progbits
+ 424              		.align	1
+ 425              		.p2align 2,,3
+ 426              		.global	app_main_upd
+ 427              		.syntax unified
+ 428              		.thumb
+ 429              		.thumb_func
+ 430              		.fpu fpv4-sp-d16
+ 432              	app_main_upd:
+ 433              	.LFB131:
+ 104:app/app_main.c **** //    memset(out, 0, 70);
+ 105:app/app_main.c **** //    HAL_UART_Receive_DMA(&huart1, out, 70);
+ 106:app/app_main.c **** //    last_ch = 0;
+ 107:app/app_main.c **** }
+ 108:app/app_main.c **** 
+ 109:app/app_main.c **** void app_main_upd()
+ 110:app/app_main.c **** {
+ 434              		.loc 1 110 0
+ 435              		.cfi_startproc
+ 436              		@ args = 0, pretend = 0, frame = 0
+ 437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 438              		@ link register save eliminated.
+ 111:app/app_main.c ****     uint32_t l;
+ 112:app/app_main.c **** //    if((l = strlen(out)) != last_ch)
+ 113:app/app_main.c **** //    {
+ 114:app/app_main.c **** //	printf(out);
+ 115:app/app_main.c **** //	last_ch = l;
+ 116:app/app_main.c **** //    }
+ 117:app/app_main.c **** //    printf("\n");
+ 118:app/app_main.c **** //    strcat(out, buf + last_ch);
+ 119:app/app_main.c ****     memset(buf, 0, 128);
+ 439              		.loc 1 119 0
+ 440 0000 8022     		movs	r2, #128
+ 441 0002 0021     		movs	r1, #0
+ 442 0004 0148     		ldr	r0, .L25
+ 443 0006 FFF7FEBF 		b	memset
+ 444              	.LVL34:
+ 445              	.L26:
+ 446 000a 00BF     		.align	2
+ 447              	.L25:
+ 448 000c 00000000 		.word	.LANCHOR2
+ 449              		.cfi_endproc
+ 450              	.LFE131:
+ 452              		.global	buf
+ARM GAS  /tmp/ccbQgl6J.s 			page 11
+
+
+ 453              		.global	last_ch
+ 454              		.comm	comp,120,4
+ 455              		.comm	tf,92,4
+ 456              		.comm	but,324,4
+ 457              		.global	text_style
+ 458              		.global	button_style
+ 459              		.global	out
+ 460              		.global	but_t
+ 461              		.global	sample_string
+ 462              		.comm	makise_color_palette,4,4
+ 463              		.section	.bss.buf,"aw",%nobits
+ 464              		.align	2
+ 465              		.set	.LANCHOR2,. + 0
+ 468              	buf:
+ 469 0000 00000000 		.space	1024
+ 469      00000000 
+ 469      00000000 
+ 469      00000000 
+ 469      00000000 
+ 470              		.section	.bss.last_ch,"aw",%nobits
+ 471              		.align	2
+ 472              		.set	.LANCHOR1,. + 0
+ 475              	last_ch:
+ 476 0000 00000000 		.space	4
+ 477              		.section	.bss.out,"aw",%nobits
+ 478              		.align	2
+ 479              		.set	.LANCHOR0,. + 0
+ 482              	out:
+ 483 0000 00000000 		.space	9048
+ 483      00000000 
+ 483      00000000 
+ 483      00000000 
+ 483      00000000 
+ 484              		.section	.data.but_t,"aw",%progbits
+ 485              		.align	2
+ 486              		.set	.LANCHOR4,. + 0
+ 489              	but_t:
+ 490 0000 00000000 		.word	.LC4
+ 491 0004 04000000 		.word	.LC5
+ 492 0008 0C000000 		.word	.LC6
+ 493              		.section	.data.button_style,"aw",%progbits
+ 494              		.align	2
+ 495              		.set	.LANCHOR3,. + 0
+ 498              	button_style:
+ 499 0000 01000000 		.word	1
+ 500 0004 00000000 		.word	F_Arial24
+ 501 0008 00000000 		.word	0
+ 502 000c 00000000 		.word	0
+ 503 0010 09000000 		.word	9
+ 504 0014 09000000 		.word	9
+ 505 0018 0000     		.short	0
+ 506 001a 0000     		.space	2
+ 507 001c 00000000 		.word	0
+ 508 0020 01000000 		.word	1
+ 509 0024 01000000 		.word	1
+ 510 0028 0000     		.short	0
+ 511 002a 0000     		.space	2
+ARM GAS  /tmp/ccbQgl6J.s 			page 12
+
+
+ 512 002c 01000000 		.word	1
+ 513 0030 00000000 		.word	0
+ 514 0034 01000000 		.word	1
+ 515 0038 0000     		.short	0
+ 516 003a 0000     		.space	2
+ 517 003c 03000000 		.word	3
+ 518 0040 01000000 		.word	1
+ 519 0044 01000000 		.word	1
+ 520 0048 0000     		.short	0
+ 521 004a 0000     		.space	2
+ 522              		.section	.data.sample_string,"aw",%progbits
+ 523              		.align	2
+ 526              	sample_string:
+ 527 0000 14000000 		.word	.LC7
+ 528              		.section	.data.text_style,"aw",%progbits
+ 529              		.align	2
+ 530              		.set	.LANCHOR5,. + 0
+ 533              	text_style:
+ 534 0000 01000000 		.word	1
+ 535 0004 00000000 		.word	F_Arial15
+ 536 0008 03000000 		.word	3
+ 537 000c FFFF0000 		.word	65535
+ 538 0010 01000000 		.word	1
+ 539 0014 FFFF0000 		.word	65535
+ 540 0018 0000     		.short	0
+ 541 001a 0000     		.space	2
+ 542 001c FFFF0000 		.word	65535
+ 543 0020 01000000 		.word	1
+ 544 0024 FFFF0000 		.word	65535
+ 545 0028 0000     		.short	0
+ 546 002a 0000     		.space	2
+ 547 002c 00000000 		.word	0
+ 548 0030 00000000 		.word	0
+ 549 0034 00000000 		.word	0
+ 550 0038 0000     		.short	0
+ 551 003a 0000     		.space	2
+ 552 003c 00000000 		.word	0
+ 553 0040 00000000 		.word	0
+ 554 0044 00000000 		.word	0
+ 555 0048 0000     		.short	0
+ 556 004a 0000     		.space	2
+ 557              		.section	.rodata.b_st.str1.4,"aMS",%progbits,1
+ 558              		.align	2
+ 559              	.LC0:
+ 560 0000 24505354 		.ascii	"$PSTMCOLD\015l\000"
+ 560      4D434F4C 
+ 560      440D6C00 
+ 561              		.section	.rodata.b_time.str1.4,"aMS",%progbits,1
+ 562              		.align	2
+ 563              	.LC1:
+ 564 0000 49324320 		.ascii	"I2C devices ping test\012\000"
+ 564      64657669 
+ 564      63657320 
+ 564      70696E67 
+ 564      20746573 
+ 565 0017 00       		.space	1
+ 566              	.LC2:
+ARM GAS  /tmp/ccbQgl6J.s 			page 13
+
+
+ 567 0018 49324320 		.ascii	"I2C device with address 0x%02x is %d\012\000"
+ 567      64657669 
+ 567      63652077 
+ 567      69746820 
+ 567      61646472 
+ 568 003e 0000     		.space	2
+ 569              	.LC3:
+ 570 0040 544F5441 		.ascii	"TOTAL I2C devices: %d\012\000"
+ 570      4C204932 
+ 570      43206465 
+ 570      76696365 
+ 570      733A2025 
+ 571              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 572              		.align	2
+ 573              	.LC4:
+ 574 0000 49324300 		.ascii	"I2C\000"
+ 575              	.LC5:
+ 576 0004 73746172 		.ascii	"start\000"
+ 576      7400
+ 577 000a 0000     		.space	2
+ 578              	.LC6:
+ 579 000c 636C6561 		.ascii	"clear\000"
+ 579      7200
+ 580 0012 0000     		.space	2
+ 581              	.LC7:
+ 582 0014 4C6F7265 		.ascii	"Lorem ipsum dolor sit amet, consectetur adipiscing "
+ 582      6D206970 
+ 582      73756D20 
+ 582      646F6C6F 
+ 582      72207369 
+ 583 0047 656C6974 		.ascii	"elit, sed do eiusmod tempor incididunt ut labore et"
+ 583      2C207365 
+ 583      6420646F 
+ 583      20656975 
+ 583      736D6F64 
+ 584 007a 20646F6C 		.ascii	" dolore magna aliqua. Ut enim ad minim veniam, quis"
+ 584      6F726520 
+ 584      6D61676E 
+ 584      6120616C 
+ 584      69717561 
+ 585 00ad 206E6F73 		.ascii	" nostrud exercitation ullamco laboris nisi ut aliqu"
+ 585      74727564 
+ 585      20657865 
+ 585      72636974 
+ 585      6174696F 
+ 586 00e0 69702065 		.ascii	"ip ex ea commodo consequat. Duis aute irure dolor i"
+ 586      78206561 
+ 586      20636F6D 
+ 586      6D6F646F 
+ 586      20636F6E 
+ 587 0113 6E207265 		.ascii	"n reprehenderit in voluptate velit esse cillum dolo"
+ 587      70726568 
+ 587      656E6465 
+ 587      72697420 
+ 587      696E2076 
+ 588 0146 72652065 		.ascii	"re eu fugiat nulla pariatur. Excepteur sint occaeca"
+ 588      75206675 
+ARM GAS  /tmp/ccbQgl6J.s 			page 14
+
+
+ 588      67696174 
+ 588      206E756C 
+ 588      6C612070 
+ 589 0179 74206375 		.ascii	"t cupidatat non proident, sunt in culpa qui officia"
+ 589      70696461 
+ 589      74617420 
+ 589      6E6F6E20 
+ 589      70726F69 
+ 590 01ac 20646573 		.ascii	" deserunt mollit anim id est laborum.\000"
+ 590      6572756E 
+ 590      74206D6F 
+ 590      6C6C6974 
+ 590      20616E69 
+ 591              		.text
+ 592              	.Letext0:
+ 593              		.file 2 "MakiseGUI/MakiseGUI/makise.h"
+ 594              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 595              		.file 4 "/usr/arm-none-eabi/include/sys/lock.h"
+ 596              		.file 5 "/usr/arm-none-eabi/include/sys/_types.h"
+ 597              		.file 6 "/usr/lib/gcc/arm-none-eabi/6.3.0/include/stddef.h"
+ 598              		.file 7 "/usr/arm-none-eabi/include/sys/reent.h"
+ 599              		.file 8 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 600              		.file 9 "Drivers/CMSIS/Include/core_cm4.h"
+ 601              		.file 10 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 602              		.file 11 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 603              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 604              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 605              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 606              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 607              		.file 16 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 608              		.file 17 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 609              		.file 18 "Inc/spi.h"
+ 610              		.file 19 "Inc/tim.h"
+ 611              		.file 20 "MakiseGUI/MakiseGUI/ILI9340C/ili9340.h"
+ 612              		.file 21 "MakiseGUI/MakiseGUI/makise_colors.h"
+ 613              		.file 22 "MakiseGUI/MakiseGUI/makise_text.h"
+ 614              		.file 23 "MakiseGUI/MakiseGUI/fonts/fonts.h"
+ 615              		.file 24 "MakiseGUI/MakiseGUI/makise_primitives.h"
+ 616              		.file 25 "MakiseGUI/MakiseGUI/gui/makise_gui.h"
+ 617              		.file 26 "MakiseGUI/MakiseGUI/gui/styles/makise_style.h"
+ 618              		.file 27 "MakiseGUI/MakiseGUI/gui/makise_gui_input.h"
+ 619              		.file 28 "MakiseGUI/MakiseGUI/gui/makise_gui_container.h"
+ 620              		.file 29 "MakiseGUI/MakiseGUI/gui/makise_gui_elements.h"
+ 621              		.file 30 "MakiseGUI/MakiseGUI/gui/elements/makise_e.h"
+ 622              		.file 31 "gui/gui_custom.h"
+ 623              		.file 32 "gui/gui.h"
+ 624              		.file 33 "Inc/usart.h"
+ 625              		.file 34 "Inc/i2c.h"
+ 626              		.file 35 "/usr/arm-none-eabi/include/stdio.h"
+ 627              		.file 36 "dev/compass.h"
+ 628              		.file 37 "/usr/arm-none-eabi/include/string.h"
+ 629              		.file 38 "<built-in>"
+ARM GAS  /tmp/ccbQgl6J.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 app_main.c
-     /tmp/ccNs6PUm.s:13     .text.b_rem:0000000000000000 $t
-     /tmp/ccNs6PUm.s:21     .text.b_rem:0000000000000000 b_rem
-     /tmp/ccNs6PUm.s:42     .text.b_rem:0000000000000024 $d
-     /tmp/ccNs6PUm.s:47     .text.b_st:0000000000000000 $t
-     /tmp/ccNs6PUm.s:55     .text.b_st:0000000000000000 b_st
-     /tmp/ccNs6PUm.s:67     .text.b_st:0000000000000010 $d
-     /tmp/ccNs6PUm.s:71     .text.b_time:0000000000000000 $t
-     /tmp/ccNs6PUm.s:79     .text.b_time:0000000000000000 b_time
-     /tmp/ccNs6PUm.s:148    .text.b_time:0000000000000094 $d
-     /tmp/ccNs6PUm.s:156    .text.app_main_init:0000000000000000 $t
-     /tmp/ccNs6PUm.s:164    .text.app_main_init:0000000000000000 app_main_init
-     /tmp/ccNs6PUm.s:252    .text.app_main_init:00000000000000d0 $d
+     /tmp/ccbQgl6J.s:16     .text.b_rem:0000000000000000 $t
+     /tmp/ccbQgl6J.s:24     .text.b_rem:0000000000000000 b_rem
+     /tmp/ccbQgl6J.s:62     .text.b_rem:0000000000000024 $d
+     /tmp/ccbQgl6J.s:69     .text.b_st:0000000000000000 $t
+     /tmp/ccbQgl6J.s:77     .text.b_st:0000000000000000 b_st
+     /tmp/ccbQgl6J.s:96     .text.b_st:0000000000000010 $d
+     /tmp/ccbQgl6J.s:102    .text.b_time:0000000000000000 $t
+     /tmp/ccbQgl6J.s:110    .text.b_time:0000000000000000 b_time
+     /tmp/ccbQgl6J.s:243    .text.b_time:0000000000000094 $d
+     /tmp/ccbQgl6J.s:253    .text.app_main_init:0000000000000000 $t
+     /tmp/ccbQgl6J.s:261    .text.app_main_init:0000000000000000 app_main_init
+     /tmp/ccbQgl6J.s:380    .text.app_main_init:00000000000000d0 $d
                             *COM*:0000000000000078 comp
                             *COM*:000000000000005c tf
                             *COM*:0000000000000144 but
-     /tmp/ccNs6PUm.s:265    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
-     /tmp/ccNs6PUm.s:273    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
-     /tmp/ccNs6PUm.s:282    .text.HAL_UART_RxCpltCallback:0000000000000008 $d
-     /tmp/ccNs6PUm.s:285    .text.app_main_upd:0000000000000000 $t
-     /tmp/ccNs6PUm.s:293    .text.app_main_upd:0000000000000000 app_main_upd
-     /tmp/ccNs6PUm.s:304    .text.app_main_upd:000000000000000c $d
-     /tmp/ccNs6PUm.s:322    .bss.buf:0000000000000000 buf
-     /tmp/ccNs6PUm.s:329    .bss.last_ch:0000000000000000 last_ch
-     /tmp/ccNs6PUm.s:387    .data.text_style:0000000000000000 text_style
-     /tmp/ccNs6PUm.s:352    .data.button_style:0000000000000000 button_style
-     /tmp/ccNs6PUm.s:336    .bss.out:0000000000000000 out
-     /tmp/ccNs6PUm.s:343    .data.but_t:0000000000000000 but_t
-     /tmp/ccNs6PUm.s:380    .data.sample_string:0000000000000000 sample_string
+     /tmp/ccbQgl6J.s:395    .text.HAL_UART_RxCpltCallback:0000000000000000 $t
+     /tmp/ccbQgl6J.s:403    .text.HAL_UART_RxCpltCallback:0000000000000000 HAL_UART_RxCpltCallback
+     /tmp/ccbQgl6J.s:419    .text.HAL_UART_RxCpltCallback:0000000000000008 $d
+     /tmp/ccbQgl6J.s:424    .text.app_main_upd:0000000000000000 $t
+     /tmp/ccbQgl6J.s:432    .text.app_main_upd:0000000000000000 app_main_upd
+     /tmp/ccbQgl6J.s:448    .text.app_main_upd:000000000000000c $d
+     /tmp/ccbQgl6J.s:468    .bss.buf:0000000000000000 buf
+     /tmp/ccbQgl6J.s:475    .bss.last_ch:0000000000000000 last_ch
+     /tmp/ccbQgl6J.s:533    .data.text_style:0000000000000000 text_style
+     /tmp/ccbQgl6J.s:498    .data.button_style:0000000000000000 button_style
+     /tmp/ccbQgl6J.s:482    .bss.out:0000000000000000 out
+     /tmp/ccbQgl6J.s:489    .data.but_t:0000000000000000 but_t
+     /tmp/ccbQgl6J.s:526    .data.sample_string:0000000000000000 sample_string
                             *COM*:0000000000000004 makise_color_palette
-     /tmp/ccNs6PUm.s:318    .bss.buf:0000000000000000 $d
-     /tmp/ccNs6PUm.s:325    .bss.last_ch:0000000000000000 $d
-     /tmp/ccNs6PUm.s:332    .bss.out:0000000000000000 $d
-     /tmp/ccNs6PUm.s:339    .data.but_t:0000000000000000 $d
-     /tmp/ccNs6PUm.s:348    .data.button_style:0000000000000000 $d
-     /tmp/ccNs6PUm.s:377    .data.sample_string:0000000000000000 $d
-     /tmp/ccNs6PUm.s:383    .data.text_style:0000000000000000 $d
-     /tmp/ccNs6PUm.s:412    .rodata.b_st.str1.4:0000000000000000 $d
-     /tmp/ccNs6PUm.s:416    .rodata.b_time.str1.4:0000000000000000 $d
-     /tmp/ccNs6PUm.s:426    .rodata.str1.4:0000000000000000 $d
+     /tmp/ccbQgl6J.s:464    .bss.buf:0000000000000000 $d
+     /tmp/ccbQgl6J.s:471    .bss.last_ch:0000000000000000 $d
+     /tmp/ccbQgl6J.s:478    .bss.out:0000000000000000 $d
+     /tmp/ccbQgl6J.s:485    .data.but_t:0000000000000000 $d
+     /tmp/ccbQgl6J.s:494    .data.button_style:0000000000000000 $d
+     /tmp/ccbQgl6J.s:523    .data.sample_string:0000000000000000 $d
+     /tmp/ccbQgl6J.s:529    .data.text_style:0000000000000000 $d
+     /tmp/ccbQgl6J.s:558    .rodata.b_st.str1.4:0000000000000000 $d
+     /tmp/ccbQgl6J.s:562    .rodata.b_time.str1.4:0000000000000000 $d
+     /tmp/ccbQgl6J.s:572    .rodata.str1.4:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -563,10 +893,10 @@ m_create_button
 compass_get_angle
 gui_create_compass
 m_create_text_field
+ARM GAS  /tmp/ccbQgl6J.s 			page 16
+
+
 host
-ARM GAS  /tmp/ccNs6PUm.s 			page 11
-
-
 printf
 F_Arial24
 F_Arial15
